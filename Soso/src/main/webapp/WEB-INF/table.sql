@@ -52,7 +52,16 @@ CREATE TABLE board_gallery(
    writer VARCHAR2(100),
    caption VARCHAR2(100),   -- 이미지에 대한 설명
    imagePath VARCHAR2(100), -- 업로드된 이미지의 경로  ex) /resources/upload/xxx.jpg
-   regdate DATE -- 이미지 업로드 날짜 
+   regdate DATE -- 이미지 업로드 날짜 	
 );
+
+-- 소모임 만들기 위한 테이블
+CREATE TABLE board_somoim(
+	num NUMBER PRIMARY KEY, --소모임 PK키
+	writer VARCHAR2(100), -- 소모임 주최자에 대한 것
+	title VARCHAR2(100), -- 소모임의 이름
+	caption VARCHAR2(200), -- 간단한 소모임 설명
+)
+
 
 CREATE SEQUENCE board_gallery_seq;
