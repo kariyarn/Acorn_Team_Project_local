@@ -53,7 +53,7 @@
 				<li class="page-item">
 					<a class="page-link animate__animated" href="list?pageNum=${endPageNum+1 }&condition=${condition}&keyword=${encodedK}">Next</a>
 				</li>
-			</c:if>				
+			</c:if>
 		</ul>
 	</nav>
 </body>

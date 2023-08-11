@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>소모임 문의사항</title>
+<title>소모임 문의사항 수정하기</title>
 <style>
 	textarea{
 		width: 768px;
@@ -15,15 +15,13 @@
 </head>
 <body>
 	<div class="container">
-		<h2>소모임 게시판 글 쓰기</h2>
-		
-		<form action="${pageContext.request.contextPath}/group/faq/insert" method="post">
+		<h2>소모임 게시판 수정 게시판</h2>
+		<form action="${pageContext.request.contextPath}/group/faq/update?num=${dto.num }" method="post">
 			<div class="col-12">
-				  <input type="text" id="group_num" name="group_num" value="${num }" hidden />
-			      <input type="text" class="form-control" id="q_title" name="q_title" placeholder="제 목" >
+			      <input type="text" class="form-control" id="q_title" name="q_title" placeholder="제 목" value="${dto.q_title }" >
 			<div>
 				<label for="q_content"></label>
-				<textarea name="q_content" id="q_content" rows="10"></textarea>
+				<textarea name="q_content" id="q_content" rows="10">${dto.q_content }</textarea>
 			</div>	
 			<button type="submit" onclick="submitContents(this)" style="margin-left: 106.2ex;">등록</button>
 		</form>

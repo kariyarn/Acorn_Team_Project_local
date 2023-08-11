@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.acorn.soso.group.dto.GroupDto;
+import com.acorn.soso.group.dto.GroupFAQDto;
 import com.acorn.soso.group.dto.GroupReviewDto;
 import com.acorn.soso.group.dto.JjimDto;
 import com.acorn.soso.group.service.GroupService;
@@ -31,11 +32,35 @@ public class GroupController {
 	@Autowired
 	private GroupManagingService managingService;	
 	
+	//소모임 FAQ의 Update
+	@PostMapping("/group/faq/update")
+	public String groupFaqUpdate(HttpServletRequest request, GroupFAQDto dto) {
+		service.updateGroupFAQ(request, dto);
+		return "group/list";
+	}
+	
+	//소모임 FAQ의 updateform
+	@GetMapping("/group/faq/updateform")
+	public String groupFaqUpdateForm(HttpServletRequest request, Model model) {
+		service.groupFAQGetData(request, model);
+		return "group/faq/updateform";
+	}
+	
+	//소모임 FAQ문의 delete문
+	@GetMapping("/group/faq/delete")
+	public String groupFaqDelete(HttpServletRequest request, int num) {
+		service.deleteGroupFAQ(request, num);
+		return "group/list";
+	}	
+	
 	//소모임 FAQ문의 insert
 	@PostMapping("/group/faq/insert")
-	public String groupFaqInsert(HttpServletRequest request) {
-		
-		return "group/faq/insert";
+	public String groupFaqInsert(HttpSession session, GroupFAQDto dto) {
+		String writer=(String)session.getAttribute("id");
+		//id 값만 넣어준다.
+		dto.setQ_writer(writer);
+		service.groupFAQInsert(dto);		
+		return "group/list";
 	}
 	
 	//소모임FAQ문의 insertform
@@ -47,8 +72,9 @@ public class GroupController {
 	
 	//소모임 FAQ 게시판 목록을 보기 위한 컨트롤러
 	@GetMapping("/group/faq/list")
-	public String groupFaqList(HttpServletRequest request, int num) {
+	public String groupFaqList(HttpServletRequest request, int num, Model model) {
 		request.setAttribute("num", num);
+		service.groupFAQGetList(request, model);
 		return "group/faq/list";
 	}
 	

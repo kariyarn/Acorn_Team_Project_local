@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.ui.Model;
 
 import com.acorn.soso.group.dto.GroupDto;
+import com.acorn.soso.group.dto.GroupFAQDto;
 import com.acorn.soso.group.dto.GroupReviewDto;
 
 
@@ -45,6 +46,18 @@ public interface GroupService {
 	public void knowJoin(HttpServletRequest request);
 	//소모임 가입 신청 취소
 	public boolean cancleJoin(HttpServletRequest request);
+	
+	//소모임 faq에 관련한 기능
+	//소모임 게시판에 글쓰기
+	public void groupFAQInsert(GroupFAQDto dto);
+	//소모임 문의 게시판 목록 불러오기, request로 값을 얻어오고 model에 담는다.
+	public void groupFAQGetList(HttpServletRequest request, Model model);
+	//소모임의 getData. request로 값을 얻어오고 model에 담는다.
+	public void groupFAQGetData(HttpServletRequest request, Model model);
+	//소모임 문의글 수정.request로 필요한 정보를 얻고 dto로 수정한다.
+	public void updateGroupFAQ(HttpServletRequest request, GroupFAQDto dto);
+	//소모임 문의글삭제.request로 필요한 정보를 얻고 num으로 수정한다.
+	public void deleteGroupFAQ(HttpServletRequest request, int num);
 	
 	//ajax처리로 찜하기&찜취소 기능 구현
 	public boolean jjim(HttpServletRequest request);

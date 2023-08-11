@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="groupFAQ">
+	<insert id="insert" parameterType="groupFAQDto">
+	    INSERT INTO GROUP_FAQ_TB
+		(group_num, num, q_writer, q_title, q_content, regdate)
+		VALUES(#{group_num}, GROUP_FAQ_SEQ.nextval, #{q_writer}, #{q_title}, #{q_content}, SYSDATE)
+	</insert>
+	<select id="getList" parameterType="groupFAQDto" resultType="groupFAQDto">
+		SELECT *
+		FROM
+			(SELECT result1.*, ROWNUM AS rnum
+			FROM
+				(SELECT group_num, num, q_writer, q_title, q_content, regdate
+				FROM GROUP_FAQ_TB
+				WHERE group_num = #{group_num}
+				ORDER BY num DESC) result1)
+		<![CDATA[ 
+		WHERE rnum >= #{startRowNum} AND rnum <= #{endRowNum}
+		]]>
+	</select>
+	<select id="getData" parameterType="int" resultType="groupFAQDto">
+		SELECT group_num, num, q_writer, q_title, q_content, regdate
+		FROM GROUP_FAQ_TB
+		WHERE num = #{num}
+	</select>
+	<select id="getCount" parameterType="groupFAQDto" resultType="int">
+		SELECT NVL(MAX(ROWNUM), 0)
+		FROM GROUP_FAQ_TB
+	</select>		
+	<update id="update" parameterType="groupFAQDto">
+		UPDATE GROUP_FAQ_TB
+		SET q_title = #{q_title}, q_content = #{q_content}
+		WHERE num = #{num}	
+	</update>
+	<delete id="delete" parameterType="int">
+		DELETE FROM GROUP_FAQ_TB
+		WHERE num = #{num}		
+	</delete>
+</mapper>
