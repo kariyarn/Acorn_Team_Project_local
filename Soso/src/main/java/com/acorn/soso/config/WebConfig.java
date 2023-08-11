@@ -36,7 +36,8 @@ public class WebConfig implements WebMvcConfigurer{
 				.excludePathPatterns("/users/loginform", "/users/login", 
 						"/users/signup_form", "/users/signup",
 						"/users/pwd_findform","/users/pwd_find",
-						"/users/id_findform", "/users/id_find");
+						"/users/id_findform", "/users/id_find",
+						"/users/idCheck");
 		registry.addInterceptor(pwdAuthInter)
 				.addPathPatterns("/users/updateform", "/users/pwd_updateform");
 		registry.addInterceptor(loginInter)

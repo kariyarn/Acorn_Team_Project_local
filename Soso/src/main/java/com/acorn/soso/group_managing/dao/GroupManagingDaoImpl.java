@@ -37,28 +37,33 @@ public class GroupManagingDaoImpl implements GroupManagingDao{
 	}
 	
 	@Override
-	public List<GroupManagingDto> getApplicantList(GroupManagingDto dto) {
-		return session.selectList("groupManaging.getApplicantList", dto);
+	public List<GroupManagingDto> getApplicantList(int group_num) {
+		return session.selectList("groupManaging.getApplicantList", group_num);
 	}
 	
 	@Override
-	public List<GroupManagingDto> getRejectedApplicantList(GroupManagingDto dto) {
-		return session.selectList("groupManaging.getRejectedApplicantList", dto);
+	public List<GroupManagingDto> getRejectedApplicantList(int group_num) {
+		return session.selectList("groupManaging.getRejectedApplicantList", group_num);
 	}
 	
 	@Override
-	public List<GroupManagingDto> getMemberList(GroupManagingDto dto) {
-		return session.selectList("groupManaging.getMemberList", dto);
+	public List<GroupManagingDto> getMemberList(int group_num) {
+		return session.selectList("groupManaging.getMemberList", group_num);
 	}
 	
 	@Override
-	public List<GroupManagingDto> getKickedMemberList(GroupManagingDto dto) {
-		return session.selectList("groupManaging.getKickedMemberList", dto);
+	public List<GroupManagingDto> getKickedMemberList(int group_num) {
+		return session.selectList("groupManaging.getKickedMemberList", group_num);
 	}
 
 	@Override
 	public void joinApprove(int num) {
 		session.update("groupManaging.joinApprove", num);
+	}
+	
+	@Override
+	public void addMemberCount(int group_num) {
+		session.update("groupManaging.addMemberCount", group_num);
 	}
 
 	@Override
@@ -70,6 +75,11 @@ public class GroupManagingDaoImpl implements GroupManagingDao{
 	public void kick(int num) {
 		session.update("groupManaging.kick", num);
 	}
+	
+	@Override
+	public void minusMemberCount(int group_num) {
+		session.update("groupManaging.minusMemberCount", group_num);
+	}
 
 	@Override
 	public void reject(int num) {
@@ -80,4 +90,11 @@ public class GroupManagingDaoImpl implements GroupManagingDao{
 	public void dropOut(int num) {
 		session.update("groupManaging.dropOut", num);
 	}
+
+	@Override
+	public List<GroupDto> getGroupList2(String user_id) {
+		return session.selectList("groupManaging.getGroupList2", user_id);
+	}
+
+	
 }

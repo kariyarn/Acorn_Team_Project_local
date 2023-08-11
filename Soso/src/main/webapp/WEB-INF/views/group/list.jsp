@@ -10,6 +10,7 @@
 	<link rel="stylesheet" href="${path }/resources/css/common.css" type="text/css">
     <link rel="stylesheet" href="${path }/resources/css/group_list.css" type="text/css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="${path }/resources/js/jquery-1.12.0.min.js"></script>
     <script src="${path }/resources/js/jquery.easing.1.3.js"></script>
     <script src="${path }/resources/js/common.js"></script>
@@ -31,7 +32,7 @@
             </div>
             <div class="indicator">
                 <div class="home circle">
-                    <a href="../../index.html" title="메인페이지가기"><img src="${path }/resources/images/sub/icon_home.svg" alt="홈버튼이미지"></a>
+                    <a href="#" title="메인페이지가기"><img src="${path }/resources/images/sub/icon_home.svg" alt="홈버튼이미지"></a>
                 </div>
                 <div class="main-menu circle">BOOKMATE</div>
 
@@ -44,23 +45,9 @@
             <h3 class="title black" data-aos="fade-up"
             data-aos-offset="300"
             data-aos-easing="ease-in-sine">소모임 찾기</h3>
-        </div>
-        <div class="inner-wrap">
-            <div class="mate_content_theme">
-                <ul>
-                    <li><a href="#">전체보기</a></li>
-                    <li><a href="#">분류1</a></li>
-                    <li><a href="#">분류2</a></li>
-                    <li><a href="#">분류3</a></li>
-                    <li><a href="#">분류4</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="inner-wrap">
-        	<div class="theme_search">
+            <div class="theme_search">
             	<form action="list" method="get">
-            	<label for="condition">검색조건</label>
-            	<input type="text" placeholder="type.." value=" ${keyword }" name="keyword" />
+            	<input type="text" placeholder="type.." value="${keyword}" name="keyword" />
             		<select name="condition" id="condition">
             			<option value="name_caption" ${condition eq 'name_caption' ? 'selected' : '' }>모임명 +내용</option>
             			<option value="name"  ${condition eq 'name' ? 'selected' : '' }>모임명 </option>
@@ -71,12 +58,33 @@
             </div>
         </div>
         <div class="inner-wrap">
+            <div class="mate_content_theme">
+                <ul>
+                    <li><a href="#">전체보기</a></li>
+                    <li><a href="#">자기계발</a></li>
+                    <li><a href="#">인문</a></li>
+                    <li><a href="#">경영</a></li>
+                    <li><a href="#">문학</a></li>
+                    <li><a href="#">기타</a></li>
+                </ul>
+            </div>
+            <div class="mate_content_theme">
+                <ul>
+                    <li><a href="${pageContext.request.contextPath}/group/viewList">인기순</a></li>
+                    <li><a href="${pageContext.request.contextPath}/group/list">최신순</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="inner-wrap">
+        	
+        </div>
+        <div class="inner-wrap">
         	<c:forEach var="tmp" items="${list}">
         		<div class="mate_content_list">
 	               <div class="mate_contents">
 	                   <a href="${pageContext.request.contextPath}/group/group_page?num=${tmp.num }">
 	                       <div class="mate_content_img">
-	                           <img src="${path }/resources/images/main/001.jpg" alt="테스트이미지1">
+	                           <img src="${pageContext.request.contextPath}${tmp.img_path}">
 	                       </div>
 	                   </a>
 	                   <a href="detail?num=${tmp.num }&condition=${condition}&keyword=${encodedk}">
@@ -86,6 +94,7 @@
 	                       <div class="mate_content_text">
 	                           <p class="mate_content_title">${tmp.name}</p>
 	                           <p>모임장 ${tmp.manager_id}</p>
+	                           <p>조회수 ${tmp.viewCount}</p>
 	                           <p class="mate_content_date">${tmp.meeting_time}ㆍ금요일ㆍ${tmp.meeting_loc }</p>
 	                       </div>
 	                   </a>
@@ -120,6 +129,7 @@
          </ul>
       </nav>
       <script>
+      AOS.init();
          document.querySelectorAll(".pagination a").forEach(function(item){
             //item 은 a 의 참조값이다 모든 a 요소에 mouseover 이벤트가 발생했을때 실행할 함수 등록
             item.addEventListener("mouseover", function(e){

@@ -13,6 +13,8 @@ import com.acorn.soso.group.dto.GroupReviewDto;
 public interface GroupService {
 	//list가져오기
 	public void getList(HttpServletRequest request, Model model);
+	//getViewList 가져오기
+	public void getViewList(HttpServletRequest request, Model model);	
 	//ranking list 가져오기
 	public void getRanking(HttpServletRequest request, Model model);
 	//사진 upload*DB 저장하기

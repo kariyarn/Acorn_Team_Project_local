@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/user.css" type="text/css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/reset.css" type="text/css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 </head>
 <body>
     <jsp:include page="/WEB-INF/views/include/navbar_c.jsp">
@@ -28,9 +29,12 @@
                 </c:otherwise>
             </c:choose>
             
-            <div>
-                <label class="form-label" for="pwd">비밀 번호 입력</label>
-                <input class="form-control" type="password" name="pwd" id="pwd"/>
+            <div class="input-group">
+                <div class="form-floating">
+                   <input type="password" name="pwd" id="pwd" class="form-control" placeholder="비밀번호" required>
+                   <label for="pwd">비밀번호</label>
+                </div>
+                <button class="btn btn-outline-secondary bi-eye-slash" type="button" id="openpwd"></button>
             </div>
             <button class="btn btn-primary" type="submit">확인</button>
             <button class="btn btn-secondary" type="reset">리셋</button>
@@ -38,7 +42,7 @@
     </div>
     
     <jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
-    
+    <script src="${pageContext.request.contextPath}/resources/js/open_pwd.js"></script>
 </body>
 </html>
 

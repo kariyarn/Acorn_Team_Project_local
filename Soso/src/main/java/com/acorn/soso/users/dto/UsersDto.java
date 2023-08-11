@@ -23,5 +23,9 @@ public class UsersDto {
 	private String name;
 	private String birth;
 	private String gender;
+	
+	private Integer SVC_USE_PCY_AGMT_YN;
+	private Integer PS_INFO_PROC_AGMT_YN;
+	private Integer MKT_INFO_RECV_AGMT_YN;
 
 }

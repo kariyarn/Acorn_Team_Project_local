@@ -5,10 +5,15 @@
 
 <mapper namespace="users">
 
+	<!-- 아이디 중복체크 -->
+    <select id="isExist" parameterType="string" resultType="int">
+        SELECT COUNT(*) FROM users WHERE id = #{id}
+    </select>
+
 	<insert id="insert" parameterType="usersDto">
 		INSERT INTO users
-		(id, pwd, email, regdate, Name, birth, gender, SVC_USE_PCY_AGMT_YN, PS_INFO_PROC_AGMT_YN, MKT_INFO_RECV_AGMT_YN)
-		VALUES(#{id}, #{pwd}, #{email}, SYSDATE, #{userName}, #{birth}, #{gender}, 0, 0, 0)
+		(id, pwd, email, regdate, name, birth, gender, SVC_USE_PCY_AGMT_YN, PS_INFO_PROC_AGMT_YN, MKT_INFO_RECV_AGMT_YN)
+		VALUES(#{id}, #{pwd}, #{email}, SYSDATE, #{name}, #{birth}, #{gender}, 0, 0, 0)
 	</insert>
 	
 	<select id="getData" parameterType="string" resultType="usersDto">

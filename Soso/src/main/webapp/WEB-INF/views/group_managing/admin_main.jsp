@@ -29,12 +29,12 @@
 				<div id="card">
 					<div>
 						<div id="likedNumber">
-							<div>❤ 123</div>
+							<div>❤ ${tmp.like_num }</div>
 						</div>
 						<div class="card-box">
 							<div class="card-left">
 								<div><img class="card-image" src="${pageContext.request.contextPath}${tmp.img_path}"/></div>
-								<div><a href="${pageContext.request.contextPath}/group_managing/memberList">${tmp.now_people} / ${tmp.max_people}</a></div>
+								<div><a href="${pageContext.request.contextPath}/group_managing/memberList?group_num=${tmp.num}">${tmp.now_people} / ${tmp.max_people}</a></div>
 							</div>
 							<div class="card-right">
 								<div id="card-title">${tmp.name }</div>
@@ -43,7 +43,7 @@
 								<div id="card-link"><a href="${pageContext.request.contextPath}/cafe/list">소모임 커뮤니티 가기</a></div>
 								<div id="card-buttons">
 									<div><a href="${pageContext.request.contextPath}/group_managing/group_updateForm?num=${tmp.num}">정보 수정</a></div>
-									<div><a href="${pageContext.request.contextPath}/group_managing/applicantList?num=${tmp.num}">가입 관리</a></div>
+									<div><a href="${pageContext.request.contextPath}/group_managing/applicantList?group_num=${tmp.num}">가입 관리</a></div>
 								</div>
 							</div>
 						</div>

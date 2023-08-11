@@ -20,6 +20,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -39,6 +40,12 @@ public class UsersController {
 	public String signupForm() {
 		
 		return "users/signup_form";
+	}
+	
+	@PostMapping("/users/idCheck")
+	@ResponseBody
+	public boolean idCheck(@RequestParam String id) {
+	    return service.isExist(id);
 	}
 	
 	//회원 가입 요청처리

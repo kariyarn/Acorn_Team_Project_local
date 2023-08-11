@@ -55,4 +55,15 @@ public class GroupDaoImpl implements GroupDao{
 	public int getCount(GroupDto dto) {
 		return session.selectOne("group.getCount", dto);
 	}
+	
+	@Override
+	public void addViewCount(int num) {
+		session.update("group.addViewCount", num);
+		
+	}
+	
+	@Override
+	public List<GroupDto> getViewList(GroupDto dto) {
+	    return session.selectList("group.getViewList", dto);
+    }
 }

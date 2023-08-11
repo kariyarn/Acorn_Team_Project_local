@@ -23,20 +23,20 @@
 	  	 	 </li>
 	      </ul>
 	   </nav>
-	   <div class="main_container">
-	       <img src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fi.pinimg.com%2F736x%2F92%2F73%2F6b%2F92736bbfb3b458a5424d88d4e39dc55d.jpg&type=a340"/>	
-	       <div class="card mb-4">
-		        <div class="card-body">
-		            <p class="card-title fs-3"><strong>책 나눔 모임</strong></p>
-		            <p class="card-text">감명 깊게 읽은 책 나눔!</p>
-		        </div>
-		        <ul class="list-group list-group-flush">
-			         <li class="list-group-item"><strong>관리자  :</strong> <strong>정세영</strong></li>
-			         <li class="list-group-item"><strong>가입 날짜  :</strong> <strong>2023.08.01</strong></li>
-			         <li class="list-group-item"><strong>총 가입 인원  :</strong> <strong>8명</strong></li>
-		      	</ul>
-	     	</div>
-		</div>   	         
+      <div class="main_container">
+          <img src="${pageContext.request.contextPath}/resources/images/${dto.imagePath}"/>   
+          <div class="card mb-4">
+              <div class="card-body">
+                  <p class="card-title fs-3"><strong>${tmp.name}</strong></p>
+                  <p class="card-text">${tmp.caption}</p>
+              </div>
+                   <ul class="list-group list-group-flush">
+                      <li class="list-group-item"><strong>모임장  : ${tmp.manager_id}</strong></li>
+                      <li class="list-group-item"><strong>모임 날짜  : ${tmp.meeting_time}</strong></li>
+                      <li class="list-group-item"><strong>모임 장소  : ${tmp.meeting_loc }</strong></li>
+                  </ul>
+           </div>
+      </div>   	         
 	</div>
 	<div class="container">
 		<br>	

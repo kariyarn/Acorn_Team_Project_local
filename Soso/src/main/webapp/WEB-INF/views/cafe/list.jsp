@@ -23,9 +23,8 @@
 			<thead class="table-group-divider" style="border-bottom: 1px;">
 				<tr>	
 					<th>번호</th>
-					<th>탭</th>
-					<th>작성자</th>
 					<th>제목</th>
+					<th>작성자</th>
 					<th style="text-align: center">조회수</th>
 					<th class="time" style="text-align: center">날짜</th>
 				</tr>
@@ -34,15 +33,15 @@
 				<c:forEach var="tmp" items="${list }">
 					<tr>
 						<td>${tmp.num }</td>
-						<td></td>
-						<td>${tmp.writer }</td>
+						
 						<td>
-							<a style="color: black;" class="text-decoration-none"  href="detail?num=${tmp.num }&condition=${condition}&keyword=${encodedK}">${tmp.title }</a>
+							<a style="color: black;" class="text-decoration-none"  href="detail?num=${tmp.num }&condition=${condition}&keyword=${encodedK}">(말머리)${tmp.title }</a>
 						</td>
+						<td>${tmp.writer }</td>
 						<td style="text-align: center">${tmp.viewCount }</td>
 						<td style="text-align: center">${tmp.regdate }</td>
 					</tr>
-				</c:forEach>
+				</c:forEach> 
 			</tbody>
 		</table>
 		<br />

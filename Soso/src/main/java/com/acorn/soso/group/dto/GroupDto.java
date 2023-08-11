@@ -56,6 +56,9 @@ public class GroupDto {
 	//이미지 처리를 위한 필드
 	private MultipartFile image;
 	
+	//소모임의 좋아요 수
+	private int like_num;
+	
 	//추천수
 	private int thumsup;
 	//비추수

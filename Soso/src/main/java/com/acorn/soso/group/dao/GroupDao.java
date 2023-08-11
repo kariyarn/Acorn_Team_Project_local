@@ -3,11 +3,13 @@ package com.acorn.soso.group.dao;
 import java.util.List;
 
 import com.acorn.soso.group.dto.GroupDto;
-import com.acorn.soso.group.dto.GroupJoinDto;
+
 
 public interface GroupDao {
 	//모 소모임의 리스트
 	public List<GroupDto> getList(GroupDto dto);
+	//소모임 조회수 리스트
+	public List<GroupDto> getViewList(GroupDto dto);
 	//랭킹 리스트
 	public List<GroupDto> getRanking(GroupDto dto);	
 	//모든 Row의 갯수
@@ -22,4 +24,6 @@ public interface GroupDao {
 	public void delete(int num);
 	//모임 수정
 	public void update(GroupDto dto);
+	//조회수 증가 시키기
+	public void addViewCount(int num);
 }

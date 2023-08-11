@@ -13,6 +13,9 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 </head>
 <body>
+	<jsp:include page="/WEB-INF/views/include/navbar_c.jsp">
+        <jsp:param value="login" name="current"/>
+    </jsp:include>
 	<div class="head">
 		<h2>공지사항</h2>
 		<p class="sub_text">BookMate에서 알려드립니다.</p>

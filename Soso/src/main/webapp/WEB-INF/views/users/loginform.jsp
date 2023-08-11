@@ -45,7 +45,7 @@
                    <input type="password" name="pwd" id="pwd" class="form-control" placeholder="비밀번호" required>
                    <label for="pwd">비밀번호</label>
                 </div>
-                <button class="btn btn-outline-secondary bi-eye-slash" type="button" name="openpwd"></button>
+                <button class="btn btn-outline-secondary bi-eye-slash" type="button" id="openpwd"></button>
             </div>
             <small class="form-text text-muted">예) hello123@</small>
             
@@ -69,19 +69,8 @@
     <jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.0/dist/jquery.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/open_pwd.js"></script>
     <script>
-        // 눈 아이콘을 누르면 입력한 비밀번호가 보이도록 설정
-        $('button[name=openpwd]').on('click', function() {
-            $('#pwd').toggleClass('active');
-            if ($('#pwd').hasClass('active')) {
-                $(this).attr('class', "btn btn-outline-secondary bi-eye")
-                $('#pwd').attr('type', 'text');
-            } else {
-                $(this).attr('class', "btn btn-outline-secondary bi-eye-slash")
-                $('#pwd').attr('type', 'password');
-            }
-        });
-        
         // 아이디 기억하기
         $(document).ready(function() {
             // 저장된 쿠키값 넣기

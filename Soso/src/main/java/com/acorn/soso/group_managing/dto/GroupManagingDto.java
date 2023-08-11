@@ -13,13 +13,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Alias("groupManagingDto")
 public class GroupManagingDto {
-	private int memNum;
-	private int groupNum;
-	private String memId;
-	private String memNick;
+	private int num;
+	private int group_num;
+	private String user_id;
 	private String intro;
 	private int isJoin;
-	private String regdate;
-	private String joindate;
-	private String exdate;
+	private String request_dt;
+	private String join_dt;
+	private String kick_dt;
 }

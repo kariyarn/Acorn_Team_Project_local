@@ -3,13 +3,25 @@
    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="groupManaging">
 	<select id="getGroupList" parameterType="String" resultType="groupDto">
-		SELECT num, name, caption, img_path, regdate, ended_dt, deadline_dt, start_dt,
+		SELECT group_tb.num AS num, name, caption, img_path, regdate, ended_dt, deadline_dt, start_dt,
 			manager_id, max_people, now_people, avrg_rate, meeting_loc, meeting_time,
-			genre, on_off, manager_comment, viewcount
-      	FROM group_tb
-      	WHERE manager_id = #{manager_id}
-      	ORDER BY num DESC
+			genre, on_off, manager_comment, viewcount, result.like_num
+		FROM group_tb
+		LEFT JOIN (
+    		SELECT group_tb.num, COUNT(user_bookmark_tb.group_num) AS like_num
+    		FROM group_tb
+    		LEFT JOIN user_bookmark_tb ON group_tb.num = user_bookmark_tb.group_num
+    		GROUP BY group_tb.num
+		) result ON group_tb.num = result.num
+		WHERE manager_id = #{manager_id}
+		ORDER BY num DESC
    	</select>
+   	<select id="getGroupList2" parameterType="String" resultType="groupDto">
+		SELECT group_tb.*, group_join_tb.user_id
+		FROM group_tb
+		INNER JOIN group_join_tb ON group_tb.num = group_join_tb.group_num
+   	</select>
+   	
    	<select id="getGroupData" parameterType="int" resultType="groupDto">
 		SELECT num, name, caption, img_path, regdate, ended_dt, deadline_dt, start_dt,
 			manager_id, max_people, now_people, avrg_rate, meeting_loc, meeting_time,
@@ -17,6 +29,7 @@
       	FROM group_tb
       	WHERE num = #{num}
    	</select>
+   	
    	<update id="updateGroupData" parameterType="groupDto">
    		UPDATE group_tb
    		SET name = #{name}, caption = #{caption}, img_path = #{img_path}, ended_dt = #{ended_dt},
@@ -25,73 +38,92 @@
    			on_off = #{on_off}, manager_comment = #{manager_comment}
    		WHERE num = #{num}
    	</update>
+   	
    	<delete id="deleteGroupData" parameterType="int">
    		DELETE FROM group_tb
    		WHERE num = #{num}
-   </delete>
-	<select id="getMemberList" parameterType="groupManagingDto" resultType="groupManagingDto">
+   	</delete>
+   	
+	<select id="getMemberList" parameterType="int" resultType="groupManagingDto">
 		SELECT *
 		FROM   
 		   (SELECT result1.*, ROWNUM as rnum
 		   FROM
-		      (SELECT memnum, memid, memnick, intro, regdate
-		      FROM board_join_group
-		      WHERE groupnum = #{groupNum} AND isJoin = 0
-		      ORDER BY memnum DESC) result1)
+		      (SELECT num, user_id, intro, join_dt
+		      FROM group_join_tb
+		      WHERE group_num = #{group_num} AND isJoin = 0
+		      ORDER BY num DESC) result1)
    	</select>
-   	<select id="getKickedMemberList" parameterType="groupManagingDto" resultType="groupManagingDto">
+   	
+   	<select id="getKickedMemberList" parameterType="int" resultType="groupManagingDto">
 		SELECT *
 		FROM   
 		   (SELECT result1.*, ROWNUM as rnum
 		   FROM
-		      (SELECT memnum, memid, memnick, intro, regdate
-		      FROM board_join_group
-		      WHERE groupnum = #{groupNum} AND isJoin = 4
-		      ORDER BY memnum DESC) result1)
+		      (SELECT num, user_id, intro, kick_dt
+		      FROM group_join_tb
+		      WHERE group_num = #{group_num} AND isJoin = 4
+		      ORDER BY num DESC) result1)
    	</select>
-	<select id="getApplicantList" parameterType="groupManagingDto" resultType="groupManagingDto">
+	<select id="getApplicantList" parameterType="int" resultType="groupManagingDto">
 		SELECT *
 		FROM   
 		   (SELECT result1.*, ROWNUM as rnum
 		   FROM
-		      (SELECT memnum, memid, memnick, intro, regdate
-		      FROM board_join_group
-		      WHERE groupnum = #{groupNum} AND isJoin = 1
-		      ORDER BY memnum DESC) result1)
+		      (SELECT num, user_id, intro, request_dt
+		      FROM group_join_tb
+		      WHERE group_num = #{group_num} AND isJoin = 1
+		      ORDER BY num DESC) result1)
    	</select>
-   	<select id="getRejectedApplicantList" parameterType="groupManagingDto" resultType="groupManagingDto">
+   	<select id="getRejectedApplicantList" parameterType="int" resultType="groupManagingDto">
 		SELECT *
 		FROM   
 		   (SELECT result1.*, ROWNUM as rnum
 		   FROM
-		      (SELECT memnum, memid, memnick, intro, regdate
-		      FROM board_join_group
-		      WHERE groupnum = #{groupNum} AND isJoin = 2
-		      ORDER BY memnum DESC) result1)
+		      (SELECT num, user_id, intro, request_dt
+		      FROM group_join_tb
+		      WHERE group_num = #{group_num} AND isJoin = 2
+		      ORDER BY num DESC) result1)
    	</select>
+   	
    	<select id="getMemberCount" parameterType="int" resultType="int">
     	SELECT NVL(MAX(ROWNUM), 0)
-      	FROM board_join_group
-      	WHERE groupnum = #{num} AND isJoin = 0
+      	FROM group_join_tb
+      	WHERE group_num = #{num} AND isJoin = 0
    	</select>
+   	
    	<update id="joinApprove" parameterType="int">
-   		UPDATE board_join_group
+   		UPDATE group_join_tb
    		SET isJoin = 0
-   		WHERE memNum = #{num}
+   		WHERE num = #{num}
    	</update>
+   	
+   	<update id="addMemberCount" parameterType="int">
+   		UPDATE group_tb
+   		SET now_people = now_people + 1
+   		WHERE num = #{num}
+   	</update>
+   	
    	<update id="kick" parameterType="int">
-   		UPDATE board_join_group
+   		UPDATE group_join_tb
    		SET isJoin = 4
-   		WHERE memNum = #{num}
+   		WHERE num = #{group_num}
    	</update>
+   	
+   	<update id="minusMemberCount" parameterType="int">
+   		UPDATE group_tb
+   		SET now_people = now_people - 1
+   		WHERE num = #{group_num}
+   	</update>
+   	
    	<update id="reject" parameterType="int">
-   		UPDATE board_join_group
+   		UPDATE group_join_tb
    		SET isJoin = 2
-   		WHERE memNum = #{num}
+   		WHERE num = #{num}
    	</update>
    	<update id="dropOut" parameterType="int">
    		UPDATE board_join_group
    		SET isJoin = 3
-   		WHERE memNum = #{num}
+   		WHERE num = #{num}
    	</update>
 </mapper>

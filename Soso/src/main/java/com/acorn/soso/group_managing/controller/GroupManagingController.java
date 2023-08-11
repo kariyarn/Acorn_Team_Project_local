@@ -21,7 +21,6 @@ public class GroupManagingController {
 	@Autowired
 	GroupManagingService service;
 	
-	
 	@GetMapping("/group_managing/admin_main")
 	public String admin_main(HttpServletRequest request, HttpSession session) {
 		String manager_id = (String)session.getAttribute("id");
@@ -30,13 +29,16 @@ public class GroupManagingController {
 	}
 	
 	@GetMapping("/group_managing/joinApprove")
-	public String joinApprove(int num) {
-		service.joinApprove(num);
+	public String joinApprove(int num, int group_num, HttpServletRequest request) {
+		service.joinApprove(num, group_num);
+		request.setAttribute("group_num", group_num);
 		return "group_managing/joinApprove";
 	}
 	
 	@GetMapping("/group_managing/user_main")
-	public String user_main() {
+	public String user_main(HttpServletRequest request, HttpSession session) {
+		String user_id = (String)session.getAttribute("id");
+		service.getGroupList2(user_id, request);
 		return "group_managing/user_main";
 	}
 	
@@ -84,44 +86,43 @@ public class GroupManagingController {
 	}
 	
 	@GetMapping("/group_managing/applicantList")
-	public String group_applicantList(GroupManagingDto dto, HttpServletRequest request) {
-		dto.setGroupNum(1);
-		service.getApplicantList(dto, request);
-		
+	public String group_applicantList(int group_num, HttpServletRequest request) {
+		service.getApplicantList(group_num, request);
+		request.setAttribute("group_num", group_num);
 		return "group_managing/applicantList";
 	}
 	
 	@GetMapping("/group_managing/memberList")
-	public String group_memberList(GroupManagingDto dto, HttpServletRequest request) {
-		dto.setGroupNum(1);
-		service.getMemberList(dto, request);
+	public String group_memberList(int group_num, HttpServletRequest request) {
+		service.getMemberList(group_num, request);
+		request.setAttribute("group_num", group_num);
 		return "group_managing/memberList";
 	}
 	
 	@GetMapping("/group_managing/kickedMemberList")
-	public String group_kickedMemberList(GroupManagingDto dto, HttpServletRequest request) {
-		dto.setGroupNum(1);
-		service.getKickedMemberList(dto, request);
+	public String group_kickedMemberList(int group_num, HttpServletRequest request) {
+		service.getKickedMemberList(group_num, request);
+		request.setAttribute("group_num", group_num);
 		return "group_managing/kickedMemberList";
 	}
 	
 	@GetMapping("/group_managing/rejectedApplicantList")
-	public String group_rejectedApplicantList(GroupManagingDto dto, HttpServletRequest request) {
-		dto.setGroupNum(1);
-		service.getRejectedApplicantList(dto, request);
+	public String group_rejectedApplicantList(int group_num, HttpServletRequest request) {
+		service.getRejectedApplicantList(group_num, request);
+		request.setAttribute("group_num", group_num);
 		return "group_managing/rejectedApplicantList";
 	}
 	
 	@GetMapping("/group_managing/kick")
-	public String kick(int num) {
-		service.kick(num);
-		return "redirect:/group_managing/memberList";
+	public String kick(int num, int group_num) {
+		service.kick(num, group_num);
+		return "redirect:/group_managing/memberList?group_num=" + group_num;
 	}
 	
 	@GetMapping("/group_managing/reject")
-	public String reject(int num) {
+	public String reject(int num, int group_num) {
 		service.reject(num);
-		return "/group_managing/applicantList";
+		return "redirect:/group_managing/applicantList?group_num=" + group_num;
 	}
 	
 	@GetMapping("/group_managing/dropOut")

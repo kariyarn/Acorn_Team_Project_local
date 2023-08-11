@@ -74,31 +74,32 @@ public class GroupManagingServiceImpl implements GroupManagingService{
 	
 	//소모임 가입 신청자 리스트 불러오기
 	@Override
-	public void getApplicantList(GroupManagingDto dto, HttpServletRequest request) {
-		List<GroupManagingDto> list = dao.getApplicantList(dto);
+	public void getApplicantList(int group_num, HttpServletRequest request) {
+		List<GroupManagingDto> list = dao.getApplicantList(group_num);
 		request.setAttribute("list", list);
 	}
 	
 	@Override
-	public void getRejectedApplicantList(GroupManagingDto dto, HttpServletRequest request) {
-		List<GroupManagingDto> list = dao.getRejectedApplicantList(dto);
+	public void getRejectedApplicantList(int group_num, HttpServletRequest request) {
+		List<GroupManagingDto> list = dao.getRejectedApplicantList(group_num);
 		request.setAttribute("list", list);
 	}	
 
 	@Override
-	public void joinApprove(int num) {
+	public void joinApprove(int num, int group_num) {
 		dao.joinApprove(num);
+		dao.addMemberCount(group_num);
 	}
 
 	@Override
-	public void getMemberList(GroupManagingDto dto, HttpServletRequest request) {
-		List<GroupManagingDto> list = dao.getMemberList(dto);
+	public void getMemberList(int group_num, HttpServletRequest request) {
+		List<GroupManagingDto> list = dao.getMemberList(group_num);
 		request.setAttribute("list", list);
 	}
 	
 	@Override
-	public void getKickedMemberList(GroupManagingDto dto, HttpServletRequest request) {
-		List<GroupManagingDto> list = dao.getKickedMemberList(dto);
+	public void getKickedMemberList(int group_num, HttpServletRequest request) {
+		List<GroupManagingDto> list = dao.getKickedMemberList(group_num);
 		request.setAttribute("list", list);
 		
 	}
@@ -110,8 +111,9 @@ public class GroupManagingServiceImpl implements GroupManagingService{
 	}
 
 	@Override
-	public void kick(int num) {
+	public void kick(int num, int group_num) {
 		dao.kick(num);
+		dao.minusMemberCount(group_num);
 	}
 
 	@Override
@@ -124,13 +126,9 @@ public class GroupManagingServiceImpl implements GroupManagingService{
 		dao.dropOut(num);
 	}
 
-	
-
-	
-
-	
-
-	
-
-	
+	@Override
+	public void getGroupList2(String user_id, HttpServletRequest request) {
+		List<GroupDto> list = dao.getGroupList2(user_id);
+		request.setAttribute("list", list);	
+	}
 }

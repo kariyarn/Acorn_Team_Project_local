@@ -23,6 +23,7 @@
 			                   참여중인 북메이트를<br>
 			                   확인하는 게시판
                 </p>
+                <a href="${pageContext.request.contextPath}/cafe/list">게시판</a>
             </div>
             <div class="indicator">
                 <div class="home circle">
@@ -32,67 +33,29 @@
             </div>
         </div>
     </main>
-   <div class="container">     
-   	  <div class="row">
-	      <c:forEach var="tmp" items="${list}">
-	      	<div class="d-flex justify-content-around">
-	         	<div class="col-sm-6 col-md-4 col-lg-3 p-1">
-	             	<div class="card mb-4">
-	                <a href="${pageContext.request.contextPath}/group_managing/group_userdetail">
-	                   	<div class="img-wrapper">
-	                      <img class="card-img-top" src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fi.pinimg.com%2F736x%2F92%2F73%2F6b%2F92736bbfb3b458a5424d88d4e39dc55d.jpg&type=a340"/>
-	                    </div>
-	                </a>
-	                <div class="card-body">
-	                    <p class="card-title fs-3"><strong>책 나눔 모임</strong></p>
-	                    <p class="card-text">감명 깊게 읽은 책 나눔!</p>
-	                </div>
-	                <ul class="list-group list-group-flush">
-		                <li class="list-group-item"><strong>관리자  :</strong> <strong>정세영</strong></li>
-		                <li class="list-group-item"><strong>가입 날짜  :</strong> <strong>2023.08.01</strong></li>
-		                <li class="list-group-item"><strong>총 가입 인원  :</strong> <strong>8명</strong></li>
-	              	</ul>
-	             	</div>
-	        	</div>
-		        <div class="col-sm-6 col-md-4 col-lg-3 p-1">
-		             <div class="card mb-4">
-		                <a href="${pageContext.request.contextPath}">
-		                   <div class="img-wrapper">
-		                      <img class="card-img-top" src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMzA0MThfNzQg%2FMDAxNjgxNzg3ODUwMzkw.DskgB95FpXilYP6AOHl1Y8GPc6_G4WeBrC1s6KrBLR8g.jjOd7M2ZGRHWf9nuH7Yjn84kejA52U0OvWSMlFPr5kkg.JPEG.windysky70%2FIMG_8535.JPG&type=a340"/>
-		                   </div>
-		                </a>
-		                <div class="card-body">
-		                    <p class="card-title fs-3"><strong>독서 토론 모임</strong></p>
-		                    <p class="card-text">원하는 책을 읽고 토론 해보기!</p>
-		                </div>
-		                <ul class="list-group list-group-flush">
-			                <li class="list-group-item"><strong>관리자  :</strong> <strong>이진영</strong></li>
-			                <li class="list-group-item"><strong>가입 날짜  :</strong> <strong>2023.08.01</strong></li>
-			                <li class="list-group-item"><strong>총 가입 인원  :</strong> <strong>8명</strong></li>
-		               </ul>
-		             </div>
-		         </div>
-		         <div class="col-sm-6 col-md-4 col-lg-3 p-1">
-		             <div class="card mb-4">
-		                <a href="${pageContext.request.contextPath}">
-		                   <div class="img-wrapper">
-		                      <img class="card-img-top" src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAxODExMTNfMjE4%2FMDAxNTQyMDcyNDI1MTY1.yPh4xXY0sSHyYL9pecXQabo1c2W4Q0xUk9iQPPE9XpIg.EhXVwRvGW946zmAtQGtx1etN4gk1ba_IZ71IqE6him4g.JPEG.6m_z9%2Ftumblr_ph4ynpopnw1uwzs06o1_540.jpg&type=a340"/>
-		                   </div>
-		                </a>
-		                <div class="card-body">
-		                    <p class="card-title fs-3"><strong>책방 투어 모임</strong></p>
-		                    <p class="card-text">전국에 책방을 파헤치자!</p>
-		                </div>
-		                <ul class="list-group list-group-flush">
-			                <li class="list-group-item"><strong>관리자  :</strong> <strong>김형규</strong></li>
-			                <li class="list-group-item"><strong>가입 날짜  :</strong> <strong>2023.08.01</strong></li>
-			                <li class="list-group-item"><strong>총 가입 인원  :</strong> <strong>8명</strong></li>
-		               	</ul>
-		             </div>
-		         </div>	         	        	         
-		      </div>
-	     </c:forEach>
-	  </div>
+	<div class="container">     
+	    <div class="row">
+	        <c:forEach var="tmp" items="${list}">
+                <div class="col-sm-6 col-md-4 col-lg-3 p-1 mb-3">
+                    <div class="card mb-4">
+                        <a href="${pageContext.request.contextPath}/group_managing/userdetail?num=${tmp.num}">
+                            <div class="img-wrapper">
+                                <img class="card-img-top" src="${pageContext.request.contextPath }/resources/images/main/${tmp.imagePath}"/>
+                            </div>
+                        </a>
+                        <div class="card-body">
+                            <p class="card-title fs-3"><strong>${tmp.name}</strong></p>
+                            <p class="card-text">${tmp.caption}</p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item card-info"><span class="info-label">모임장:</span> ${tmp.manager_id}</li>
+                            <li class="list-group-item card-info"><span class="info-label">모임 날짜:</span> ${tmp.meeting_time}</li>
+                            <li class="list-group-item card-info"><span class="info-label">모임 장소:</span> ${tmp.meeting_loc}</li>
+                        </ul>
+                    </div>
+                </div>
+	        </c:forEach>
+	    </div>
 	</div>
     <nav>
        <ul class="pagination justify-content-center">

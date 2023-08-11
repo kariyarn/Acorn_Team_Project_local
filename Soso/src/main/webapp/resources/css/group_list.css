@@ -40,7 +40,7 @@ h3.black{ color: #333; }
 .mate_content .theme_search {margin-top:2%}
 .mate_content .theme_search form{ position: relative; display:flex; box-sizing: border-box;}
 .mate_content .theme_search input[type="text"]{border: none; outline: none; padding: 1% 2%; background-color: rgb(246, 246, 246); }
-.mate_content .theme_search input[type="submit"]{ appearance: none; border: none; outline: none; padding: 1% 2%; background-color:#fff; cursor: pointer; }
+.mate_content .theme_search button{appearance: none; margin-left:10px; padding: 1% 2%; cursor: pointer; width:100px;  border:1px solid rgb(246, 246, 246); }
 .mate_content .theme_search select{position: relative;  padding: 1% 2%;  border: none; outline: none; background-color:rgb(246, 246, 246); }
 
 

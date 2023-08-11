@@ -27,12 +27,22 @@
       	ORDER BY num DESC
    </select>
    
+   <!-- 리스트  -->
+	<select id="getViewList" parameterType="groupDto" resultType="groupDto">
+      	SELECT num, name, caption, img_path, regdate, ended_dt, deadline_dt, start_dt,
+			manager_id, max_people, now_people, avrg_rate, meeting_loc, meeting_time,
+			genre, on_off, manager_comment, viewcount
+      	FROM group_tb
+      	<include refid="searchCondition"/>
+      	ORDER BY viewcount DESC
+   </select>
+   
    <select id="getRanking" parameterType="groupDto" resultType="groupDto">
         SELECT result.*, r.rate
         FROM (
             SELECT result1.*, ROWNUM AS rnum
             FROM (
-                SELECT num, writer, title, caption, imagePath, regdate
+                SELECT num, writer, title, caption, img_path, regdate
                 FROM group_tb
                 ORDER BY num DESC
             ) result1
@@ -53,10 +63,10 @@
    
    <insert id="insert" parameterType="groupDto">
       INSERT INTO group_tb
-      (num, name, caption, img_path, regdate, ended_dt, deadline_dt, start_dt, 
+      (num, name, caption, img_path, viewcount, regdate, ended_dt, deadline_dt, start_dt, 
       manager_id, max_people, meeting_loc, meeting_time, genre, on_off, manager_comment)
       VALUES(group_seq.NEXTVAL, 
-      #{name}, #{caption}, #{img_path}, SYSDATE, #{ended_dt}, #{deadline_dt}, #{start_dt},
+      #{name}, #{caption}, #{img_path}, #{viewcount}, SYSDATE, #{ended_dt}, #{deadline_dt}, #{start_dt},
       #{manager_id}, #{max_people}, #{meeting_loc}, #{meeting_time}, #{genre}, #{on_off},
       #{manager_comment})
    </insert>
@@ -64,7 +74,7 @@
    <select id="getData" parameterType="int" resultType="groupDto">
 		SELECT result1.*
 		FROM
-		   (SELECT num, writer, title, caption, imagePath, regdate,
+		   (SELECT num, writer, title, caption, img_path, viewcount, regdate,
 		      LAG(num, 1, 0) OVER (ORDER BY num DESC) AS prevNum,
 		      LEAD(num, 1, 0) OVER (ORDER BY num DESC) AS nextNum
 		   FROM group_tb) result1
@@ -74,7 +84,7 @@
    <select id="getData2" parameterType="string" resultType="groupDto">
 		SELECT *
 		FROM
-		   (SELECT num, writer, title, caption, imagePath, regdate,
+		   (SELECT num, writer, title, caption, img_path, viewcount, regdate,
 		      LAG(num, 1, 0) OVER (ORDER BY num DESC) AS prevNum,
 		      LEAD(num, 1, 0) OVER (ORDER BY num DESC) AS nextNum
 		   FROM group_tb
@@ -84,12 +94,17 @@
    </select>
    <update id="update" parameterType="groupDto">
    		UPDATE group_tb
-   		SET title = #{title}, caption=#{caption}, imagePath=#{imagePath}
+   		SET title = #{title}, caption=#{caption}, img_path=#{img_path}
    		WHERE num = #{num}
    </update>
    <delete id="delete" parameterType="int">
    		DELETE FROM group_tb
    		WHERE num=#{num}
    </delete>
+   <update id="addViewCount" parameterType="int">
+	    UPDATE group_tb
+	    SET viewcount=viewcount+1
+	    WHERE num=#{num}
+	</update>
    
 </mapper>

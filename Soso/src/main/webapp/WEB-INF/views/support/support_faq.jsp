@@ -6,13 +6,29 @@
 <head>
 <meta charset="UTF-8">
 <title>/support_faq</title>
-
+<style>
+.faq_management{
+	width: 240px;
+    height: 60px;
+    margin: 0 auto;
+    display: block;
+    border: 1px solid #3187e9;
+    border-radius: 30px;
+    background-color: gray;
+    color: white;
+    font-size: 18px;
+    text-align: center;
+}
+</style>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/support/support_faq.css" />
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 </head>
 <body>
+	<jsp:include page="/WEB-INF/views/include/navbar_c.jsp">
+        <jsp:param value="login" name="current"/>
+    </jsp:include>
 	<div class="head">
 		<h2>자주하는 질문</h2>
 		<p class="sub_text">서비스 이용 중 불편 했던 점이나 궁금한 점을 빠르고 친절하게 안내해 드리겠습니다.</p>
@@ -125,6 +141,7 @@
 					</div>
 				</li>
 			</ul>
+			<a href="${pageContext.request.contextPath }/support/support_faq_insert" class="faq_management">FAQ 관리</a>
 			</div>
 		</div>
 	<div>
