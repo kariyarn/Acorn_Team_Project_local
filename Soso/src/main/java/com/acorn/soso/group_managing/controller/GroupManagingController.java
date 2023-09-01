@@ -173,10 +173,6 @@ public class GroupManagingController {
         // 가입된 유저 리스트 가져와서 모델에 추가
 	    int group_num = num;
         List<GroupManagingDto> mateList = groupManagingService.getMateList(group_num);
-        // 각 사용자의 프로필 이미지 경로를 profile 속성으로 설정
-        for (GroupManagingDto user : mateList) {
-            user.setProfile("users/info");
-        }
         request.setAttribute("mateList", mateList);
 	    request.setAttribute("num", num);
 	    return mView;

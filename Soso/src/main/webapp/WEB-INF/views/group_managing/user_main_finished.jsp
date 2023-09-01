@@ -94,27 +94,6 @@
                 </div>
 	        </c:forEach>
     	</div>
-    	<div class="inner-wrap">
-    	<!-- 페이지 이동을 위한  --> 
-	    <nav>
-	       <ul class="">
-	          <c:choose>
-	             <c:when test="${dto.prevNum ne 0 }">
-	                <li class="">
-	                     <a class="" href="${pageContext.request.contextPath}">&larr; Prev</a>
-	                </li>
-	             </c:when>
-	         </c:choose>
-	         <c:choose>
-	            <c:when test="${dto.nextNum ne 0 }">
-	               <li class="">
-	                   <a class="" href="${pageContext.request.contextPath}">Next &rarr;</a>
-	               </li>
-	            </c:when>
-	         </c:choose>         
-	       </ul>
-	    </nav>
-    	</div>
     </section>
 	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 	<script>
