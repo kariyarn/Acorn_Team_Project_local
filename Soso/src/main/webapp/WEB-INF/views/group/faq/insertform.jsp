@@ -34,6 +34,17 @@
 </style>
 	<div class="container">
 		<form action="${pageContext.request.contextPath}/group/faq/insert" method="post">
+		<c:if test="${empty sessionScope.id }">
+			<div class="col-12">
+				  <input type="text" id="group_num" name="group_num" value="${num }" hidden />
+			      <input type="text" class="form-control" id="q_title" name="q_title" placeholder="로그인한 상태에서만 문의작성하기가 가능합니다." readonly>
+			<div>
+				<label for="q_content"></label>
+				<textarea name="q_content" id="q_content" rows="10" readonly>로그인한 상태에서만 문의작성하기가 가능합니다.</textarea>
+			</div>	
+			<button type="submit" onclick="submitContents(this)" id="submitBtn">등록</button>
+		</c:if>
+		<c:if test="${not empty sessionScope.id }">
 			<div class="col-12">
 				  <input type="text" id="group_num" name="group_num" value="${num }" hidden />
 			      <input type="text" class="form-control" id="q_title" name="q_title" placeholder="문의글 제목을 입력해주세요" >
@@ -42,10 +53,12 @@
 				<textarea name="q_content" id="q_content" rows="10"></textarea>
 			</div>	
 			<button type="submit" onclick="submitContents(this)" id="submitBtn">등록</button>
+		</c:if>
 			<button type="reset" id="resetBtn">리셋</button>
 		</form>
 	</div>
 	<script>
+	
 	//여기서부터 ajax faq
 	//취소버튼 누르면 돌아가기
 	$("#resetBtn").click(function() {
