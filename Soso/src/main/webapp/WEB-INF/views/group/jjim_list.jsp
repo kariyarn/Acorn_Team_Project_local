@@ -13,7 +13,7 @@
 <body>
    	<c:forEach var="tmp" items="${list }">
    	    <div class="container">
-    		<div class="item image"><img src="#" alt="" />여기에 이미지 띄우기</div>
+    		<div class="item image"><img src="${pageContext.request.contextPath}${tmp.img_path }" alt="" /></div>
 	        <div class="item name">${tmp.manager_id} / ${tmp.name}</div>
 	        <div class="item jjim">
      			<div class="p-2 heart">
