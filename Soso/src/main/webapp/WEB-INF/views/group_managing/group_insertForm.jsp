@@ -153,25 +153,84 @@
 			</script>
 			
 			<!-- 책 검색 공간(임시) -->
+			<!-- json을 보내기 위해서 그냥 input요소 만듬 -->
+			<input type="hidden" id="booklist" name="booklist" hidden />			
+			<button type="button" id="addBook" name="addBook">책 추가하기</button>
+			<!-- 책 정보 추가 -->
+			<div class="bookList" style="overflow : auto; display : flex;"></div>
 			
-			<div class="Book_Area"></div>
 			<script>
-			    const booklist = [];
-			    $(document).ready(function() {
-			        $.ajax({
-			            type: "GET",
-			            url: "${pageContext.request.contextPath}/test/booksearch", // 페이지 경로를 적절하게 수정해야 함
-			            dataType: "html", // 수정: 데이터 타입을 "html"로 지정
-			            error: function() {
-			                console.log("실패");
-			            },
-			            success: function(Parse_data) {
-			                $(".Book_Area").html(Parse_data);
-			            }
-			        }); // 수정: $.ajax 함수 호출 부분이 닫히지 않음
-			    });
-			</script>
-			
+			const booklist = []; // 책 목록 배열 초기화
+	
+	        // 원래 페이지가 로드될 때, 책 목록 표시
+	        function displayBookList() {
+	            const bookListElement = $(".bookList");
+	            bookListElement.empty(); // 목록을 초기화
+	
+	            booklist.forEach(function (book, index) {
+	                const bookContainer = $("<div>").addClass("bookContainer");
+	                const titleElement = $("<pre>").text(book.title);
+	
+	                // 이미지 추가
+	                if (book.image) {
+	                    const imageElement = $("<img>").attr("src", book.image).css({
+	                    	width : "150px",
+	                    	height : "250px",
+	                    	border : "1px solid black",
+	                    	margin : "1rem"
+	                    });
+	                    bookContainer.append(imageElement);
+	                }
+	
+	                // 삭제 버튼 추가
+	                const deleteButton = $("<button>").text("삭제");
+	                deleteButton.click(function () {
+	                    deleteBook(index);
+	                });
+	
+	                bookContainer.append(titleElement, deleteButton);
+	                bookListElement.append(bookContainer);
+	            });
+	        }
+	
+	        // 배열에서 책 삭제
+	        function deleteBook(index) {
+	            if (index >= 0 && index < booklist.length) {
+	                booklist.splice(index, 1);
+	                displayBookList(); // 변경된 목록 다시 표시
+                    //booklist에 json 데이터를 집어넣음
+                    $("#booklist").val(JSON.stringify(booklist));
+	                console.log(booklist);
+	            }
+	        }
+	
+	        $(document).ready(function () {
+	            $("#addBook").click(function () {
+	                // 새 창을 열기 위한 URL
+	                var newWindowUrl = "${pageContext.request.contextPath}/test/booksearch";
+	
+	                // 새 창 열기
+	                window.open(newWindowUrl, "booksearch", "width=600,height=400");
+	            });
+	
+	            // 새 창으로부터 메시지 수신
+	            window.addEventListener("message", function (event) {
+	                if (event.data) {
+	                    // 새로운 도서 정보를 받아서 booklist에 추가
+	                    booklist.push(event.data);
+	                    //booklist에 json 데이터를 집어넣음
+	                    $("#booklist").val(JSON.stringify(booklist));
+	
+	                    // 책 목록 업데이트 및 표시
+	                    displayBookList();
+	                    console.log(booklist);
+	                }
+	            });
+	
+	            // 원래 페이지가 로드될 때, 책 목록 표시
+	            displayBookList();
+	        });
+	    </script>
 			
 			<div id="form_button">
 				<button type="submit">개설</button>

@@ -263,7 +263,7 @@ public class GroupServiceImpl implements GroupService{
 	
 	//소모임 개설	
 	@Override
-	public void insert(GroupDto dto, HttpServletRequest request, HttpSession session) {
+	public void insert(GroupDto dto, HttpServletRequest request, HttpSession session, @RequestBody List<BookDto> bookList) {
 		//업로드된 파일의 정보를 가지고 있는 MultipartFile 객체의 참조값을 얻어오기
 		MultipartFile image = dto.getImage();
 		//원본 파일명 -> 저장할 파일 이름 만들기위해서 사용됨
@@ -299,12 +299,17 @@ public class GroupServiceImpl implements GroupService{
 		dto.setManager_id(manager_id);
 		
 		//group_num의 시퀀스 값을 얻어낸다.
-		int num = dao.groupNumSeq();
+		int group_num = dao.groupNumSeq();
 		//dto에 넣어줌
-		dto.setNum(num);
+		dto.setNum(group_num);
+		
+		//반복문 돌면서 bookList에 group_num 값을 넣어주고 DB에 넣는다.
+		for (BookDto book : bookList) {
+	        book.setGroup_num(group_num);
+	        bookdao.saveBook(book);
+	    }		
 		
 		dao.insert(dto);
-
 	}
 
 	@Override
