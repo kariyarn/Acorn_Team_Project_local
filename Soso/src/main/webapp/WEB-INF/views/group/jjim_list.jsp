@@ -17,6 +17,7 @@
 	</jsp:include>
 	<section>
 		<div class="inner-wrap">
+			<div id="jjim_title">내가 찜한 소모임</div>
 			<c:forEach var="tmp" items="${list }">
 				<div class="jjim_container">
 					<div id="jjim_item_one">
@@ -25,27 +26,24 @@
 					</div>
 					<div id="jjim_item_two">
 						<div id="jjim_item_two_header">
+							<div class="jjim_name" style="padding-top:15px; margin-bottom:5px;">소모임 소개 & 규칙</div>
 							<div>
-								<div class="jjim_name">소모임장</div> 
-									${tmp.manager_id}
-								</div>
-							<div>
-							<div class="jjim_name">소모임 인원 현황</div> 
+								<div class="jjim_name">소모임 모집 인원 현황</div> 
 								${tmp.now_people } / ${tmp.max_people }
 							</div>
 						</div>
 						<div id="jjim_item_two_body">
-							<div class="jjim_name" style="display:block; margin-bottom:10px">소모임 소개 & 규칙</div> 
-								<textarea id="group_caption" readonly>${tmp.caption}</textarea>
-							</div>
+							 
+							<textarea id="group_caption" readonly>${tmp.caption}</textarea>
+						</div>
 						<div id="jjim_date">
-							<div style="margin-right: 50px">
-							<div class="jjim_name">소모임 활동 시작일</div>
+							<div style="margin-right: 80px">
+							<div class="jjim_name">시작일</div>
 									<fmt:parseDate value="${tmp.start_dt}" var="start_dt" pattern="yy-MM-dd"></fmt:parseDate>
 									<fmt:formatDate value="${start_dt}" pattern="yy-MM-dd" />
 							</div>
 							<div>
-								<div class="jjim_name">소모임 활동 종료일</div>
+								<div class="jjim_name">종료일</div>
 									<fmt:parseDate value="${tmp.ended_dt}" var="ended_dt" pattern="yy-MM-dd"></fmt:parseDate>
 									<fmt:formatDate value="${ended_dt}" pattern="yy-MM-dd" />
 							</div>
@@ -60,7 +58,7 @@
 						<input type="hidden" name="groupNum" value=${tmp.num} />
 						<div class="group_deadlined_dt">
 							<div id="deadline_content">
-								<div class="jjim_name" style="margin-left:10px">신청 마감일</div>
+								<div class="jjim_name" style="margin-left:10px">마감일</div>
 								<div style="margin-top:13px; font-size: 18px">
 									<fmt:parseDate value="${tmp.deadline_dt}" var="deadline_dt" pattern="yy-MM-dd"></fmt:parseDate>
 									<fmt:formatDate value="${deadline_dt}" pattern="yy-MM-dd" />
