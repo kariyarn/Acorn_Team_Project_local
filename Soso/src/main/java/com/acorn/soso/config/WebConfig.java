@@ -6,6 +6,7 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import com.acorn.soso.interceptor.GroupNumInterceptor;
 import com.acorn.soso.interceptor.LoginInterceptor;
 /*
  * [ Spring MVC 관련 설정 ]
@@ -27,6 +28,9 @@ public class WebConfig implements WebMvcConfigurer{
 	PwdAuthInterceptor pwdAuthInter;
 	@Autowired
 	SupportInterceptor supportInter;
+	@Autowired
+	GroupNumInterceptor groupNumInter; 
+	
 	
 	//Interceptor를 추가할 때 오버라이드 하는 메소드
 	@Override
@@ -35,17 +39,21 @@ public class WebConfig implements WebMvcConfigurer{
 		//메소드 안에서 리턴 값을 자신의 데이터 타입(this)으로 참조값으로 설정하면, 메소드 호출 시에 연쇄적으로 사용할 수 있도록 해준다.
 		//인자의 패턴이 String... patterns 이렇게 되어 있다면 동적으로 인자를 여러 개(콤마로 구분)를 전달할 수 있다.
 		registry.addInterceptor(loginInter)
-				.addPathPatterns("/users/*","/support/support_inquire", "/group/group_in")
+				.addPathPatterns("/users/*","/support/support_inquire")
 				.excludePathPatterns("/users/loginform", "/users/login", 
 						"/users/signup_form", "/users/signup",
 						"/users/pwd_findform","/users/pwd_find",
 						"/users/id_findform", "/users/id_find",
-						"/users/idCheck", "/users/nameCheck")
-				.addPathPatterns("/group_managing/*", "/group/group_joinform");
+						"/users/idCheck", "/users/nameCheck");
 		registry.addInterceptor(pwdAuthInter)
 				.addPathPatterns("/users/updateform", "/users/pwd_updateform");
+		registry.addInterceptor(loginInter)
+				.addPathPatterns("/group_managing/*");
 		registry.addInterceptor(supportInter)
         		.addPathPatterns("/support/*");
+		registry.addInterceptor(groupNumInter)
+				.addPathPatterns("/group_managing/group_userdetail");
+				
 	}
 	
 	@Override

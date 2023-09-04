@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>회원정보</title>
+<link rel="shortcut icon" type="image/x-icon" href="${path }/resources/images/main/favicon.jpg">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/users/usersInfo.css" type="text/css">
@@ -179,7 +180,7 @@
 	      		cancelButtonText: '취소',
 	      		showCancelButton: true
 	   		}).then((result) => {
-		      	if (isDelete) {
+		      	if (result.isConfirmed) {
 		      		location.href = "${pageContext.request.contextPath}/users/delete";
 		      	}
 		    })

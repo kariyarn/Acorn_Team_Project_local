@@ -161,6 +161,11 @@ public class SupportController {
 		inquireService.getList(session, model);
 		return "support/support_inquire_MyInquire";
 	}
+	@GetMapping("/support/support_inquire_answerform")
+	public String support_inquire_answerform(HttpSession session, Model model) {
+		inquireService.getList(session, model);
+		return "support/support_inquire_answerform";
+	}
 	@GetMapping("/support/support_inquire_inquireStatus")
 	public String support_inquire_inquireStatus(HttpSession session, Model model) {
 		inquireService.getList2(session, model);
@@ -175,12 +180,17 @@ public class SupportController {
 	public String support_inquire_delete(int cs_num, Model model, HttpSession session) {
 		String id = (String)session.getAttribute("id");
 		InquireDto dto = inquireService.getData(cs_num, model);
-		if(dto.getWriter().equals(id)) {
+		if(id.equals("admin") || dto.getWriter().equals(id)) {
 			inquireService.delete(cs_num, model);
-		} else {
+		} else{
 			throw new DontEqualException("다른 사람의 문의 내역을 삭제할 수 없습니다!");
 		}
-		return "redirect:/support/support_inquire_MyInquire";
+		if(id.equals("admin")){
+			return "redirect:/support/support_inquire_inquireStatus";
+		}else {
+			return "redirect:/support/support_inquire_MyInquire";
+		}
+		
 	}
 	@PostMapping("/support/support_faq_insert")
 	public String insert(FaqDto dto) {

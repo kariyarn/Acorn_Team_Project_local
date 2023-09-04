@@ -7,7 +7,6 @@
 <head>
 <meta charset="UTF-8">
 <title>문의하기</title>
-<link rel="shortcut icon" type="image/x-icon" href="${path }/resources/images/main/favicon.jpg">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/reset.css" type="text/css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/support/support_inquire.css" />
@@ -82,7 +81,7 @@
 						</c:otherwise>
 					</c:choose>
 				</ul>
-				<h3 class="main_title">1:1 문의하기</h3>
+				<h3 class="main_title">문의 답변하기</h3>
 				<form action="${pageContext.request.contextPath}/support/support_inquire_insert" class="area_form" method="post">
 					<div class="row-wrap">
 						<div class="input_name">
@@ -111,7 +110,13 @@
 					<div class="row-wrap">
 						<div class="input_text">
 							<h4 class="label">내용 *</h4>
-							<textarea name="content" placeholder="북메이트를 이용하시면서 궁금한 점이나 어려운점, 모임 관련 내용이나 북메이트의 전반적인 문의를 입력 해 주세요."></textarea>
+							<textarea name="content" placeholder="북메이트를 이용하시면서 궁금한 점이나 어려운점, 모임 관련 내용이나 북메이트의 전반적인 문의를 입력 해 주세요." readonly>${tmp.content }</textarea>
+						</div>
+					</div>
+					<div class="row-wrap">
+						<div class="input_text">
+							<h4 class="label">답변 내용 *</h4>
+							<textarea name="content"></textarea>
 						</div>
 					</div>
 					<div class="row-wrap">
@@ -129,7 +134,7 @@
 					<p class="info_message">
 						이 사이트는 reCAPTCHA에 의해 보호되며 Google 개인 정보 취급 방침 및 서비스 약관이 적용됩니다.
 					</p>
-					<button type="submit" class="btn_submit">1:1 문의하기</button>
+					<button type="submit" class="btn_submit">답변등록</button>
 				</form>
 			</div>
 		</div>

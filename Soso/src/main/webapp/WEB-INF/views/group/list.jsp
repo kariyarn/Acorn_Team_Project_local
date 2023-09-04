@@ -7,7 +7,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>북메이트 찾기</title>
+	<link rel="shortcut icon" type="image/x-icon" href="${path }/resources/images/main/favicon.jpg">
 	<link rel="shortcut icon" type="image/x-icon" href="https://genfavicon.com/tmp/icon_7cacead7cd8483ca41a810db418dc8ab.ico">
 	<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="${path }/resources/css/group_list.css" type="text/css">
@@ -108,8 +109,15 @@
 	           </div>
         	</c:forEach>	
         </div>
+        <div class="fab-container">
+			<div class="iconbutton">
+				<a href="${pageContext.request.contextPath}/group_managing/group_insertForm">+</a>
+			</div>
+			<div class="fab-text">
+				 북메이트 개설하기
+			</div>
+		</div>
         <div id="Parse_Area"gt;lt;></div>
-        
     </section>
 	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
     <script>

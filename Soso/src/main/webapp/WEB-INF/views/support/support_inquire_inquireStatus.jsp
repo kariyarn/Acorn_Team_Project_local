@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>문의 접수 내역</title>
-
+<link rel="shortcut icon" type="image/x-icon" href="${path }/resources/images/main/favicon.jpg">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/reset.css" type="text/css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/support/support_inquire_MyInquire.css" />
@@ -55,15 +55,9 @@
 		<div class="body_area">
 			<div class="main_content">
 				<ul class="inquire_navi">
-					<li>
-						<a href="${pageContext.request.contextPath }/support/support_inquire">1:1 문의하기</a>
-					</li>
-					<li>
-						<a class="my_inquire" href="${pageContext.request.contextPath }/support/support_inquire_MyInquire">나의 문의내역</a>
-					</li>
 					<c:if test="${isAdmin }">
 						<li>
-							<a class="cs_inquire" href="${pageContext.request.contextPath }/support/support_inquire_MyInquire">문의 접수 내역</a>
+							<a class="cs_inquire" href="${pageContext.request.contextPath }/support/support_inquire_inquireStatus">문의 접수 내역</a>
 						</li>
 					</c:if>
 				</ul>
@@ -97,6 +91,7 @@
 													<div class="inquiry-content">
 														<div class="description">
 															<button data-num="${tmp.cs_num}" type="submit" class="delete-btn">삭제</button>
+															<a class="answer-btn" href="${pageContext.request.contextPath }/support/support_inquire_answerform">답변등록</a>
 															${tmp.content }
 														</div>
 													</div>

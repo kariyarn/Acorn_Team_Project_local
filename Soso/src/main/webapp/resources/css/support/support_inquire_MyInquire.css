@@ -214,7 +214,21 @@
 	    background-color: transparent;
 	    font-size: 14px;
 	    color: #666;
+	    vertical-align: middle
 	}
+	
+	.main-data .detail-data .inquiry-content .delete-btn:hover,.main-data .detail-data .inquiry-content .answer-btn:hover  {
+	   color: rgb(157 128 63);
+	}
+	.main-data .detail-data .inquiry-content .answer-btn {
+	    position: absolute;
+	    right: 40px;
+	    border: none;
+	    background-color: transparent;
+	    font-size: 14px;
+	    color: #666;
+	}
+	
 	/* 답변 토글 css */
 	.btn_more{
 		width:100%;

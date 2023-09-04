@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>고객센터</title>
+<link rel="shortcut icon" type="image/x-icon" href="${path }/resources/images/main/favicon.jpg">
 <style>
 	.area_faq ul li.faq_category{
 		margin-right: 40px;
@@ -19,6 +20,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/support/support_main.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/reset.css" type="text/css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/include/navbar.jsp">
@@ -53,9 +55,26 @@
 			<li class="menu_notice">
 				<a class="nav-link" href="${pageContext.request.contextPath }/support/support_notice">공지사항</a>
 			</li>
-			<li class="menu_inquire">
-				<a class="nav-link" href="${pageContext.request.contextPath }/support/support_inquire">문의하기</a>
-			</li>
+			<!-- Admin 계정으로 로그인 했을때 문의하기를 누르면 바로 사용자 문의 접수내역으로 이동 되도록 -->
+			<c:choose>
+				<c:when test="${isAdmin }">
+					<li class="menu_inquire">
+						<a class="nav-link" id="inquire" href="${pageContext.request.contextPath }/support/support_inquire_inquire">문의하기</a>
+					</li>
+					<script>
+						 // JavaScript 코드: 문의하기 링크 클릭 시 리다이렉트
+				        document.querySelector("#inquire").addEventListener("click", function(e) {
+				            e.preventDefault();
+				            window.location.href = "${pageContext.request.contextPath}/support/support_inquire_inquireStatus";
+				        });
+					</script>
+				</c:when>
+				<c:otherwise>
+					<li class="menu_inquire">
+						<a class="nav-link" href="${pageContext.request.contextPath }/support/support_inquire">문의하기</a>
+					</li>
+				</c:otherwise>
+			</c:choose>
 		</ul>
 		<!-- 메인 컨텐츠 시작 -->
 		<div class="main_content">
@@ -75,7 +94,7 @@
 							</c:choose>
 						</span>
 						<p>
-							<a class="faq_question" href="${pageContext.request.contextPath }/support/support_faq">${tmp.question }</a>
+							<a class="faq_question" href="${pageContext.request.contextPath }/support/support_faq?faq_num=${tmp.faq_num}">${tmp.question }</a>
 						</p>
 					</li>
 				</c:forEach>

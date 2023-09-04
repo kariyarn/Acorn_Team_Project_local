@@ -37,7 +37,7 @@
 		INSERT INTO NOTICE_TB
 		(notice_num,category,title,content,regdate)
 		VALUES(NOTICE_SEQ.NEXTVAL,#{category}, #{title},#{content},
-			SYSDATE)
+			TO_DATE(TO_CHAR(SYSDATE, 'RR/MM/DD'), 'RR/MM/DD'))
 	</insert>
 	
 	<select id="getData" parameterType="int" resultType="noticeDto">

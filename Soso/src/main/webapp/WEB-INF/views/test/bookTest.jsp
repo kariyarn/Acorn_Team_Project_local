@@ -31,11 +31,8 @@
 				</tr>
 			</c:forEach>
 		</table>
-		<!-- 배열을 제출하는 버튼 -->
-		<button id="saveList">저장</button>
 	</body>
 	<script>
-	    const booklist = [];
 	    
 		const urlParams = new URLSearchParams(window.location.search);
 		const num = urlParams.get('num');
@@ -65,29 +62,13 @@
 	                isbn: isbn,
 	                description: description
 	            };
-				/* 
-					ajax형식으로 제출한다.
-					addList는 @requestbody를 써서 반환값을 json으로 돌려준다.
-					따라서 dataType도 json으로 해야함.
-				*/
-	            $.ajax({
-	                url: "${pageContext.request.contextPath}/test/addList",
-	                type: "POST",
-	                data: bookInfo,
-	                dataType: "json",
-	                error: function(data) {
-	                    console.log("오류입니다.");
-	                },
-	                success: function(data) {
-	                    booklist.push(data);
-	                    console.log(booklist);
-	                }
-	            });
+	            // 원래 페이지로 데이터를 전송
+	            window.opener.postMessage(bookInfo, "*");
 
 	        });
 	    });
 	    
-	    //저장 버튼을 눌렀을 때 ajax로 저장되는 구조(정식으로 넣을 때는 이 코드는 삭제될 예정.)
+	   /*  //저장 버튼을 눌렀을 때 ajax로 저장되는 구조(정식으로 넣을 때는 이 코드는 삭제될 예정.)
 	    $("#saveList").on("click", function(){
 	        $.ajax({
 	            url: "${pageContext.request.contextPath}/test/saveBook",
@@ -101,7 +82,7 @@
 	                console.log("저장 성공!");
 	            }
 	        });
-	    });
+	    }); */
 	</script>
 
 </html>

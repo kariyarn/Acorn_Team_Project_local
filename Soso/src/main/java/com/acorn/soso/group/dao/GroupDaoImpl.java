@@ -21,11 +21,6 @@ public class GroupDaoImpl implements GroupDao{
 	public List<GroupDto> getList(GroupDto dto) {
 		return session.selectList("group.getList", dto);
 	}
-	//랭킹 리스트
-	@Override
-	public List<GroupDto> getRanking(GroupDto dto) {
-		return session.selectList("group.getRanking", dto);
-	}
 
 	//소모임 개설하기
 	@Override

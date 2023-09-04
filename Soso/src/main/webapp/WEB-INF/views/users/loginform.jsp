@@ -6,6 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <title>로그인</title>
+    <link rel="shortcut icon" type="image/x-icon" href="${path }/resources/images/main/favicon.jpg">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/reset.css" type="text/css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/user.css" type="text/css">
@@ -54,13 +55,12 @@
 	            
 	        </form>
 	        <div class="row">
-	        	<div class="checkbox mt-3 mb-4 d-flex justify-content-center">
+	        	<div class="checkbox mt-3 mb-3 d-flex justify-content-center">
 		            <label><input type="checkbox" id="rememberId">아이디 기억하기</label>
-		            <label><input type="checkbox" id="autoLogin">자동 로그인</label>
 		        </div>
 	        </div>
 	        <div class="row">
-		        <div class="mt-4 d-flex justify-content-center">
+		        <div class="mt-1 d-flex justify-content-center">
 			        <a class="btn float-right" href="${pageContext.request.contextPath}/users/id_findform">아이디 찾기</a>
 			        <a class="btn float-right" href="${pageContext.request.contextPath}/users/pwd_findform">비밀번호 찾기</a>
 			        <a class="btn float-right" href="${pageContext.request.contextPath}/users/signup_form">회원가입</a>
