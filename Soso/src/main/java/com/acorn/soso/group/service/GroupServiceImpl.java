@@ -558,7 +558,7 @@ public class GroupServiceImpl implements GroupService{
 		List<GroupDto> list = jjimdao.jjimList(memId);
         //request 영역에 담아주기
         request.setAttribute("list", list);
-	
+        
 	}
 
 	@Override
