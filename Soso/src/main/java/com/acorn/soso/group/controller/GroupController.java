@@ -285,7 +285,7 @@ public class GroupController {
 	
 	//소모임 추가하기
 	@PostMapping("/group/insert")
-	public String insert(GroupDto dto, HttpServletRequest request, HttpSession session, @RequestParam("booklist") String bookListJson) {
+	public String insert(GroupDto dto, HttpSession session, @RequestParam("booklist") String bookListJson) {
 	    // bookListJson을 파싱하여 List<BookDto>로 변환
 	    List<BookDto> bookList = new ArrayList<>();
 	    ObjectMapper objectMapper = new ObjectMapper();
@@ -294,7 +294,7 @@ public class GroupController {
 	    } catch (IOException e) {
 	        e.printStackTrace();
 	    }
-		service.insert(dto, request, session, bookList);
+		service.insert(dto, session, bookList);
 		return "redirect:/group_managing/admin_main";
 	}
 	
