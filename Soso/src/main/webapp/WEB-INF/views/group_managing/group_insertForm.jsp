@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>소모임 개설하기</title>
 <link rel="shortcut icon" type="image/x-icon" href="${path }/resources/images/main/favicon.jpg">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/group_managing/group_managing_group_insert.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/jquery.datetimepicker.min.css" />
 </head>
@@ -26,9 +27,8 @@
 		<form action="${pageContext.request.contextPath}/group/insert" method="post" id="myForm" enctype="multipart/form-data">
 			<div class="form_header">
                 <div class="form_label">
-                     <label for="groupName">TITLE</label>
                 </div>
-                <input class="form_input" type="text" name="name" id="groupName" autocomplete="off" placeholder="Add text..."/>
+                <input class="form_input" type="text" name="name" id="groupName" autocomplete="off" placeholder="소모임 제목을 입력해주세요"/>
             </div>
             <div class="form_header">
             	<input class="form_input" type="text" name="manager_comment" id="manager_comment" autocomplete="off" placeholder="이 소모임을 한마디로 표현해주세요!" />
@@ -60,7 +60,7 @@
                     </select>
                     <div class="select_box" style="display:flex; align-items:center; justify-content:space-between">소모임의 이미지를 선택해주세요
                     	<button id="image_btn" style="width: 65px; height: 27px; color: white;
-                    				 background-color: rgb(195, 181, 157); border:none; border-radius: 15px;">file</button>
+                    				 background-color: rgb(195, 181, 157); border:none; border-radius: 15px; margin-right: 10px;">file</button>
                     </div>
                     <input id="image" name="image" type="file" style="display: none;"
                     	accept=".jpg, .png, .gif, .JPG, .JPEG, .jpeg"/>
@@ -130,7 +130,18 @@
 			        datepicker:false,
 			        format:"H:i"
 			    });
-			</script>
+			</script>					
+			<!-- 책 검색 공간(임시) -->
+			<!-- json을 보내기 위해서 그냥 input요소 만듬 -->
+			<input type="hidden" id="booklist" name="booklist" hidden />
+			<div class="addBook_btn">
+				<span style="font-weight:600;">북메이트 책 등록하기 &nbsp; &nbsp;</span>
+				<button type="button" id="addBook" name="addBook">찾기&nbsp;<i class="bi bi-search"></i></button>
+			</div>						
+			<!-- 책 정보 추가 -->
+           	<div class="bookList event">
+           		<p>등록된 책이 없습니다 </p>
+			</div>
 			<div>
 				<textarea name="caption" id="caption" rows="2" autocomplete="off" placeholder="이곳에 소모임 규칙 또는 자세한 설명을 적어주세요!"></textarea>
 				<div style = "display:flex; justify-content:end">
@@ -153,13 +164,6 @@
 				});
 			</script>
 			
-			<!-- 책 검색 공간(임시) -->
-			<!-- json을 보내기 위해서 그냥 input요소 만듬 -->
-			<input type="hidden" id="booklist" name="booklist" hidden />			
-			<button type="button" id="addBook" name="addBook">책 추가하기</button>
-			<!-- 책 정보 추가 -->
-			<div class="bookList" style="overflow : auto; display : flex;"></div>
-			
 			<script>
 			const booklist = []; // 책 목록 배열 초기화
 	
@@ -170,21 +174,16 @@
 	
 	            booklist.forEach(function (book, index) {
 	                const bookContainer = $("<div>").addClass("bookContainer");
-	                const titleElement = $("<pre>").text(book.title);
+	                const titleElement = $("<p>").text(book.title);
 	
 	                // 이미지 추가
 	                if (book.image) {
-	                    const imageElement = $("<img>").attr("src", book.image).css({
-	                    	width : "150px",
-	                    	height : "250px",
-	                    	border : "1px solid black",
-	                    	margin : "1rem"
-	                    });
+	                    const imageElement = $("<img>").attr("src", book.image);
 	                    bookContainer.append(imageElement);
 	                }
 	
 	                // 삭제 버튼 추가
-	                const deleteButton = $("<button>").text("삭제");
+	                const deleteButton = $("<button>").text("삭제 X");
 	                deleteButton.click(function () {
 	                    deleteBook(index);
 	                });
