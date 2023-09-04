@@ -252,13 +252,10 @@ public class GroupController {
 	}
 	
 	//리뷰 삭제
-	@RequestMapping("/group/review_delete")
-	@ResponseBody
-	public Map<String, Object> reviewDelete(HttpServletRequest request){
+	@GetMapping("/group/review_delete")
+	public String reviewDelete(HttpServletRequest request, int group_num){
 		service.deleteReview(request);
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("isSuccess", true);
-		return map;
+		return "redirect:/group/group_page?num="+group_num;
 	}
 	//댓글 더보기
 	@RequestMapping("/group/ajax_review_list")

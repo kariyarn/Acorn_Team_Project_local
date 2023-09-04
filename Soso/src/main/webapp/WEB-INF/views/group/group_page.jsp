@@ -125,6 +125,9 @@
 									<div>
 										<textarea name="content" id="content" style="resize : none;" readonly>${tmp.content}</textarea>
 									</div>
+									<c:if test="${sessionScope.id == tmp.writer || sessionScope.id == manager_id}">
+										<a href="${pageContext.request.contextPath}/group/review_delete?num=${tmp.review_num }&group_num=${tmp.group_num}">삭제</a>
+									</c:if>
 								</div>
 							</c:forEach>
 						</c:otherwise>

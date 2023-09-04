@@ -12,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.acorn.soso.exception.DontEqualException;
@@ -398,11 +397,17 @@ public class GroupServiceImpl implements GroupService{
 		GroupReviewDto dto = reviewdao.getData(num);
 		String id = (String)request.getSession().getAttribute("id");
 		
-		//관리자 삭제를 위해 일단 주석처리
-//		if(!dto.getWriter().equals(id)) {
-//			throw new NotDeleteException("타인의 리뷰는 삭제할 수 없습니다.");
-//		}
-		reviewdao.delete(num);
+		//관리자 삭제를 위해 dto 얻어내기
+		GroupDto groupDto = dao.getData(dto.getGroup_num());
+		//관리자 ID를 얻어낸다.
+		String manager = groupDto.getManager_id();
+		//만약 관리자거나 작성자라면
+		if(dto.getWriter().equals(id) || manager.equals(id)) {
+			//리뷰 삭제
+			reviewdao.delete(num);
+		}else {
+		throw new NotDeleteException("타인의 리뷰는 삭제할 수 없습니다.");
+		}
 	}
 
 	@Override
@@ -478,6 +483,12 @@ public class GroupServiceImpl implements GroupService{
 		List<GroupReviewDto> list = reviewdao.reviewList(num);
 		//request에 담아주기
 		model.addAttribute("commentList", list);
+		
+		//소모임 정보를 얻어오기
+		GroupDto dto = dao.getData(num);
+		String manager_id = dto.getManager_id();
+		//model에 매니저 아이디도 같이 넣어준다.
+		model.addAttribute("manager_id", manager_id);		
 	}
 	
 	//소모임 가입을 위한 join
