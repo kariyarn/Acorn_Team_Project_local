@@ -6,7 +6,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>/support_faq_insertform</title>
+<title>자주하는 질문 등록</title>
+<link rel="shortcut icon" type="image/x-icon" href="${path }/resources/images/main/favicon.jpg">
 <style>
 	.faqBtn{
 	width: 240px;

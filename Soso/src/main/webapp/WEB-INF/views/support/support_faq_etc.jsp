@@ -6,7 +6,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>/support_faq_etc</title>
+<title>자주하는 질문 - 기타</title>
+<link rel="shortcut icon" type="image/x-icon" href="${path }/resources/images/main/favicon.jpg">
 <style>
 	.btn_more{
 	background-image: url("https://static.onoffmix.com/images/pc/svg/arrow_up_bl.svg");
