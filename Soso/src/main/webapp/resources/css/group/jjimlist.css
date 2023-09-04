@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+body{
+	background-color: #f5f6f7;
+}
+
 .jjim_container {
     display: flex;
     border: 2px solid rgb(222, 226, 230);
@@ -14,6 +18,7 @@
 	flex-direction:column;
 	justify-content: center;
 	align-items: center;
+	padding: 10px;
 }
 
 #jjim_item_one div img{
@@ -30,6 +35,9 @@
 
 #jjim_item_two{
 	width: 60%;
+	margin-left: 10px;
+	border-right: 1px solid rgb(222, 226, 230);
+	border-left: 1px solid rgb(222, 226, 230);
 }
 
 #jjim_item_two_header{
@@ -54,18 +62,20 @@
 #group_caption{
 	height: 80px;
 	cursor: default;
-	overflow:hidden;
+	overflow:visible;
 	padding: 0 5px;
+	font-size: 14px;
 }
 
 #jjim_date{
 	display:flex;
 	justify-content: center;
+	margin-top: 20px;
 }
 
 #jjim_item_three{
 	width: 20%;
-	padding-top: 50px;
+	padding-top: 30px;
 }
 
 #jjim_item_three .group_deadlined_dt{
