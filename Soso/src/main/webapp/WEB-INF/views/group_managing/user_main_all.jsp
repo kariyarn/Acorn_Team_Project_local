@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>나의 북메이트</title>
+<link rel="shortcut icon" type="image/x-icon" href="${path }/resources/images/main/favicon.jpg">
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/include/navbar.jsp">
