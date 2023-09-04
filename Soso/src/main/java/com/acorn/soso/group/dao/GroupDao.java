@@ -10,8 +10,6 @@ public interface GroupDao {
 	public List<GroupDto> getList(GroupDto dto);
 	//소모임 조회수 리스트
 	public List<GroupDto> getViewList(GroupDto dto);
-	//랭킹 리스트
-	public List<GroupDto> getRanking(GroupDto dto);	
 	//모든 Row의 갯수
 	public int getCount(GroupDto dto);
 	//소모임 개설하기

@@ -378,20 +378,4 @@ public class GroupController {
 		return "group/viewList";
 	}
 	
-	
-	//랭킹 리스트 이동
-	@RequestMapping("/ranking/list")
-	public String Rankinglist(HttpServletRequest request, Model model) {
-		service.getRanking(request, model );
-		return "ranking/list";
-	}
-	
-	//메인 페이지로 이동
-	@RequestMapping("/")
-	public String home(HttpServletRequest request, Model model) {
-		service.getRanking(request, model);
-		return "home";
-	}
-	
-	
 }
