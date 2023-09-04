@@ -5,7 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>/support/support_faq_insert.jsp</title>
+<title>자주하는 질문 등록</title>
+<link rel="shortcut icon" type="image/x-icon" href="${path }/resources/images/main/favicon.jpg">
 </head>
 <body>
 	<script>
