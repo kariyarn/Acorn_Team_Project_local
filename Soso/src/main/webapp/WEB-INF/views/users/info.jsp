@@ -179,7 +179,7 @@
 	      		cancelButtonText: '취소',
 	      		showCancelButton: true
 	   		}).then((result) => {
-		      	if (isDelete) {
+		      	if (result.isConfirmed) {
 		      		location.href = "${pageContext.request.contextPath}/users/delete";
 		      	}
 		    })
