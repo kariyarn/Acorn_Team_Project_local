@@ -505,9 +505,12 @@ public class GroupServiceImpl implements GroupService{
 		dto.setUser_Id(id);
 		dto.setIntro(intro);
 		
-		//num을 이용해서 가입시키기
-		joindao.insert(dto);
-		
+		if(joindao.getIsJoin(dto) >= 0) {
+			throw new DontEqualException("이미 가입한 이력이 있는 소모임 가입을 다시 신청할 수 없습니다!");
+		} else {
+			//num을 이용해서 가입시키기
+			joindao.insert(dto);
+		}
 	}
 
 	//getData로 찜여부 확인하
