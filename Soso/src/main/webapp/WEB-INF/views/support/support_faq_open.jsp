@@ -91,7 +91,7 @@
 		<div class="main_content">
 			<div class="tab_section">
 			<ul class="tab_menu">
-				<li class="active">
+				<li class="">
 					<a href="${pageContext.request.contextPath }/support/support_faq?">전체(${categoryAllRow })</a>
 				</li>
 				<li class="">
@@ -100,7 +100,7 @@
 				<li class="">
 					<a href="${pageContext.request.contextPath }/support/support_faq_request?category=2">모임신청(${categoryTwoRow })</a>
 				</li>
-				<li class="">
+				<li class="active">
 					<a href="${pageContext.request.contextPath }/support/support_faq_open?category=3">모임개설(${categoryThreeRow })</a>
 				</li>
 				<li class="">

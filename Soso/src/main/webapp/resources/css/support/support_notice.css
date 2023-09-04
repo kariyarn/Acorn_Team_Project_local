@@ -165,7 +165,15 @@
 	    font-size: 14px;
 	    color: #333;
 	}
-	.admin_button:hover{
+	.admin_delbutton{
+	    border-radius: 0;
+	    text-align: center;
+	    line-height: 48px;
+	    font-size: 16px;
+	    color: #333;
+	    margin-left:5px;
+	}
+	.admin_button:hover , .admin_delbutton:hover{
 		color: rgb(157 128 63);
 		font-weight: 600;
 	}
