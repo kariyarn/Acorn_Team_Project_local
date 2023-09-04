@@ -17,11 +17,11 @@
 		<div class="container">
 			<div id="join_title">소모임 가입 신청</div>
 			<div id="group_title">
-				<div><img src="${dto.img_path }"/></div>
+				<div><img src="${pageContext.request.contextPath}${dto.img_path }"/></div>
 				<div id="group_name">${dto.name }</div>
 			</div>
 			<form action="${pageContext.request.contextPath}/group/join?num=${num}" method="post">
-				<label class="form_label">소모임 규칙 & 소개</label>
+				<label class="form_label" style="text-align:center">소모임 규칙 & 소개</label>
 				<textarea id="join_caption" readonly>${dto.caption }</textarea>
 				<label class="form_label" for="intro">가입 인사말</label>			
 				<textarea id="join_intro" name="intro" placeholder="소모임 가입 신청 시 본인에 대한 소개와 소모임에 대한 지원 동기를 자세하게 적어주시기 바랍니다." 
