@@ -71,13 +71,7 @@
 					</div>
 				  </c:forEach>
 				</div>
-<%-- 				<c:forEach var="books" items="${booklist }">
-				<ul>
-					<li class="group_content_book_text">
-						📖 &nbsp;&nbsp; 
-					</li>
-				</ul>
-				 </c:forEach> --%>
+
             </div>
             </div>
 		</div>

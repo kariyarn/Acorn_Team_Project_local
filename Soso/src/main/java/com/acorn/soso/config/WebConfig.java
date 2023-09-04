@@ -6,6 +6,7 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import com.acorn.soso.interceptor.GroupNumInterceptor;
 import com.acorn.soso.interceptor.LoginInterceptor;
 /*
  * [ Spring MVC 관련 설정 ]
@@ -27,6 +28,9 @@ public class WebConfig implements WebMvcConfigurer{
 	PwdAuthInterceptor pwdAuthInter;
 	@Autowired
 	SupportInterceptor supportInter;
+	@Autowired
+	GroupNumInterceptor groupNumInter; 
+	
 	
 	//Interceptor를 추가할 때 오버라이드 하는 메소드
 	@Override
@@ -47,6 +51,9 @@ public class WebConfig implements WebMvcConfigurer{
 				.addPathPatterns("/group_managing/*");
 		registry.addInterceptor(supportInter)
         		.addPathPatterns("/support/*");
+		registry.addInterceptor(groupNumInter)
+				.addPathPatterns("/group_managing/group_userdetail");
+				
 	}
 	
 	@Override

@@ -198,4 +198,5 @@ public class GroupManagingServiceImpl implements GroupManagingService{
 	public List<GroupManagingDto> getMateList(int num) {
 		return groupManagingdao.getMateList(num);
 	}
+	
 }

@@ -2,12 +2,12 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
-<script src="${path }/resources/js/jquery-1.12.0.min.js"></script>
-<script src="${path }/resources/js/jquery.easing.1.3.js"></script>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+<script src="${path }/resources/js/jquery-1.12.0.min.js"></script>
+<script src="${path }/resources/js/jquery.easing.1.3.js"></script>
 <title>그룹에 넣고 싶은 책을 찾아봅시다.</title>
 </head>
 <body>

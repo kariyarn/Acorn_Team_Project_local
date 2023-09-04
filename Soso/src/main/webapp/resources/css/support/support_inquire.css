@@ -169,13 +169,7 @@ h4.label{
 .area_form .input_title .inquire_title{
 	width: 880px;
 }
-.area_form textarea{
-	width: 1050px;
-	height: 200px;
-	padding: 20px;
-	font-size: 14px;
-	line-height: 20px;
-}
+
 .input_file .file_box{
 	width: 1050px;
 	display: inline-block;
@@ -196,13 +190,6 @@ h4.label{
     text-align: center;
     cursor: pointer;
 
-}
-.input_file input.upload_file {
-    width: 880px;
-    height: 48px;
-    float: right;
-    color: #666666;
-    background-color: #ffffff;
 }
 .input_file .file_wrap {
     margin-top: 10px;
@@ -250,8 +237,4 @@ label {
     padding-bottom: 50px;
     font-size: 16px;
     color: #666666;
-}
-textarea{
-	resize: none;
-	
 }
