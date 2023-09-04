@@ -3,7 +3,6 @@
 .info_container{
     margin: 0 auto;
     width: 992px;
-    padding-bottom: 300px;
 }
 
 .info_title{
@@ -16,7 +15,7 @@
 
 #info_header{
 	display: flex;
-	border: 1px solid rgb(128, 128, 128);
+	border: 1px solid rgb(230, 230, 230);
 	border-radius: 50px;
 	background-color: rgb(255, 255, 255);
 	
@@ -27,7 +26,8 @@
 	height: 150px;
 	border-radius: 50%;
 	border: 3px solid rgb(186, 157, 127);
-	margin: 70px 100px;s
+	margin: 40px 100px;
+	margin-right: 70px; 
 }
 
 #info_body{
@@ -36,17 +36,38 @@
 }
 
 #info_body .info-body-main{
-	margin-right: 120px;
+	margin-right: 170px;
+	padding-top: 20px;
+}
+
+#info_body .buttons{
+	padding-top: 20px;
+}
+
+.buttons .button{
+	margin-bottom: 30px;
+	width: 120px;
+	height: 35px;
+	border-radius: 15px;
+}
+
+.button div{
+	height: 35px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .info-body-content{
-	margin-bottom:60px;
+	margin-bottom:20px;
+	display: flex;
 	
 }
 .body-header{
 	font-weight: 700;
 	font-size: 20px;
 	margin-bottom:15px;
+	margin-right: 10px;
 }
 
 .info-body-content div:nth-child(2){

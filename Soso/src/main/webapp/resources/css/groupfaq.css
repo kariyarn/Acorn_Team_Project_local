@@ -2,7 +2,7 @@
 .cafe_table #faqInsert{float: right; cursor:pointer;}
 .cafe_table #faqInsert:hover, .cafe_table .qna_question a:hover, .cafe_table .qna_answer a:hover { font-weight:500; text-decoration: underline;}
 
-
+pre{white-space: pre-wrap;}  
 .cafe_table .table__body { max-height: calc(89% - 1.6rem); margin: .8rem auto; border-radius: .6rem; overflow: auto; overflow: overlay;}
 .cafe_table table { width: 100%;}
 .cafe_table table, th, td { border-collapse: collapse; padding: 1rem; text-align: left;}

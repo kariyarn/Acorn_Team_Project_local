@@ -44,10 +44,10 @@
 										<div class="qna_question">
 											<span class="qna_q">Q</span>
 									    	<pre name="content" id="content" readonly>${tmp.q_content}</pre>
-									        <c:if test="${empty tmp.a_answer }">
+								        	<c:if test="${sessionScope.id == tmp.q_writer || sessionScope.id == tmp.a_writer }">
 									        	<a href="${pageContext.request.contextPath}/group/faq/updateform?num=${tmp.num}" id="update">수정</a>
 									        	<a href="${pageContext.request.contextPath}/group/faq/delete?num=${tmp.num}&group_num=${tmp.group_num}" id="delete">삭제</a>
-									        </c:if>
+								        	</c:if>
 										</div>
 										<div class="qna_answer">
 											<span class="qna_a">A</span>

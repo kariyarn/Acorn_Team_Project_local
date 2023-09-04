@@ -1,5 +1,6 @@
 package com.acorn.soso.group.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -14,9 +15,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.acorn.soso.group.dto.GroupDto;
@@ -26,6 +27,8 @@ import com.acorn.soso.group.service.GroupService;
 import com.acorn.soso.group_managing.service.GroupManagingService;
 import com.acorn.soso.test.dto.BookDto;
 import com.acorn.soso.test.service.BookService;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Controller
 public class GroupController {
@@ -199,6 +202,8 @@ public class GroupController {
 	@GetMapping("/group/group_joinform")
 	public String groupIn(HttpServletRequest request, int num) {
 		request.setAttribute("num", num);
+		//그룹의 데이터를 얻어온다 값은 dto로 담긴다.
+		managingService.getGroupData(num, request);
 		return "group/group_joinform";
 	}
 	
@@ -247,13 +252,10 @@ public class GroupController {
 	}
 	
 	//리뷰 삭제
-	@RequestMapping("/group/review_delete")
-	@ResponseBody
-	public Map<String, Object> reviewDelete(HttpServletRequest request){
+	@GetMapping("/group/review_delete")
+	public String reviewDelete(HttpServletRequest request, int group_num){
 		service.deleteReview(request);
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("isSuccess", true);
-		return map;
+		return "redirect:/group/group_page?num="+group_num;
 	}
 	//댓글 더보기
 	@RequestMapping("/group/ajax_review_list")
@@ -283,9 +285,16 @@ public class GroupController {
 	
 	//소모임 추가하기
 	@PostMapping("/group/insert")
-	public String insert(GroupDto dto, HttpServletRequest request, HttpSession session) {
-		service.insert(dto, request, session);
-		
+	public String insert(GroupDto dto, HttpServletRequest request, HttpSession session, @RequestParam("booklist") String bookListJson) {
+	    // bookListJson을 파싱하여 List<BookDto>로 변환
+	    List<BookDto> bookList = new ArrayList<>();
+	    ObjectMapper objectMapper = new ObjectMapper();
+	    try {
+	        bookList = objectMapper.readValue(bookListJson, new TypeReference<List<BookDto>>() {});
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    }
+		service.insert(dto, request, session, bookList);
 		return "redirect:/group_managing/admin_main";
 	}
 	

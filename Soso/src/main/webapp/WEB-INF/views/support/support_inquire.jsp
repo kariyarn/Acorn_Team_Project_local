@@ -6,11 +6,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>/support_inquire</title>
+<title>문의하기</title>
+<link rel="shortcut icon" type="image/x-icon" href="${path }/resources/images/main/favicon.jpg">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/reset.css" type="text/css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/support/support_inquire.css" />
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 	
@@ -47,19 +49,38 @@
 		<li class="menu_notice">
 			<a class="nav-link" href="${pageContext.request.contextPath }/support/support_notice">공지사항</a>
 		</li>
-		<li class="menu_inquire">
-			<a class="nav-link active" href="${pageContext.request.contextPath }/support/support_inquire">문의하기</a>
-		</li>
+		<!-- Admin 계정으로 로그인 했을때 문의하기를 누르면 바로 사용자 문의 접수내역으로 이동 되도록 -->
+		<c:choose>
+			<c:when test="${isAdmin }">
+				<li class="menu_inquire">
+					<a class="nav-link" href="${pageContext.request.contextPath }/support/support_inquire_inquireStatus">문의하기</a>
+				</li>
+			</c:when>
+			<c:otherwise>
+				<li class="menu_inquire">
+					<a class="nav-link" href="${pageContext.request.contextPath }/support/support_inquire">문의하기</a>
+				</li>
+			</c:otherwise>
+		</c:choose>
 	</ul>
 		<div class="body_area">
 			<div class="main_content">
 				<ul class="inquire_navi">
-					<li>
-						<a href="${pageContext.request.contextPath }/support/support_inquire">1:1 문의하기</a>
-					</li>
-					<li>
-						<a class="my_inquire" href="${pageContext.request.contextPath }/support/support_inquire_MyInquire">나의 문의내역</a>
-					</li>
+					<c:choose>
+						<c:when test="${isAdmin }">
+							<li>
+								<a class="cs_inquire" href="${pageContext.request.contextPath }/support/support_inquire_inquireStatus">문의 접수 내역</a>
+							</li>
+						</c:when>
+						<c:otherwise>
+							<li>
+								<a href="${pageContext.request.contextPath }/support/support_inquire">1:1 문의하기</a>
+							</li>
+							<li>
+								<a class="my_inquire" href="${pageContext.request.contextPath }/support/support_inquire_MyInquire">나의 문의내역</a>
+							</li>
+						</c:otherwise>
+					</c:choose>
 				</ul>
 				<h3 class="main_title">1:1 문의하기</h3>
 				<form action="${pageContext.request.contextPath}/support/support_inquire_insert" class="area_form" method="post">
@@ -113,6 +134,7 @@
 			</div>
 		</div>
 	</div>
+
 	
 	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 </body>

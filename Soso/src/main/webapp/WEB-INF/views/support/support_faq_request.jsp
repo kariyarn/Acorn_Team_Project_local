@@ -5,7 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>/support_faq_request</title>
+<title>자주하는 질문 - 모임신청</title>
+<link rel="shortcut icon" type="image/x-icon" href="${path }/resources/images/main/favicon.jpg">
 <style>
 	.btn_more{
 	background-image: url("https://static.onoffmix.com/images/pc/svg/arrow_up_bl.svg");
@@ -115,12 +116,14 @@
 					<li class="dropbox">
 					<button type="button" class="btn_more">답변</button>
 						<div class="title_area">
-							<c:choose>
-								<c:when test="${tmp.category == 1}">회원</c:when>
-								<c:when test="${tmp.category == 2}">모임신청</c:when>
-								<c:when test="${tmp.category == 3}">모임개설</c:when>
-								<c:when test="${tmp.category == 0}">기타</c:when>
-							</c:choose>
+							<div class="category">
+								<c:choose>
+									<c:when test="${tmp.category == 1}">회원</c:when>
+									<c:when test="${tmp.category == 2}">모임신청</c:when>
+									<c:when test="${tmp.category == 3}">모임개설</c:when>
+									<c:when test="${tmp.category == 0}">기타</c:when>
+								</c:choose>
+							</div>
 							<h5 class="detail">${tmp.question }</h5>
 						</div>
 						<div class="detail_content" style="display: block;">

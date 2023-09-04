@@ -161,10 +161,10 @@ public class SupportController {
 		inquireService.getList(session, model);
 		return "support/support_inquire_MyInquire";
 	}
-	@GetMapping("/support/support_inquire_Myinquire_detail")
-	public String support_inquire_Myinquire_detail(int cs_num, Model model) {
-		inquireService.getData(cs_num, model);
-		return "support/support_inquire_Myinquire_detail";
+	@GetMapping("/support/support_inquire_inquireStatus")
+	public String support_inquire_inquireStatus(HttpSession session, Model model) {
+		inquireService.getList2(session, model);
+		return "support/support_inquire_inquireStatus";
 	}
 	@PostMapping("/support/support_inquire_update")
 	public String support_inquire_update(InquireDto dto, Model model) {

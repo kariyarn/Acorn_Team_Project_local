@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>자주하는 질문</title>
+<link rel="shortcut icon" type="image/x-icon" href="${path }/resources/images/main/favicon.jpg">
 <style>
 /* 관리버튼 css */
 .admin_menu{
@@ -81,11 +82,12 @@
 		</form>
 	</div>
 	<!-- 검색 창 끝 -->
+	<!-- FAQ 메뉴바 -->
 		<div class="main_content">
 			<div class="tab_section">
 			<ul class="tab_menu">
-				<li class="active">
-					<a href="${pageContext.request.contextPath }/support/support_faq?">전체(${totalRow })</a>
+				<li>
+					<a class="active" href="${pageContext.request.contextPath }/support/support_faq?">전체(${totalRow })</a>
 				</li>
 				<li class="">
 					<a href="${pageContext.request.contextPath }/support/support_faq_user?category=1">회원(${categoryOneRow })</a>

@@ -119,7 +119,8 @@
    <select id="getData" parameterType="int" resultType="groupDto">
 		SELECT result1.*
 		FROM
-		   (SELECT num, writer, title, caption, img_path, viewcount, regdate,
+		   (SELECT num, name, caption, avrg_rate, regdate, ended_dt, deadline_dt, start_dt, 
+			manager_id, max_people, meeting_loc, meeting_time, genre, on_off, manager_comment,
 		      LAG(num, 1, 0) OVER (ORDER BY num DESC) AS prevNum,
 		      LEAD(num, 1, 0) OVER (ORDER BY num DESC) AS nextNum
 		   FROM group_tb) result1

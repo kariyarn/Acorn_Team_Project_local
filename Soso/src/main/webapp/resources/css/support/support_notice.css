@@ -144,6 +144,9 @@
 	th.date{
 		width: 200px;
 	}
+	.notice_title:hover{
+		text-decoration:underline;
+	}
 	/* 관리자 메뉴 css (admin 계정일때만 보임) */
 	.admin_menu{
 		width: 100%;

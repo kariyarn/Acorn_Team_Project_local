@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>나의 문의내역</title>
+<title>문의 접수 내역</title>
 <link rel="shortcut icon" type="image/x-icon" href="${path }/resources/images/main/favicon.jpg">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/reset.css" type="text/css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
@@ -55,23 +55,13 @@
 		<div class="body_area">
 			<div class="main_content">
 				<ul class="inquire_navi">
-					<c:choose>
-						<c:when test="${isAdmin }">
-							<li>
-								<a class="cs_inquire" href="${pageContext.request.contextPath }/support/support_inquire_inquireStatus">문의 접수 내역</a>
-							</li>
-						</c:when>
-						<c:otherwise>
-							<li>
-								<a href="${pageContext.request.contextPath }/support/support_inquire">1:1 문의하기</a>
-							</li>
-							<li>
-								<a class="my_inquire" href="${pageContext.request.contextPath }/support/support_inquire_MyInquire">나의 문의내역</a>
-							</li>
-						</c:otherwise>
-					</c:choose>
+					<c:if test="${isAdmin }">
+						<li>
+							<a class="cs_inquire" href="${pageContext.request.contextPath }/support/support_inquire_inquireStatus">문의 접수 내역</a>
+						</li>
+					</c:if>
 				</ul>
-				<h3 class="title">나의 문의내역</h3>
+				<h3 class="title">사용자 문의 접수 내역</h3>
 				<table class="table-data">
 					<thead>
 						<tr>
@@ -81,7 +71,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach var="tmp" items="${list}">
+						<c:forEach var="tmp" items="${list2}">
 							<tr class="inquire-list">
 								<td>
 									<table class="main-data">

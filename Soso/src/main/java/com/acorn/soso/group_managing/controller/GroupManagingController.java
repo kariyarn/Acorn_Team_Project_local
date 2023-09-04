@@ -70,12 +70,14 @@ public class GroupManagingController {
 	}
 	
 	@GetMapping("/group_managing/joinApprove")
-	public String joinApprove(int num, int group_num, HttpServletRequest request, HttpSession session) {
+	public String joinApprove(int num, int group_num, String user_id, HttpServletRequest request, HttpSession session) {
 		String manager_id = (String)session.getAttribute("id");
 		GroupDto dto = service.getGroupData(group_num, request);
+		//get 요청 방식에서 파라미터 값 조정으로 다른 소모임에 대한 접근을 방지
 		if(!dto.getManager_id().equals(manager_id)) {
 			throw new DontEqualException("개설하지 않은 소모임 가입 신청자에 대해 접근할 수 없습니다!");
 		}
+		//현재 소모임의 정원이 다찼을 경우에 가입 승인을 거절
 		if(dto.getNow_people() == dto.getMax_people()) {
 			request.setAttribute("group_num", group_num);
 			return "group_managing/joinApproveRejected";
@@ -84,7 +86,6 @@ public class GroupManagingController {
 			request.setAttribute("group_num", group_num);
 			return "group_managing/joinApprove";
 		}
-		
 	}
 	
 	@GetMapping("/group_managing/user_main")
