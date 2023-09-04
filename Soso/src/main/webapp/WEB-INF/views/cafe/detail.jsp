@@ -5,7 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>커뮤니티  글쓰기</title>
+<title>소모임 커뮤니티</title>
+<link rel="shortcut icon" type="image/x-icon" href="${path }/resources/images/main/favicon.jpg">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/community/community_detail.css" />
 </head>

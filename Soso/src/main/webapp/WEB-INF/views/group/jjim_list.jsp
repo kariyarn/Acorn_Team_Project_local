@@ -6,26 +6,33 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <title>jjim_list</title>
+    <title>북마크</title>
+    <link rel="shortcut icon" type="image/x-icon" href="${path }/resources/images/main/favicon.jpg">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/jjimlist.css" />
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
   </head>
 <body>
-   	<c:forEach var="tmp" items="${list }">
-   	    <div class="container">
-    		<div class="item image"><img src="${pageContext.request.contextPath}${tmp.img_path }" alt="" /></div>
-	        <div class="item name">${tmp.manager_id} / ${tmp.name}</div>
-	        <div class="item jjim">
-     			<div class="p-2 heart">
-					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
-					  <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
-					</svg>
-				</div>
-				<input type="hidden" name="groupNum" value="${tmp.num}" />
+	<jsp:include page="/WEB-INF/views/include/navbar.jsp">
+		<jsp:param value="home" name="current"/>
+	</jsp:include>
+	<section>
+		<c:forEach var="tmp" items="${list }">
+	   	    <div class="container">
+	    		<div><img src="${pageContext.request.contextPath}${tmp.img_path }" alt="" /></div>
+		        <div>${tmp.manager_id} / ${tmp.name}</div>
+		        <div>
+	     			<div class="p-2 heart">
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
+						  <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+						</svg>
+					</div>
+					<input type="hidden" name="groupNum" value="${tmp.num}" />
+		        </div>
+		        <div>${tmp.caption}</div>
 	        </div>
-	        <div class="item caption">${tmp.caption}</div>
-        </div>
-   	</c:forEach>
+	   	</c:forEach>
+	</section>
+   	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
      	<!-- jQuery 라이브러리를 로드 -->
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script>

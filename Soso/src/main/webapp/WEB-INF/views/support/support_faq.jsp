@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>자주하는 질문</title>
+<link rel="shortcut icon" type="image/x-icon" href="${path }/resources/images/main/favicon.jpg">
 <style>
 /* 관리버튼 css */
 .admin_menu{
