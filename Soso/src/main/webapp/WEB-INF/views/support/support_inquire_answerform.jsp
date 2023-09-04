@@ -130,37 +130,12 @@
 					<p class="info_message">
 						이 사이트는 reCAPTCHA에 의해 보호되며 Google 개인 정보 취급 방침 및 서비스 약관이 적용됩니다.
 					</p>
-					<button type="submit" data-num="${dto.cs_num}" class="btn_submit" id="answer-btn">답변등록</button>
+					<button type="submit" class="btn_submit" id="answer-btn">답변등록</button>
 				</form>
 			</div>
 		</div>
 	</div>
-	<script>
-	document.querySelectorAll("#answer-btn").forEach((item)=>{
-		item.addEventListener("click", (e)=>{
-		        e.preventDefault();
-				const isTrue = Swal.fire({
-			  		title: "답변을 등록 하시겠습니까?",
-			  		text: "",
-			  		icon: 'success',
-			  		showCancelButton: true,
-			  		confirmButtonColor: 'rgb(13, 110, 253)',
-			  		cancelButtonColor: 'rgb(248, 162, 146)',
-			  		confirmButtonText: '확인',
-			  		cancelButtonText: '취소',
-					}).then((result) => {
-			      	if (result.isConfirmed) {
-			      		Swal.fire('등록 되었습니다.','','success');
-			      		const csNum=e.target.getAttribute("data-num");
-			      		location.href="${pageContext.request.contextPath}/support/support_inquire_answer?cs_num="+csNum;
-			      	}else if(result.isDismissed){
-			      		location.href="${pageContext.request.contextPath}/support/support_inquire_answerform";
-			      	}
-			    });
-			});	
-		});
-			
-	</script>
+
 	
 	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 </body>

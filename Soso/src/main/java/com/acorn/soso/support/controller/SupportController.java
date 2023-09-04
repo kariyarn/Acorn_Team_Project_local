@@ -159,7 +159,7 @@ public class SupportController {
 	@PostMapping("/support/support_inquire_answer")
 	public String support_inquire_answer(InquireDto dto, Model model) {
 		inquireService.update(dto, model);
-		return "redirect:/support/support_inquire_inquireStatus";
+		return "redirect:/support/support_inquire_answer";
 	}
 	@GetMapping("/support/support_inquire_MyInquire")
 	public String support_inquire_MyInquire(HttpSession session, Model model) {
