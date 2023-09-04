@@ -12,6 +12,8 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/reset.css" type="text/css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/support/support_faq.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/include/navbar.jsp">
@@ -46,9 +48,26 @@
 		<li class="menu_notice">
 			<a class="nav-link" href="${pageContext.request.contextPath }/support/support_notice">공지사항</a>
 		</li>
-		<li class="menu_inquire">
-			<a class="nav-link" href="${pageContext.request.contextPath }/support/support_inquire">문의하기</a>
-		</li>
+		<!-- Admin 계정으로 로그인 했을때 문의하기를 누르면 바로 사용자 문의 접수내역으로 이동 되도록 -->
+		<c:choose>
+			<c:when test="${isAdmin }">
+				<li class="menu_inquire">
+					<a class="nav-link" id="inquire" href="${pageContext.request.contextPath }/support/support_inquire_inquire">문의하기</a>
+				</li>
+				<script>
+					 // JavaScript 코드: 문의하기 링크 클릭 시 리다이렉트
+			        document.querySelector("#inquire").addEventListener("click", function(e) {
+			            e.preventDefault();
+			            window.location.href = "${pageContext.request.contextPath}/support/support_inquire_inquireStatus";
+			        });
+				</script>
+			</c:when>
+			<c:otherwise>
+				<li class="menu_inquire">
+					<a class="nav-link" href="${pageContext.request.contextPath }/support/support_inquire">문의하기</a>
+				</li>
+			</c:otherwise>
+		</c:choose>
 	</ul>
 	<!-- 메인 메뉴바 끝 -->
 	<!-- 검색 창 시작 -->
@@ -141,13 +160,27 @@
 			document.querySelectorAll("#delete-btn").forEach((item)=>{
 				item.addEventListener("click", (e)=>{
 					e.preventDefault();
-					const isTrue = confirm("질문을 삭제하시겠습니까?")
-					if(isTrue){
-						const faqNum=e.target.getAttribute("data-num");
-						location.href="${pageContext.request.contextPath}/support/support_faq_delete?faq_num=" + faqNum;
-					}
+					const isTrue = Swal.fire({
+				  		title: "질문을  삭제하시겠습니까?",
+				  		text: "",
+				  		icon: 'warning',
+				  		showCancelButton: true,
+				  		confirmButtonColor: 'rgb(13, 110, 253)',
+				  		cancelButtonColor: 'rgb(248, 162, 146)',
+				  		confirmButtonText: '확인',
+				  		cancelButtonText: '취소',
+						}).then((result) => {
+				      	if (result.isConfirmed) {
+				      		Swal.fire('삭제 되었습니다.','success');
+				      		const faqNum=e.target.getAttribute("data-num");
+				      		location.href="${pageContext.request.contextPath}/support/support_faq_delete?faq_num="+faqNum;
+				      	}else if(result.isDismissed){
+				      		location.href="${pageContext.request.contextPath}/support/support_faq";
+				      	}
+				    });
 				});
 			});
+			
 	</script>
 
 		<nav style="display:flex; justify-content:center; margin-bottom:30px;">
