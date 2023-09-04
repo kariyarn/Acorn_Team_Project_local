@@ -156,14 +156,21 @@ public class SupportController {
 		inquireService.insert(dto);
 		return "support/support_inquire_insert";
 	}
+	@PostMapping("/support/support_inquire_answer")
+	public String support_inquire_answer(InquireDto dto, Model model) {
+		inquireService.update(dto, model);
+		return "redirect:/support/support_inquire_answer";
+	}
 	@GetMapping("/support/support_inquire_MyInquire")
 	public String support_inquire_MyInquire(HttpSession session, Model model) {
 		inquireService.getList(session, model);
 		return "support/support_inquire_MyInquire";
 	}
 	@GetMapping("/support/support_inquire_answerform")
-	public String support_inquire_answerform(HttpSession session, Model model) {
-		inquireService.getList(session, model);
+	public String support_inquire_answerform(int cs_num,HttpSession session, Model model) {
+		userService.getInfo(session, model);
+		inquireService.getData(cs_num, model);
+		
 		return "support/support_inquire_answerform";
 	}
 	@GetMapping("/support/support_inquire_inquireStatus")

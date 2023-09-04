@@ -91,7 +91,7 @@
 						</div>
 						<div class="input_email">
 							<h4 class="label">이메일 *</h4>
-							<input type="text" class="email" name="email" value="${dto.email}" readonly />
+							<input type="text" class="email" name="user_email" value="${dto.email}" readonly />
 							<p class="tip_txt">* 답변 받을 이메일 주소를 확인해 주세요.</p>
 						</div>
 					</div>
