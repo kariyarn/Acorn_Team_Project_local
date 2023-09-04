@@ -43,7 +43,7 @@
 		INSERT INTO community_board_tb
 		(comu_num,writer,title, header, content, viewCount, regdate, group_num)
 		VALUES(comu_seq.NEXTVAL, #{writer}, #{title}, #{header},
-			#{content}, #{viewCount}, SYSDATE, #{group_num})
+			#{content}, #{viewCount}, TO_DATE(TO_CHAR(SYSDATE, 'RR/MM/DD'), 'RR/MM/DD'), #{group_num})
 	</insert>
 	
 	<select id="getData" parameterType="cafeDto" resultType="cafeDto">

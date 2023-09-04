@@ -12,7 +12,7 @@
     <script src="${path }/resources/js/jquery.easing.1.3.js"></script>
     <script src="${path }/resources/js/common.js"></script>
 <!-- mobile -->
-    <div class="panel"> 
+    <div class="panel">  	
         <nav class="pGnb">
             <ul>
                     <li>
@@ -71,6 +71,15 @@
             	</c:choose>           
                 </ul>	
 			 </nav>
+			 <div class="sns">
+                <div class="iconWrap">
+                    <a href="#" class="btn">
+                        <span class="circle01"></span>
+                        <span class="circle02"></span>
+                        <span class="circle03"></span>
+                    </a>
+                </div>
+            </div>
         </div>
  
 

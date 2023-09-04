@@ -12,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.acorn.soso.exception.DontEqualException;
@@ -263,7 +262,7 @@ public class GroupServiceImpl implements GroupService{
 	
 	//소모임 개설	
 	@Override
-	public void insert(GroupDto dto, HttpServletRequest request, HttpSession session) {
+	public void insert(GroupDto dto, HttpServletRequest request, HttpSession session, List<BookDto> bookList) {
 		//업로드된 파일의 정보를 가지고 있는 MultipartFile 객체의 참조값을 얻어오기
 		MultipartFile image = dto.getImage();
 		//원본 파일명 -> 저장할 파일 이름 만들기위해서 사용됨
@@ -299,12 +298,17 @@ public class GroupServiceImpl implements GroupService{
 		dto.setManager_id(manager_id);
 		
 		//group_num의 시퀀스 값을 얻어낸다.
-		int num = dao.groupNumSeq();
+		int group_num = dao.groupNumSeq();
 		//dto에 넣어줌
-		dto.setNum(num);
+		dto.setNum(group_num);
+		
+		//반복문 돌면서 bookList에 group_num 값을 넣어주고 DB에 넣는다.
+		for (BookDto book : bookList) {
+	        book.setGroup_num(group_num);
+	        bookdao.saveBook(book);
+	    }		
 		
 		dao.insert(dto);
-
 	}
 
 	@Override
@@ -393,11 +397,17 @@ public class GroupServiceImpl implements GroupService{
 		GroupReviewDto dto = reviewdao.getData(num);
 		String id = (String)request.getSession().getAttribute("id");
 		
-		//관리자 삭제를 위해 일단 주석처리
-//		if(!dto.getWriter().equals(id)) {
-//			throw new NotDeleteException("타인의 리뷰는 삭제할 수 없습니다.");
-//		}
-		reviewdao.delete(num);
+		//관리자 삭제를 위해 dto 얻어내기
+		GroupDto groupDto = dao.getData(dto.getGroup_num());
+		//관리자 ID를 얻어낸다.
+		String manager = groupDto.getManager_id();
+		//만약 관리자거나 작성자라면
+		if(dto.getWriter().equals(id) || manager.equals(id)) {
+			//리뷰 삭제
+			reviewdao.delete(num);
+		}else {
+		throw new NotDeleteException("타인의 리뷰는 삭제할 수 없습니다.");
+		}
 	}
 
 	@Override
@@ -473,6 +483,12 @@ public class GroupServiceImpl implements GroupService{
 		List<GroupReviewDto> list = reviewdao.reviewList(num);
 		//request에 담아주기
 		model.addAttribute("commentList", list);
+		
+		//소모임 정보를 얻어오기
+		GroupDto dto = dao.getData(num);
+		String manager_id = dto.getManager_id();
+		//model에 매니저 아이디도 같이 넣어준다.
+		model.addAttribute("manager_id", manager_id);		
 	}
 	
 	//소모임 가입을 위한 join
@@ -489,9 +505,12 @@ public class GroupServiceImpl implements GroupService{
 		dto.setUser_Id(id);
 		dto.setIntro(intro);
 		
-		//num을 이용해서 가입시키기
-		joindao.insert(dto);
-		
+		if(joindao.getIsJoin(dto) >= 0) {
+			throw new DontEqualException("이미 가입한 이력이 있는 소모임 가입을 다시 신청할 수 없습니다!");
+		} else {
+			//num을 이용해서 가입시키기
+			joindao.insert(dto);
+		}
 	}
 
 	//getData로 찜여부 확인하
@@ -568,6 +587,9 @@ public class GroupServiceImpl implements GroupService{
 		//만들어낸 dto를 가지고 getData작업을 시행하고 resultDto에 담는다.
 		//int joinNum의 초기값 설정
 		int joinNum = joindao.getIsJoin(dto);
+		System.out.println(joinNum);
+		System.out.println(num);
+		System.out.println(id);
 		if(joinNum == 1 || joinNum == 2 || joinNum == 3) {
 			//request영역에 jjim이라는 이름으로 resultDto를 담는다.
 			request.setAttribute("knowJoin", joinNum);
@@ -606,8 +628,13 @@ public class GroupServiceImpl implements GroupService{
 		GroupDto groupDto = dao.getData(dto.getGroup_num());
 		//매니저 아이디 넣어주자.
 		dto.setA_writer(groupDto.getManager_id());
-		//dao를 통해 db에 값 집어넣기
-		groupfaqdao.insert(dto);
+		
+		if(dto.getQ_content() == "" || dto.getQ_title() == "") {
+			throw new DontEqualException("제목과 내용을 입력해주세요");
+		}else {
+			//dao를 통해 db에 값 집어넣기
+			groupfaqdao.insert(dto);	
+		}		
 	}
 	
 	//소모임 FAQ의 getList
@@ -689,6 +716,10 @@ public class GroupServiceImpl implements GroupService{
 
 	@Override
 	public void updateGroupFAQ(HttpServletRequest request, GroupFAQDto dto) {
+		//만약 수정시에 값을 전부 공백으로 하면 exception
+		if(dto.getQ_title() == "" || dto.getQ_content() == "") {
+			throw new DontEqualException("제목과 내용을 입력해주세요");
+		}
 		//수정할 글 번호를 읽어온다.
 		int num=Integer.parseInt(request.getParameter("num"));
 		//번호를 넣어준다. 
@@ -732,6 +763,11 @@ public class GroupServiceImpl implements GroupService{
 	//소모임 문의 답변하기
 	@Override
 	public void groupAnswerInsert(GroupFAQDto dto) {
+		//만약 답변내용이 없으면exception
+		if(dto.getA_answer()==null) {
+			throw new DontEqualException("답변을 입력해주세요.");
+		}
+		
 		int group_num = dto.getGroup_num();
 		//dto.getGroup_num으로 소모임의 번호를 알아낸다.
 		GroupDto groupDto = managingdao.getGroupData(group_num);
@@ -749,6 +785,11 @@ public class GroupServiceImpl implements GroupService{
 	//소모임 문의 답변 수정하기
 	@Override
 	public void groupAnswerUpdate(HttpServletRequest request, GroupFAQDto dto) {
+		//만약 답변이 비어있으면
+		if(dto.getA_answer() == "") {
+			throw new DontEqualException("답변을 입력해주세요");
+		}
+		
 		//수정할 글 번호를 읽어온다.
 		int num=Integer.parseInt(request.getParameter("num"));
 		//번호를 넣어준다. 

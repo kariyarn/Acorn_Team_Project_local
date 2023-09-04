@@ -26,7 +26,7 @@
 	<insert id="insert" parameterType="inquireDto">
 		INSERT INTO CS_TB
 		(cs_num, writer, category, title, content, confirm, regdate)
-		VALUES(cs_seq.NEXTVAL, #{writer}, #{category}, #{title}, #{content}, #{confirm}, SYSDATE)
+		VALUES(cs_seq.NEXTVAL, #{writer}, #{category}, #{title}, #{content}, #{confirm}, TO_DATE(TO_CHAR(SYSDATE, 'RR/MM/DD'), 'RR/MM/DD'))
 	</insert>
 	
 	<select id="getData" parameterType="int" resultType="inquireDto">

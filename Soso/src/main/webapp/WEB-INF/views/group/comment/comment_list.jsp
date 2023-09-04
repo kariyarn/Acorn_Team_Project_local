@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>후기 게시판</title>
+<link rel="shortcut icon" type="image/x-icon" href="${path }/resources/images/main/favicon.jpg">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/review.css" />
 <div class="container"> 
    <div>

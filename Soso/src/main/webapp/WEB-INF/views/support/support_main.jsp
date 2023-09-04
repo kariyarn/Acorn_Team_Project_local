@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>고객센터</title>
+<link rel="shortcut icon" type="image/x-icon" href="${path }/resources/images/main/favicon.jpg">
 <style>
 	.area_faq ul li.faq_category{
 		margin-right: 40px;
