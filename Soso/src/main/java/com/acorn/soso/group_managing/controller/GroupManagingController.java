@@ -47,6 +47,8 @@ public class GroupManagingController {
 	
 	@Autowired
 	private GroupManagingService groupManagingService;
+
+	private GroupManagingDao groupManagingDao;
 	
 	@GetMapping("/group_managing/admin_main")
 	public String admin_main(HttpServletRequest request, HttpSession session) {
@@ -177,7 +179,8 @@ public class GroupManagingController {
 	    request.setAttribute("num", num);
 	    return mView;
 	}
-	
+
+
 	@GetMapping("/group_managing/applicantList")
 	public String group_applicantList(int group_num, HttpServletRequest request, HttpSession session) {
 		String manager_id = (String)session.getAttribute("id");

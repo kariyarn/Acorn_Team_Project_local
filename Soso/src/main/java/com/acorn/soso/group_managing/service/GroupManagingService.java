@@ -34,4 +34,5 @@ public interface GroupManagingService {
 	public void getDetail(ModelAndView mView, int num);
 	public void dropOut(GroupManagingDto dto);
 	public List<GroupManagingDto> getMateList(int num);
+	
 }

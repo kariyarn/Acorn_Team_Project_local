@@ -56,6 +56,31 @@
 	 	<div class="inner-wrap">
 	 		<jsp:include page="/WEB-INF/views/cafe/list.jsp"></jsp:include>
 	 	</div>
+	 	<div class="inner-wrap">
+	 		<ul>
+	 			<h2 class="title black">모임규칙</h2>
+	 			<li style="line-height: 2.5;">
+	 				1. <span style="font-size: 18px;"> 책은 모임 전에 꼭 읽고 만나요.</span>
+	 			</li>
+	 			<li style="line-height: 2.5;">
+	 				<span style="font-size: 18px;"> 2. 모임에 지각 하시면 다른 회원들이 기다리니까 시간 잘 지켜주세요!</span>
+	 			</li>	 			
+	 		</ul>
+	 	</div>
+	 	<div class="inner-wrap">
+	 		<ul>
+	 			<h2 class="title black">공지사항</h2>
+	 			<li style="line-height: 2.5;">
+	 				<span style="font-size: 18px;"> 1. 한번 가입했다가 탈퇴 하신 회원님은 다시 가입 불가능 합니다.</span>
+	 			</li>
+	 			<li style="line-height: 2.5;">
+	 				<span style="font-size: 18px;"> 2. 저희 모임에 불순한 의도를 갖고 오시는 분은 법적 대응 들어갑니다.</span>
+	 			</li>
+	 			<li style="line-height: 2.5;">
+	 				<span style="font-size: 18px;"> 3. 모임 2일 전에 문자로 안내 드립니다.</span>
+	 			</li>
+	 		</ul>	 	
+	 	</div>
 	</section>
 	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>	
 	<script>

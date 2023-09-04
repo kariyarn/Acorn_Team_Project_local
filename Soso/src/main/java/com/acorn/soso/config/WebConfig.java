@@ -29,7 +29,8 @@ public class WebConfig implements WebMvcConfigurer{
 	@Autowired
 	SupportInterceptor supportInter;
 	@Autowired
-	GroupNumInterceptor groupNumInter;
+	GroupNumInterceptor groupNumInter; 
+	
 	
 	//Interceptor를 추가할 때 오버라이드 하는 메소드
 	@Override
