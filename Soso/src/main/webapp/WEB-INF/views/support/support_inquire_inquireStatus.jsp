@@ -65,6 +65,7 @@
 				<table class="table-data">
 					<thead>
 						<tr>
+							<th class="num">번호</th>
 							<th class="date">등록일</th>
 							<th class="title">문의 제목</th>
 							<th class="status">문의 상태</th>
@@ -77,11 +78,14 @@
 									<table class="main-data">
 										<tbody>
 											<tr class="summary-data">
+												<td class="num">${tmp.cs_num }</td>
 												<td class="date">${tmp.regdate }</td>
 												<td class="title">
 													<a href="">${tmp.title }</a>
 												</td>
-												<td class="status">답변대기</td>
+												<td class="status">답변대기
+													
+												</td>
 											</tr>
 											<tr class="btn-area">
 												<td><button type="button" class="btn_more">답변보기</button></td>
@@ -91,7 +95,7 @@
 													<div class="inquiry-content">
 														<div class="description">
 															<button data-num="${tmp.cs_num}" type="submit" class="delete-btn">삭제</button>
-															<a class="answer-btn" href="${pageContext.request.contextPath }/support/support_inquire_answerform">답변등록</a>
+															<a class="answer-btn" href="${pageContext.request.contextPath }/support/support_inquire_answerform?cs_num=${tmp.cs_num}">답변등록</a>
 															${tmp.content }
 														</div>
 													</div>
