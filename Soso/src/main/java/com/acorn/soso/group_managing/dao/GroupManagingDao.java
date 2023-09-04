@@ -48,5 +48,9 @@ public interface GroupManagingDao {
 	public void reject(int num);
 	//소모임 탈퇴하기
 	public void dropOut(GroupManagingDto dto);
+	//그룹에 유저가 가입되어 있는지 확인
+	public int isUserMemberOfGroup(String user_id, int group_num);
+	//그룹 번호가 유효한지 확인
+	public int isGroupValid(int group_num);
 
 }

@@ -9,6 +9,10 @@
 <link rel="shortcut icon" type="image/x-icon" href="${path }/resources/images/main/favicon.jpg">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/community/community_detail.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/include/navbar_c.jsp">
@@ -56,13 +60,14 @@
 				</div>
 	     	</div>
 	     </div>
-	     <div class="inner-wrap">
-			<form class="comment-form insert-form" action="comment_insert" method="post">
+	     <!-- 댓글 작성 -->
+	     <div class="inner-wrap" >
+			<form  class="comment-form insert-form" action="comment_insert" method="post" >
 				<input type="hidden" name="comu_num" value="${cafeDto.comu_num}"/>
 				<input type="hidden" name="group_num" value="${cafeDto.group_num}"/>
 				<input type="hidden" name="target_id" value="${cafeDto.writer}"/>
-				<textarea name="content" placeholder="주제와 무관한 댓글, 타인의 권리를 침해하거나 명예를 훼손하는 댓글은 제제를 받을 수 있습니다."></textarea>
-				<button type="submit">등록</button>
+				<textarea id="textComment" name="content" placeholder="주제와 무관한 댓글, 타인의 권리를 침해하거나 명예를 훼손하는 댓글은 제제를 받을 수 있습니다."></textarea>
+				<button id="insertButton" type="submit">등록</button>
 			</form>
 	     </div>
 		<!-- 댓글 목록 -->
@@ -134,8 +139,8 @@
 								<input type="hidden" name="target_id" value="${tmp.writer }"/>
 								<!-- 대댓글의 그룹번호는 대댓글을 작성하는 댓글의 그룹번호를 배정 -->
 								<input type="hidden" name="comment_group" value="${tmp.comment_group }"/>
-								<textarea name="content"></textarea>
-								<button type="submit">등록</button>
+								<textarea id="textComment2" name="content"></textarea>
+								<button id="insertButton2" type="submit">등록</button>
 							</form>
 							<c:if test="${tmp.writer eq id }">
 								<form id="updateForm${tmp.comment_num }" class="update-form" action="comment_update" method="post">
@@ -165,14 +170,34 @@
 			}
 		}
 	</script>
+	
 	<script>
-	    $("#insertButton").click(function(){
-	    	if($.trim($("#textContent").val())==''){
-	      		alert("댓글을 입력해주세요.");
-	      		return false;
-	   	 	} 
-	    	$("#insertComment").submit();
-	    });
+		//댓글 NULL 알림
+		$("#insertButton").click(function(){
+    		if($.trim($("#textComment").val())==''){
+    			Swal.fire({
+		      		title: "글을 입력하지 않으셨습니다.",
+		      		text: "",
+		      		icon: 'error',
+		      		confirmButtonColor: 'rgb(13, 110, 253)',
+		      		confirmButtonText: '확인',
+		   		})
+      			return false;
+   	 		} 
+  		 });
+		//대댓글 NULL 알림
+		$("#insertButton2").click(function(){
+    		if($.trim($("#textComment2").val())==''){
+    			Swal.fire({
+		      		title: "글을 입력하지 않으셨습니다.",
+		      		text: "",
+		      		icon: 'error',
+		      		confirmButtonColor: 'rgb(13, 110, 253)',
+		      		confirmButtonText: '확인',
+		   		})
+      			return false;
+   	 		} 
+  		 });
 		//클라이언트가 로그인 했는지 여부
 		let isLogin=${ not empty id };
 		document.querySelector(".insert-form")

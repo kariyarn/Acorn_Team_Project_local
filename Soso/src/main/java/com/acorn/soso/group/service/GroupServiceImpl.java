@@ -262,7 +262,7 @@ public class GroupServiceImpl implements GroupService{
 	
 	//소모임 개설	
 	@Override
-	public void insert(GroupDto dto, HttpServletRequest request, HttpSession session, List<BookDto> bookList) {
+	public void insert(GroupDto dto, HttpSession session, List<BookDto> bookList) {
 		//업로드된 파일의 정보를 가지고 있는 MultipartFile 객체의 참조값을 얻어오기
 		MultipartFile image = dto.getImage();
 		//원본 파일명 -> 저장할 파일 이름 만들기위해서 사용됨
@@ -306,9 +306,10 @@ public class GroupServiceImpl implements GroupService{
 		for (BookDto book : bookList) {
 	        book.setGroup_num(group_num);
 	        bookdao.saveBook(book);
-	    }		
+	    }
 		
 		dao.insert(dto);
+		joindao.managerJoin(dto);
 	}
 
 	@Override
@@ -461,19 +462,6 @@ public class GroupServiceImpl implements GroupService{
 		
 	}
 
-	@Override
-	public void getRanking(HttpServletRequest request , Model model) {
-
-	      GroupDto dto = new GroupDto();
-	      
-	      //movieDao 객체를 이용해서 회원 목록을 얻어온다.
-	      //ranking version
-	      List<GroupDto> list = dao.getRanking(dto);
-      
-	      //request 영역에 담아주기
-	      request.setAttribute("list", list);   //movie list
-		
-	}
 	//num을 가져와서 리뷰 리스트를 불러온 다음에 model에 담아서 돌려주기
 	@Override
 	public void reviewList(HttpServletRequest request, Model model) {
@@ -571,7 +559,7 @@ public class GroupServiceImpl implements GroupService{
 		List<GroupDto> list = jjimdao.jjimList(memId);
         //request 영역에 담아주기
         request.setAttribute("list", list);
-	
+        
 	}
 
 	@Override

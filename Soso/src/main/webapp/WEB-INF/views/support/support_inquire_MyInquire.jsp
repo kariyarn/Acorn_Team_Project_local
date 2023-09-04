@@ -81,36 +81,43 @@
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach var="tmp" items="${list}">
-							<tr class="inquire-list">
-								<td>
-									<table class="main-data">
-										<tbody>
-											<tr class="summary-data">
-												<td class="date">${tmp.regdate }</td>
-												<td class="title">
-													<a href="">${tmp.title }</a>
-												</td>
-												<td class="status">답변대기</td>
-											</tr>
-											<tr class="btn-area">
-												<td><button type="button" class="btn_more">답변보기</button></td>
-											</tr>
-											<tr class="detail-data">
-												<td class="detail-td">
-													<div class="inquiry-content">
-														<div class="description">
-															<button data-num="${tmp.cs_num}" type="submit" class="delete-btn">삭제</button>
-															${tmp.content }
-														</div>
-													</div>
-												</td>
-											</tr>
-										</tbody>
-									</table>
-								</td>
-							</tr>
-						</c:forEach>
+						<c:choose>
+							<c:when test="${empty list}">
+							 	<p>문의하신 내역이 없습니다.</p>
+							 </c:when>
+							 <c:otherwise>
+								<c:forEach var="tmp" items="${list}">
+									<tr class="inquire-list">
+										<td>
+											<table class="main-data">
+												<tbody>
+													<tr class="summary-data">
+														<td class="date">${tmp.regdate }</td>
+														<td class="title">
+															<a href="">${tmp.title }</a>
+														</td>
+														<td class="status">답변대기</td>
+													</tr>
+													<tr class="btn-area">
+														<td><button type="button" class="btn_more">답변보기</button></td>
+													</tr>
+													<tr class="detail-data">
+														<td class="detail-td">
+															<div class="inquiry-content">
+																<div class="description">
+																	<button data-num="${tmp.cs_num}" type="submit" class="delete-btn">삭제</button>
+																	${tmp.content }
+																</div>
+															</div>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+										</td>
+									</tr>
+								</c:forEach>
+							</c:otherwise>
+						</c:choose>
 					</tbody>
 				</table>
 			</div>

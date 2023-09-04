@@ -7,34 +7,13 @@
 <head>
 <meta charset="UTF-8">
 <title>자주하는 질문</title>
+
 <link rel="shortcut icon" type="image/x-icon" href="${path }/resources/images/main/favicon.jpg">
-<style>
-/* 관리버튼 css */
-.admin_menu{
-	width: 100%;
-	display: flex;
-	justify-content: center;
-	}
-.admin_button{
-	width: 130px;
-    height: 48px;
-    display: inline-block;
-    border-radius: 0;
-    border: 1px solid #d8d8d8;
-    background-color: #f7f7f7;
-    text-align: center;
-    line-height: 48px;
-    font-size: 14px;
-    color: #333;
-}
-.admin_button:hover{
-	color: rgb(157 128 63);
-	font-weight: 600;
-}
-</style>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/reset.css" type="text/css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/support/support_faq.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/include/navbar.jsp">
@@ -69,9 +48,26 @@
 		<li class="menu_notice">
 			<a class="nav-link" href="${pageContext.request.contextPath }/support/support_notice">공지사항</a>
 		</li>
-		<li class="menu_inquire">
-			<a class="nav-link" href="${pageContext.request.contextPath }/support/support_inquire">문의하기</a>
-		</li>
+		<!-- Admin 계정으로 로그인 했을때 문의하기를 누르면 바로 사용자 문의 접수내역으로 이동 되도록 -->
+		<c:choose>
+			<c:when test="${isAdmin }">
+				<li class="menu_inquire">
+					<a class="nav-link" id="inquire" href="${pageContext.request.contextPath }/support/support_inquire_inquire">문의하기</a>
+				</li>
+				<script>
+					 // JavaScript 코드: 문의하기 링크 클릭 시 리다이렉트
+			        document.querySelector("#inquire").addEventListener("click", function(e) {
+			            e.preventDefault();
+			            window.location.href = "${pageContext.request.contextPath}/support/support_inquire_inquireStatus";
+			        });
+				</script>
+			</c:when>
+			<c:otherwise>
+				<li class="menu_inquire">
+					<a class="nav-link" href="${pageContext.request.contextPath }/support/support_inquire">문의하기</a>
+				</li>
+			</c:otherwise>
+		</c:choose>
 	</ul>
 	<!-- 메인 메뉴바 끝 -->
 	<!-- 검색 창 시작 -->
@@ -86,8 +82,8 @@
 		<div class="main_content">
 			<div class="tab_section">
 			<ul class="tab_menu">
-				<li>
-					<a class="active" href="${pageContext.request.contextPath }/support/support_faq?">전체(${totalRow })</a>
+				<li class="active">
+					<a href="${pageContext.request.contextPath }/support/support_faq?">전체(${totalRow })</a>
 				</li>
 				<li class="">
 					<a href="${pageContext.request.contextPath }/support/support_faq_user?category=1">회원(${categoryOneRow })</a>
@@ -106,8 +102,9 @@
 			<div class="tab_content">
 			<ul>
 				<c:forEach var="tmp" items="${list }">
+					<input type="hidden" name="faq_num" value="${tmp.faq_num }"/>
 					<li class="dropbox">
-					<button type="button" class="btn_more">답변</button>
+					<button type="button" class="btn_more" data-faq-num="${tmp.faq_num}">답변</button>
 						<div class="title_area">
 							<div class="category">
 								<c:choose>
@@ -117,12 +114,19 @@
 									<c:when test="${tmp.category == 0}">기타</c:when>
 								</c:choose>
 							</div>
-							<h5 class="detail">${tmp.question }</h5>
+							<h5 class="detail">
+								<a class="faq_question" href="${pageContext.request.contextPath}/support/support_faq?faq_num=${tmp.faq_num}" id="faq-question-${tmp.faq_num}">
+				                    ${tmp.question}
+				                </a>
+							</h5>
 						</div>
-						<div class="detail_content">
+						<div class="detail_content" id="faq-answer-${tmp.faq_num}">
 							<span style="line-height: 24px;">
 								<pre>${tmp.answer }</pre>
 							</span>
+							<c:if test="${isAdmin }">
+								<button type="submit" data-num="${tmp.faq_num}" class="admin_delbutton" id="delete-btn">삭제</button>
+							</c:if>
 						</div>
 					</li>
 				</c:forEach>
@@ -138,9 +142,6 @@
 				        <!-- 해당 부분은 admin이 아닐 때의 처리 -->
 				    </c:otherwise>
 				</c:choose>
-				<c:if test="${isAdmin }">
-					<button type="submit" data-num="${tmp.faq_num}" class="admin_button" id="delete-btn">삭제</button>
-				</c:if>
 			</div>
 		</div>
 		
@@ -159,13 +160,27 @@
 			document.querySelectorAll("#delete-btn").forEach((item)=>{
 				item.addEventListener("click", (e)=>{
 					e.preventDefault();
-					const isTrue = confirm("질문을 삭제하시겠습니까?")
-					if(isTrue){
-						const faqNum=e.target.getAttribute("data-num");
-						location.href="${pageContext.request.contextPath}/support/support_faq_delete?faq_num=" + faqNum;
-					}
+					const isTrue = Swal.fire({
+				  		title: "질문을  삭제하시겠습니까?",
+				  		text: "",
+				  		icon: 'warning',
+				  		showCancelButton: true,
+				  		confirmButtonColor: 'rgb(13, 110, 253)',
+				  		cancelButtonColor: 'rgb(248, 162, 146)',
+				  		confirmButtonText: '확인',
+				  		cancelButtonText: '취소',
+						}).then((result) => {
+				      	if (result.isConfirmed) {
+				      		Swal.fire('삭제 되었습니다.','success');
+				      		const faqNum=e.target.getAttribute("data-num");
+				      		location.href="${pageContext.request.contextPath}/support/support_faq_delete?faq_num="+faqNum;
+				      	}else if(result.isDismissed){
+				      		location.href="${pageContext.request.contextPath}/support/support_faq";
+				      	}
+				    });
 				});
 			});
+			
 	</script>
 
 		<nav style="display:flex; justify-content:center; margin-bottom:30px;">
