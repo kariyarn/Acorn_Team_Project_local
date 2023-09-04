@@ -263,7 +263,7 @@ public class GroupServiceImpl implements GroupService{
 	
 	//소모임 개설	
 	@Override
-	public void insert(GroupDto dto, HttpServletRequest request, HttpSession session, @RequestBody List<BookDto> bookList) {
+	public void insert(GroupDto dto, HttpServletRequest request, HttpSession session, List<BookDto> bookList) {
 		//업로드된 파일의 정보를 가지고 있는 MultipartFile 객체의 참조값을 얻어오기
 		MultipartFile image = dto.getImage();
 		//원본 파일명 -> 저장할 파일 이름 만들기위해서 사용됨
