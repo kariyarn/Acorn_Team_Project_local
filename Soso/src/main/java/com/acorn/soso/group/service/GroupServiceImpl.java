@@ -461,19 +461,6 @@ public class GroupServiceImpl implements GroupService{
 		
 	}
 
-	@Override
-	public void getRanking(HttpServletRequest request , Model model) {
-
-	      GroupDto dto = new GroupDto();
-	      
-	      //movieDao 객체를 이용해서 회원 목록을 얻어온다.
-	      //ranking version
-	      List<GroupDto> list = dao.getRanking(dto);
-      
-	      //request 영역에 담아주기
-	      request.setAttribute("list", list);   //movie list
-		
-	}
 	//num을 가져와서 리뷰 리스트를 불러온 다음에 model에 담아서 돌려주기
 	@Override
 	public void reviewList(HttpServletRequest request, Model model) {

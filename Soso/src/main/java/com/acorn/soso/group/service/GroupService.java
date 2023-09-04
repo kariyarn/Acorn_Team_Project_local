@@ -19,8 +19,6 @@ public interface GroupService {
 	public void getList(HttpServletRequest request, Model model);
 	//getViewList 가져오기
 	public void getViewList(HttpServletRequest request, Model model);	
-	//ranking list 가져오기
-	public void getRanking(HttpServletRequest request, Model model);
 	//사진 upload*DB 저장하기
 	public void saveImage(GroupDto dto, HttpServletRequest request);
 	//detail 페이지에 필요한 data를 ModelAndView에 저장
