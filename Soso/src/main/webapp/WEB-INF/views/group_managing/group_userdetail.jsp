@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>소모임 커뮤니티</title>
+<link rel="shortcut icon" type="image/x-icon" href="${path }/resources/images/main/favicon.jpg">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/group_managing_user_detail.css" />
 <script src="${path }/resources/js/common.js"></script>
 </head>
