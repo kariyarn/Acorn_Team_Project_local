@@ -74,10 +74,13 @@
 						</td>
 						
 						<td class="title">
-						<a  class="notice_title" href="${pageContext.request.contextPath }/support/support_notice_detail?notice_num=${tmp.notice_num}">${tmp.title }</a>
+							<a  class="notice_title" href="${pageContext.request.contextPath }/support/support_notice_detail?notice_num=${tmp.notice_num}">${tmp.title }</a>
 						</td>
-						<td>${tmp.regdate }</td>
-						
+						<td>${tmp.regdate }
+							<c:if test="${isAdmin }">
+								<button type="submit" data-num="${tmp.notice_num}" class="admin_delbutton" id="delete-btn">삭제</button>
+							</c:if>
+						</td>
 					</tr>
 					</c:forEach>
 				</tbody>
@@ -87,12 +90,10 @@
 				<c:if test="${isAdmin}">
 					<a href="${pageContext.request.contextPath }/support/support_notice_insertform" class="admin_button">공지 등록</a>
 				</c:if>
-				<c:if test="${isAdmin }">
-					<button data-num="${tmp.notice_num }"type="submit" class="admin_button" id="delete-btn">삭제</button>
-				</c:if>
 			</div>
 		</div>
 	</div>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script>
 		document.querySelectorAll("#delete-btn").forEach((item)=>{
 			item.addEventListener("click", (e)=>{

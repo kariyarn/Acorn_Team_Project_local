@@ -45,7 +45,8 @@
 	.btn_list{
 	    width: 130px;
 	    height: 48px;
-	    display: inline-block;
+	    display: flex;
+	    justify-content: center;
 	    border-radius: 0;
 	    border: 1px solid #d8d8d8;
 	    background-color: #f7f7f7;
@@ -57,6 +58,11 @@
 	.btn_list:hover{
 		color: rgb(157 128 63);
 		font-weight: 600;
+	}
+	.admin_menu{
+		width: 100%;
+		display: flex;
+		justify-content: center;
 	}
 </style>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
@@ -108,14 +114,32 @@
 						이 사이트는 reCAPTCHA에 의해 보호되며 Google 개인 정보 취급 방침 및 서비스 약관이 적용됩니다.
 					</p>
 					
-					<div style="text-align: center">
+					<div class="admin_menu">
+					<div>
 						<a class="btn_list" href="${pageContext.request.contextPath }/support/support_notice">목록</a>
+					</div>
+					<c:if test="${isAdmin }">
+						<button data-num="${dto.notice_num }"type="submit" class="btn_list" id="delete-btn">삭제</button>
+					</c:if>
 					</div>
 				</article>
 			</div>
 		</div>
 	</div>
-	
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script>
+		document.querySelectorAll("#delete-btn").forEach((item)=>{
+			item.addEventListener("click", (e)=>{
+				e.preventDefault();
+				const isTrue = confirm("공지사항을 삭제하시겠습니까?")
+				if(isTrue){
+					const noticeNum=e.target.getAttribute("data-num");
+					location.href="${pageContext.request.contextPath}/support/support_notice_delete?notice_num=" + noticeNum;
+				}
+			});	
+		});
+			
+	</script>
 	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 </body>
 </html>

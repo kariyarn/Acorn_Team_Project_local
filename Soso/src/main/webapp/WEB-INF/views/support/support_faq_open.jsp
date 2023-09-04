@@ -91,7 +91,7 @@
 		<div class="main_content">
 			<div class="tab_section">
 			<ul class="tab_menu">
-				<li class="active">
+				<li class="">
 					<a href="${pageContext.request.contextPath }/support/support_faq?">전체(${categoryAllRow })</a>
 				</li>
 				<li class="">
@@ -100,7 +100,7 @@
 				<li class="">
 					<a href="${pageContext.request.contextPath }/support/support_faq_request?category=2">모임신청(${categoryTwoRow })</a>
 				</li>
-				<li class="">
+				<li class="active">
 					<a href="${pageContext.request.contextPath }/support/support_faq_open?category=3">모임개설(${categoryThreeRow })</a>
 				</li>
 				<li class="">
@@ -130,11 +130,25 @@
 							<span style="line-height: 24px;">
 								<pre>${tmp.answer }</pre>
 							</span>
+							<c:if test="${isAdmin }">
+								<button type="submit" data-num="${tmp.faq_num}" class="admin_delbutton" id="delete-btn">삭제</button>
+							</c:if>
 						</div>
 					</li>
 					</c:if>
 				</c:forEach>
 			</ul>
+			</div>
+			<!-- admin 관리 메뉴 -->
+			<div class="admin_menu">
+				<c:choose>
+				    <c:when test="${isAdmin}">
+				        <a href="${pageContext.request.contextPath }/support/support_faq_insertform" class="admin_button">FAQ 등록</a>
+				    </c:when>
+				    <c:otherwise>
+				        <!-- 해당 부분은 admin이 아닐 때의 처리 -->
+				    </c:otherwise>
+				</c:choose>
 			</div>
 		</div>
 	<div>

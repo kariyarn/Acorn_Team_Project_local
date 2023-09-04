@@ -7,31 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <title>자주하는 질문</title>
+
 <link rel="shortcut icon" type="image/x-icon" href="${path }/resources/images/main/favicon.jpg">
-<style>
-/* 관리버튼 css */
-.admin_menu{
-	width: 100%;
-	display: flex;
-	justify-content: center;
-	}
-.admin_button{
-	width: 130px;
-    height: 48px;
-    display: inline-block;
-    border-radius: 0;
-    border: 1px solid #d8d8d8;
-    background-color: #f7f7f7;
-    text-align: center;
-    line-height: 48px;
-    font-size: 14px;
-    color: #333;
-}
-.admin_button:hover{
-	color: rgb(157 128 63);
-	font-weight: 600;
-}
-</style>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/reset.css" type="text/css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/support/support_faq.css" />
@@ -86,8 +63,8 @@
 		<div class="main_content">
 			<div class="tab_section">
 			<ul class="tab_menu">
-				<li>
-					<a class="active" href="${pageContext.request.contextPath }/support/support_faq?">전체(${totalRow })</a>
+				<li class="active">
+					<a href="${pageContext.request.contextPath }/support/support_faq?">전체(${totalRow })</a>
 				</li>
 				<li class="">
 					<a href="${pageContext.request.contextPath }/support/support_faq_user?category=1">회원(${categoryOneRow })</a>
@@ -106,8 +83,9 @@
 			<div class="tab_content">
 			<ul>
 				<c:forEach var="tmp" items="${list }">
+					<input type="hidden" name="faq_num" value="${tmp.faq_num }"/>
 					<li class="dropbox">
-					<button type="button" class="btn_more">답변</button>
+					<button type="button" class="btn_more" data-faq-num="${tmp.faq_num}">답변</button>
 						<div class="title_area">
 							<div class="category">
 								<c:choose>
@@ -117,12 +95,19 @@
 									<c:when test="${tmp.category == 0}">기타</c:when>
 								</c:choose>
 							</div>
-							<h5 class="detail">${tmp.question }</h5>
+							<h5 class="detail">
+								<a class="faq_question" href="${pageContext.request.contextPath}/support/support_faq?faq_num=${tmp.faq_num}" id="faq-question-${tmp.faq_num}">
+				                    ${tmp.question}
+				                </a>
+							</h5>
 						</div>
-						<div class="detail_content">
+						<div class="detail_content" id="faq-answer-${tmp.faq_num}">
 							<span style="line-height: 24px;">
 								<pre>${tmp.answer }</pre>
 							</span>
+							<c:if test="${isAdmin }">
+								<button type="submit" data-num="${tmp.faq_num}" class="admin_delbutton" id="delete-btn">삭제</button>
+							</c:if>
 						</div>
 					</li>
 				</c:forEach>
@@ -138,9 +123,6 @@
 				        <!-- 해당 부분은 admin이 아닐 때의 처리 -->
 				    </c:otherwise>
 				</c:choose>
-				<c:if test="${isAdmin }">
-					<button type="submit" data-num="${tmp.faq_num}" class="admin_button" id="delete-btn">삭제</button>
-				</c:if>
 			</div>
 		</div>
 		
