@@ -52,7 +52,7 @@
             <div class="user_content_theme">
                 <ul>
                 	<li><a href="${pageContext.request.contextPath}/group_managing/admin_main_all">전체</a></li>
-                    <li><a href="${pageContext.request.contextPath}/group_managing/admin_main">진행중</a></li>
+                    <li><a class="theme_active" href="${pageContext.request.contextPath}/group_managing/admin_main">진행중</a></li>
                     <li><a href="${pageContext.request.contextPath}/group_managing/admin_main_finished">종료</a></li>
                 </ul>
             </div>
@@ -94,27 +94,6 @@
 	        </c:forEach>
     	</div>
     	
-    	<div class="inner-wrap">
-    	<!-- 페이지 이동을 위한  --> 
-	    <nav>
-	       <ul class="">
-	          <c:choose>
-	             <c:when test="${dto.prevNum ne 0 }">
-	                <li class="">
-	                     <a class="" href="${pageContext.request.contextPath}">&larr; Prev</a>
-	                </li>
-	             </c:when>
-	         </c:choose>
-	         <c:choose>
-	            <c:when test="${dto.nextNum ne 0 }">
-	               <li class="">
-	                   <a class="" href="${pageContext.request.contextPath}">Next &rarr;</a>
-	               </li>
-	            </c:when>
-	         </c:choose>         
-	       </ul>
-	    </nav>
-    	</div>
     </section>
 	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 	<script>
