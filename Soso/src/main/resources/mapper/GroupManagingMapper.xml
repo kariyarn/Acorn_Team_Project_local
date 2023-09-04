@@ -92,6 +92,7 @@
 	    INNER JOIN group_join_tb ON group_tb.num = group_join_tb.group_num
 	    WHERE group_join_tb.user_id = #{user_id} AND isJoin = 0
    	</select>
+   	
    	<!-- 소모임 커뮤니티에서 소모임에 가입된 인원 리스트 불러오기 -->
 	<select id="getMateList" parameterType="int" resultType="groupManagingDto">
 	    SELECT group_tb.img_path, group_join_tb.user_id, group_join_tb.group_num, users.id, profile
@@ -100,6 +101,7 @@
 	    JOIN users ON group_join_tb.user_id = users.id
 	    WHERE group_tb.num = #{group_num} AND group_join_tb.isJoin = 0
 	</select>
+	
    	<!-- 특정 번호에 해당하는 소모임 정보 불러오기 -->
    	<select id="getGroupData" parameterType="int" resultType="groupDto">
 		SELECT num, name, caption, img_path, regdate, ended_dt, deadline_dt, start_dt,
