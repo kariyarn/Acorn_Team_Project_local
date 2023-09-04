@@ -94,7 +94,7 @@
 							</c:choose>
 						</span>
 						<p>
-							<a class="faq_question" href="${pageContext.request.contextPath }/support/support_faq">${tmp.question }</a>
+							<a class="faq_question" href="${pageContext.request.contextPath }/support/support_faq?faq_num=${tmp.faq_num}">${tmp.question }</a>
 						</p>
 					</li>
 				</c:forEach>

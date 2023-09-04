@@ -210,3 +210,35 @@
 		overflow-x: hidden;
 		overflow-y: auto;
 	}
+	/* 관리버튼 css */
+	.admin_menu{
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		}
+	.admin_button{
+		width: 130px;
+	    height: 48px;
+	    display: inline-block;
+	    border-radius: 0;
+	    border: 1px solid #d8d8d8;
+	    background-color: #f7f7f7;
+	    text-align: center;
+	    line-height: 48px;
+	    font-size: 14px;
+	    color: #333;
+	}
+	.admin_delbutton{
+	    display: inline-block;
+	    border-radius: 0;
+	    background-color: #f7f7f7;
+	    text-align: center;
+	    line-height: 48px;
+	    font-size: 16px;
+	    color: #333;
+	    margin-top: 20px;
+	}
+	.admin_button:hover, .admin_delbutton:hover{
+		color: rgb(157 128 63);
+		font-weight: 600;
+	}
