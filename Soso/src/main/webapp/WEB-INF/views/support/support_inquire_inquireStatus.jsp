@@ -91,6 +91,7 @@
 													<div class="inquiry-content">
 														<div class="description">
 															<button data-num="${tmp.cs_num}" type="submit" class="delete-btn">삭제</button>
+															<a class="answer-btn" href="${pageContext.request.contextPath }/support/support_inquire_answerform">답변등록</a>
 															${tmp.content }
 														</div>
 													</div>
