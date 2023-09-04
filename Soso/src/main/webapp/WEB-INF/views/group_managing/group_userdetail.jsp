@@ -43,10 +43,31 @@
 						<img src="${pageContext.request.contextPath}${dto.img_path}">
 					</div>
 					<div class="group_meet_contents">
-						<p class="text">${dto.manager_id}</p>
-						<p class="text"> ${dto.meeting_time}</p>
-						<p class="text"> ${dto.meeting_loc}</p>
-						<p class="text"> ${dto.now_people}</p>
+						<h2 style="line-height: 2.5; font-size: 30px;">모임정보</h2>
+						<p class="text" style="line-height: 2.5; font-size: 18px;">모임장 : ${dto.manager_id}</p>
+						<p class="text" style="line-height: 2.5; font-size: 18px;">모임 시간 : ${dto.meeting_time}</p>
+						<p class="text" style="line-height: 2.5; font-size: 18px;">모임 장소 : ${dto.meeting_loc}</p>
+						<p class="text" style="line-height: 2.5; font-size: 18px;">가입 인원 : ${dto.now_people} 명</p>
+					</div>
+					<div class="group_detail_contents">
+						<h2 style="line-height: 2.5; font-size: 30px;">이런분을 찾습니다!</h2>
+						<ul>
+							<li style="line-height: 2.5;">
+								1. <span style="font-size: 18px;"> 책은 모임전에 읽을 수 있는 사람</span>
+							</li>
+							<li style="line-height: 2.5;">
+	 							2. <span style="font-size: 18px;"> 모임에 지각 안하는 사람</span>
+	 						</li>
+	 						<li style="line-height: 2.5;">
+	 							3. <span style="font-size: 18px;"> 소통하고 싶은 사람</span>
+	 						</li>
+	 						<li style="line-height: 2.5;">
+	 							4. <span style="font-size: 18px;"> 독서 경험이 없는 사람</span>
+	 						</li>
+	 						<li style="line-height: 2.5;">
+	 							5. <span style="font-size: 18px;"> 20~30대 젊은 사람</span>
+	 						</li>
+						</ul>
 					</div> 
 				</div>
 			</div>
@@ -59,26 +80,15 @@
 	 	</div>
 	 	<div class="inner-wrap">
 	 		<ul>
-	 			<h2 class="title black">모임규칙</h2>
-	 			<li style="line-height: 2.5;">
-	 				1. <span style="font-size: 18px;"> 책은 모임 전에 꼭 읽고 만나요.</span>
-	 			</li>
-	 			<li style="line-height: 2.5;">
-	 				<span style="font-size: 18px;"> 2. 모임에 지각 하시면 다른 회원들이 기다리니까 시간 잘 지켜주세요!</span>
-	 			</li>	 			
-	 		</ul>
-	 	</div>
-	 	<div class="inner-wrap">
-	 		<ul>
 	 			<h2 class="title black">공지사항</h2>
 	 			<li style="line-height: 2.5;">
 	 				<span style="font-size: 18px;"> 1. 한번 가입했다가 탈퇴 하신 회원님은 다시 가입 불가능 합니다.</span>
 	 			</li>
 	 			<li style="line-height: 2.5;">
-	 				<span style="font-size: 18px;"> 2. 저희 모임에 불순한 의도를 갖고 오시는 분은 법적 대응 들어갑니다.</span>
+	 				<span style="font-size: 18px;"> 2. 저희 모임에 불순한 의도를 갖고 저희 페이지를 이용하시면 법적 대응 들어갑니다.</span>
 	 			</li>
 	 			<li style="line-height: 2.5;">
-	 				<span style="font-size: 18px;"> 3. 모임 2일 전에 문자로 안내 드립니다.</span>
+	 				<span style="font-size: 18px;"> 3. 항상 모임 2일 전에 문자로 안내 드립니다.</span>
 	 			</li>
 	 		</ul>	 	
 	 	</div>
