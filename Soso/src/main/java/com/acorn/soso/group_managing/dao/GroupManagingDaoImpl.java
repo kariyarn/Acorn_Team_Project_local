@@ -63,6 +63,11 @@ public class GroupManagingDaoImpl implements GroupManagingDao{
 	}
 	
 	@Override
+	public GroupManagingDto getMemberData(int num) {
+		return session.selectOne("groupManaging.getMemberData", num);
+	}
+	
+	@Override
 	public List<GroupManagingDto> getKickedMemberList(int group_num) {
 		return session.selectList("groupManaging.getKickedMemberList", group_num);
 	}

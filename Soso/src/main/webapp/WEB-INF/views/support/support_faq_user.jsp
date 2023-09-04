@@ -5,37 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>/support_faq_user</title>
-<style>
-.btn_more{
-	background-image: url("https://static.onoffmix.com/images/pc/svg/arrow_up_bl.svg");
-	width:100%;
-	height: 64px;
-	top: 0;
-	left: 0;
-	z-index: 1;
-	background: transparent url("https://static.onoffmix.com/images/pc/svg/arrow_down.svg") no-repeat 98.5% center;
-	text-decoration: none;
-	text-align: left;
-	cursor: pointer;
-	overflow: hidden;
-	text-indent: -9999em;
-	position: absolute;
-	box-sizing: border-box;
-	display: block;
-	border: 1px solid transparent;
-	}
-	.dropbox .detail_content{
-	position: relative;
-	padding: 40px 50px 90px;
-	box-sizing: border-box;
-	width: 100%;
-	font-size: 14px;
-	background-color: #fafafa;
-	overflow-x: hidden;
-	overflow-y: auto;
-	}
-</style>
+<title>자주하는 질문 - 회원</title>
+<link rel="shortcut icon" type="image/x-icon" href="${path }/resources/images/main/favicon.jpg">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/reset.css" type="text/css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/support/support_faq.css" />
@@ -90,10 +61,10 @@
 		<div class="main_content">
 			<div class="tab_section">
 			<ul class="tab_menu">
-				<li class="active">
+				<li class="">
 					<a href="${pageContext.request.contextPath }/support/support_faq?">전체(${categoryAllRow })</a>
 				</li>
-				<li class="">
+				<li class="active">
 					<a href="${pageContext.request.contextPath }/support/support_faq_user?category=1">회원(${categoryOneRow })</a>
 				</li>
 				<li class="">
@@ -115,23 +86,39 @@
 					<li class="dropbox">
 						<button type="button" class="btn_more">답변</button>
 						<div class="title_area">
-						<c:choose>
-								<c:when test="${tmp.category == 1}">회원</c:when>
-								<c:when test="${tmp.category == 2}">모임신청</c:when>
-								<c:when test="${tmp.category == 3}">모임개설</c:when>
-								<c:when test="${tmp.category == 0}">기타</c:when>
-						</c:choose>
+							<div class="category">
+								<c:choose>
+										<c:when test="${tmp.category == 1}">회원</c:when>
+										<c:when test="${tmp.category == 2}">모임신청</c:when>
+										<c:when test="${tmp.category == 3}">모임개설</c:when>
+										<c:when test="${tmp.category == 0}">기타</c:when>
+								</c:choose>
+							</div>
 							<h5 class="detail">${tmp.question }</h5>
 						</div>
 						<div class="detail_content">
 							<span style="line-height: 24px;">
 								<pre>${tmp.answer }</pre>
 							</span>
+							<c:if test="${isAdmin }">
+								<button type="submit" data-num="${tmp.faq_num}" class="admin_delbutton" id="delete-btn">삭제</button>
+							</c:if>
 						</div>
 					</li>
 					</c:if>
 				</c:forEach>
 			</ul>
+			</div>
+			<!-- admin 관리 메뉴 -->
+			<div class="admin_menu">
+				<c:choose>
+				    <c:when test="${isAdmin}">
+				        <a href="${pageContext.request.contextPath }/support/support_faq_insertform" class="admin_button">FAQ 등록</a>
+				    </c:when>
+				    <c:otherwise>
+				        <!-- 해당 부분은 admin이 아닐 때의 처리 -->
+				    </c:otherwise>
+				</c:choose>
 			</div>
 		</div>
 	<div>

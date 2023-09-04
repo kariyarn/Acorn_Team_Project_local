@@ -5,7 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>/views/cafe/insertform.jsp</title>
+<title>소모임 커뮤니티 글쓰기</title>
+<link rel="shortcut icon" type="image/x-icon" href="${path }/resources/images/main/favicon.jpg">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/group_managing/group_managing_group_insert.css">
 </head>
 <body>
@@ -15,37 +16,23 @@
 	    <div class="container">
 		<div id="insert_title">글 작성하기</div>
 		<div id="insert_subtitle">북메이트 커뮤니티에 글을 남겨 보세요</div>
-		<div class="image_container" style="display:flex; flex-direction:column; align-items:center">
-			<img id="image_preview" src="${pageContext.request.contextPath}/resources/images/main/001.jpg" 
-				style="width:150px; height:150px; border-radius:50%; border: 1px solid rgb(222, 226, 230)" alt="소모임 이미지"/>
-			<div style="margin-top:20px; margin-bottom:20px; font-size: 15px;"> 이미지</div>
-		</div>
-		
 		<form action="insert" method="post">
 			<input type="hidden"  id="group_num" name="group_num" value="${num}" />
-			<div class="form_header">
-                <div class="form_label">
-                     <label for="groupName">TITLE</label>
-                </div>
-                <input class="form_input" type="text" name="title" id="title" placeholder="글 제목"/>
-            </div>
-            
 			<div class="grid_wrapper">
-<!-- 			 <label class="visually-hidden" for="select"></label> -->
-				<select class="select_box" id="select" name="select" >
-			      <option selected>주제</option>
+				<select class="select_box" id="select" name="header" >
+			      <option selected>게시글 말머리</option>
 			      <option value="1">책 제목</option>
 			      <option value="2">사진 / 영상</option>
 			      <option value="3">수다</option>
 			      <option value="4">정보 / 일정</option>
 			    </select>
-                    <div class="select_box" style="display:flex; align-items:center; justify-content:space-between">이미지를 선택해주세요
-                    	<button id="image_btn" style="width: 65px; height: 27px; color: white;
-                    				 background-color: rgb(195, 181, 157); border:none; border-radius: 15px;">file</button>
-                    </div>
-                    <input id="image" name="image" type="file" style="display: none;"
-                    	accept=".jpg, .png, .gif, .JPG, .JPEG, .jpeg"/>
-               </div>
+             </div>
+			<div class="form_header">
+                <div class="form_label">
+                     <label for="groupName">TITLE</label>
+                </div>
+                <input class="form_input" type="text" name="title" id="title" placeholder="입력..."/>
+           	</div>
                <script>
 		            document.querySelector("#image_btn").addEventListener("click", (e) => {
 						e.preventDefault();

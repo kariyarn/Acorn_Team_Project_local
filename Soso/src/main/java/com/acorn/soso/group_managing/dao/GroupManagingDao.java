@@ -26,6 +26,8 @@ public interface GroupManagingDao {
 	public void deleteGroupData(int num);
 	//소모임 가입 멤버 목록 불러오기
 	public List<GroupManagingDto> getMemberList(int group_num);
+	//소모임 가입 멤버 데이터 불러오기
+	public GroupManagingDto getMemberData(int num);
 	//소모임 추방 멤버 목록 불러오기
 	public List<GroupManagingDto> getKickedMemberList(int group_num);
 	//소모임 가입 신청자 목록 불러오기

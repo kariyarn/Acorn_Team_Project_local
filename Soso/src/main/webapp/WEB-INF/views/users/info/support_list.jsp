@@ -21,14 +21,14 @@
 				<tr>
 					<td>${tmp.num }</td>
 					<td>
-						<a href="">${tmp.title }</a>
+						<a href="${pageContext.request.contextPath}/support/support_inquire_Myinquire_detail?cs_num=${tmp.cs_num}">${tmp.title }</a>
 					</td>
 					<td>${tmp.regdate }</td>
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
-	<nav>
+	<nav class="d-flex justify-content-center">
 		<ul class="pagination">
 			<%--
 				startPageNum 이 1 이 아닌 경우에만 Prev 링크를 제공한다. 

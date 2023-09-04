@@ -1,12 +1,6 @@
 @charset "UTF-8";
 
-/* 페이지 전체 레이아웃 */
-.main_content{
-	margin: 100px auto 40px;
-	box-sizing: border-box;
-	width: 100%;
-	min-height: 260px;
-}
+
 /* 상단 배너 */
 .head{
 	background-image:url("https://static.onoffmix.com/images/pc/default/notice_bg.png");
@@ -83,4 +77,103 @@
 	}
 	.page-item{
 		font-size: 20px;
+	}
+	/* 공지사항 전체 레이아웃 */
+	.content_wrap{
+	    position: relative;
+	    -webkit-box-sizing: border-box;
+	    box-sizing: border-box;
+	    width: 1280px;
+	    margin: 0 auto;
+		
+	}
+	.main_content{
+		margin: 100px auto 0;
+	    box-sizing: border-box;
+	    width: 100%;
+	    min-height: 260px;
+	}
+	/* 공지사항 테이블 레이아웃 */
+	h3.title{
+		font-size: 20px;
+		font-weight: bold;
+	}
+	table .notice{
+		margin-top: 16px;
+	    margin-bottom: 50px;
+	    border-top: 2px solid #333;
+	}
+	table{
+		width: 100%;
+	    border-collapse: collapse;
+	    table-layout: fixed;
+	}
+
+	table th {
+	    padding: 22px 0;
+	    font-size: 16px;
+	    font-weight: bold;
+	    background-color: #f7f7f7;
+	}
+	table tbody{
+		border-bottom: 1px solid #d8d8d8;
+	}
+	table td {
+		box-sizing: border-box;
+		text-align: center;
+		padding: 25px 0 ;
+	}
+	table td.title{
+		text-align:left;
+	}
+	table thead {
+    	border-bottom: 1px solid #d8d8d8;
+	}
+	table tbody tr:first-child {
+    	border-top: none;
+	}
+	table tbody tr {
+	    border-top: 1px solid #e4e4e4;
+	}
+	th.category{
+		width: 180px;
+	}
+	th.title{
+		width: 900px;
+	}
+	th.date{
+		width: 200px;
+	}
+	.notice_title:hover{
+		text-decoration:underline;
+	}
+	/* 관리자 메뉴 css (admin 계정일때만 보임) */
+	.admin_menu{
+		width: 100%;
+		display: flex;
+		justify-content: center;
+	}
+	.admin_button{
+		width: 130px;
+	    height: 48px;
+	    display: inline-block;
+	    border-radius: 0;
+	    border: 1px solid #d8d8d8;
+	    background-color: #f7f7f7;
+	    text-align: center;
+	    line-height: 48px;
+	    font-size: 14px;
+	    color: #333;
+	}
+	.admin_delbutton{
+	    border-radius: 0;
+	    text-align: center;
+	    line-height: 48px;
+	    font-size: 16px;
+	    color: #333;
+	    margin-left:5px;
+	}
+	.admin_button:hover , .admin_delbutton:hover{
+		color: rgb(157 128 63);
+		font-weight: 600;
 	}

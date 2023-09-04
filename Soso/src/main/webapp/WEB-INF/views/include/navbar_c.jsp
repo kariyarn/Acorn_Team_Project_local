@@ -11,50 +11,22 @@
     <script src="${path }/resources/js/jquery.easing.1.3.js"></script>
     <script src="${path }/resources/js/nav.js"></script>
 <!-- mobile -->
-    <div class="panel"> 
+    <div class="panel">  	
         <nav class="pGnb">
             <ul>
-                <li>
-                    <a href="#" class="mainNav">북메이트 찾기</a>
-                    <ul class="subNav">
-                        <li><a href="#">list1</a></li>
-                        <li><a href="#">list2</a></li>
-                        <li><a href="#">list3</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#" class="mainNav">ABOUT2</a>
-                    <ul class="subNav">
-                        <li><a href="#">list1</a></li>
-                        <li><a href="#">list2</a></li>
-                        <li><a href="#">list3</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#" class="mainNav">ABOUT3</a>
-                    <ul class="subNav">
-                        <li><a href="#">list1</a></li>
-                        <li><a href="#">list2</a></li>
-                        <li><a href="#">list3</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#" class="mainNav">ABOUT4</a>
-                    <ul class="subNav">
-                        <li><a href="#">list1</a></li>
-                        <li><a href="#">list2</a></li>
-                        <li><a href="#">list3</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#" class="mainNav">ABOUT5</a>
-                    <ul class="subNav">
-                        <li><a href="#">list1</a></li>
-                        <li><a href="#">list2</a></li>
-                        <li><a href="#">list3</a></li>
-                    </ul>
-                </li>
-            </ul>
+                    <li>
+                        <a href="${pageContext.request.contextPath}/group/list?genre=-1" class="mainNav">북메이트 찾기</a>
+                    </li>
+                    <li>
+                        <a href="${pageContext.request.contextPath}/group_managing/user_main_all" class="mainNav">나의 북메이트</a>
+                    </li>
+                    <li>
+                        <a href="${pageContext.request.contextPath}/group_managing/admin_main_all" class="mainNav">북메이트 관리</a>
+                    </li>
+                    <li>
+                        <a href="${pageContext.request.contextPath}/support/support_main" class="mainNav">고객센터</a>
+                    </li>
+                </ul>
         </nav>
     </div>
     <header>
@@ -67,10 +39,10 @@
                         <a href="${pageContext.request.contextPath}/group/list?genre=-1" class="mainNav">북메이트 찾기</a>
                     </li>
                     <li>
-                        <a href="${pageContext.request.contextPath}/group_managing/user_main" class="mainNav">나의 북메이트</a>
+                        <a href="${pageContext.request.contextPath}/group_managing/user_main_all" class="mainNav">나의 북메이트</a>
                     </li>
                     <li>
-                        <a href="${pageContext.request.contextPath}/group_managing/admin_main" class="mainNav">북메이트 관리</a>
+                        <a href="${pageContext.request.contextPath}/group_managing/admin_main_all" class="mainNav">북메이트 관리</a>
                     </li>
                     <li class="nav_cs">
                         <a href="${pageContext.request.contextPath}/support/support_main" class="mainNav">고객센터</a>

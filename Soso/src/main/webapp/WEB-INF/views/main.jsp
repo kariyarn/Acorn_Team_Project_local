@@ -15,7 +15,6 @@
  	<link rel="shortcut icon" type="image/x-icon" href="${path }/resources/images/main/favicon.jpg">
 	<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="${path }/resources/css/swiper-bundle.min.css" type="text/css">
-    <link rel="stylesheet" href="${path }/resources/css/group_list.css" type="text/css">
     <link rel="stylesheet" href="${path }/resources/css/main.css" type="text/css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -64,7 +63,7 @@
             <div class="mate_content">
               <div class="inner-wrap">
 	        	<c:forEach var="tmp" items="${viewList}" end="2">
-	       		<div class="mate_content_list" style="min-width: 27%">
+	       		<div class="mate_content_list" >
 	               <div class="mate_contents">
 	                   <a href="${pageContext.request.contextPath}/group/group_page?num=${tmp.num }">
 	                       <div class="mate_content_img">

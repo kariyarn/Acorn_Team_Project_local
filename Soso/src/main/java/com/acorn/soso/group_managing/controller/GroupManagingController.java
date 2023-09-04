@@ -61,26 +61,33 @@ public class GroupManagingController {
 	public String admin_main_finished(HttpServletRequest request, HttpSession session) {
 		String manager_id = (String)session.getAttribute("id");
 		service.getFinishedGroupList(manager_id, request);
-		return "group_managing/admin_main";
+		return "group_managing/admin_main_finished";
 	}
 	
 	@GetMapping("/group_managing/admin_main_all")
 	public String admin_main_all(HttpServletRequest request, HttpSession session) {
 		String manager_id = (String)session.getAttribute("id");
 		service.getAllGroupList(manager_id, request);
-		return "group_managing/admin_main";
+		return "group_managing/admin_main_all";
 	}
 	
 	@GetMapping("/group_managing/joinApprove")
-	public String joinApprove(int num, int group_num, HttpServletRequest request, HttpSession session) {
+	public String joinApprove(int num, int group_num, String user_id, HttpServletRequest request, HttpSession session) {
 		String manager_id = (String)session.getAttribute("id");
 		GroupDto dto = service.getGroupData(group_num, request);
+		//get 요청 방식에서 파라미터 값 조정으로 다른 소모임에 대한 접근을 방지
 		if(!dto.getManager_id().equals(manager_id)) {
 			throw new DontEqualException("개설하지 않은 소모임 가입 신청자에 대해 접근할 수 없습니다!");
 		}
-		service.joinApprove(num, group_num);
-		request.setAttribute("group_num", group_num);
-		return "group_managing/joinApprove";
+		//현재 소모임의 정원이 다찼을 경우에 가입 승인을 거절
+		if(dto.getNow_people() == dto.getMax_people()) {
+			request.setAttribute("group_num", group_num);
+			return "group_managing/joinApproveRejected";
+		} else {
+			service.joinApprove(num, group_num);
+			request.setAttribute("group_num", group_num);
+			return "group_managing/joinApprove";
+		}
 	}
 	
 	@GetMapping("/group_managing/user_main")
@@ -94,14 +101,14 @@ public class GroupManagingController {
 	public String user_main_finished(HttpServletRequest request, HttpSession session) {
 		String user_id = (String)session.getAttribute("id");
 		service.getFinishedGroupList2(user_id, request);
-		return "group_managing/user_main";
+		return "group_managing/user_main_finished";
 	}
 	
 	@GetMapping("/group_managing/user_main_all")
 	public String user_main_all(HttpServletRequest request, HttpSession session) {
 		String user_id = (String)session.getAttribute("id");
 		service.getAllGroupList2(user_id, request);
-		return "group_managing/user_main";
+		return "group_managing/user_main_all";
 	}
 	
 	@GetMapping("/group_managing/group_insertForm")
@@ -189,6 +196,7 @@ public class GroupManagingController {
 			throw new DontEqualException("개설하지 않은 소모임의 가입자 정보를 불러올 수 없습니다!");
 		}
 		service.getApplicantList(group_num, request);
+		request.setAttribute("dto", dto);
 		request.setAttribute("group_num", group_num);
 		return "group_managing/applicantList";
 	}
@@ -196,6 +204,8 @@ public class GroupManagingController {
 	@GetMapping("/group_managing/memberList")
 	public String group_memberList(int group_num, HttpServletRequest request) {
 		service.getMemberList(group_num, request);
+		GroupDto dto = service.getGroupData(group_num, request);
+		request.setAttribute("dto", dto);
 		request.setAttribute("group_num", group_num);
 		return "group_managing/memberList";
 	}
@@ -203,6 +213,8 @@ public class GroupManagingController {
 	@GetMapping("/group_managing/kickedMemberList")
 	public String group_kickedMemberList(int group_num, HttpServletRequest request) {
 		service.getKickedMemberList(group_num, request);
+		GroupDto dto = service.getGroupData(group_num, request);
+		request.setAttribute("dto", dto);
 		request.setAttribute("group_num", group_num);
 		return "group_managing/kickedMemberList";
 	}
@@ -210,6 +222,8 @@ public class GroupManagingController {
 	@GetMapping("/group_managing/rejectedApplicantList")
 	public String group_rejectedApplicantList(int group_num, HttpServletRequest request) {
 		service.getRejectedApplicantList(group_num, request);
+		GroupDto dto = service.getGroupData(group_num, request);
+		request.setAttribute("dto", dto);
 		request.setAttribute("group_num", group_num);
 		return "group_managing/rejectedApplicantList";
 	}

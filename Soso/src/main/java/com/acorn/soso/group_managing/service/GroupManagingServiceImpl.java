@@ -125,6 +125,12 @@ public class GroupManagingServiceImpl implements GroupManagingService{
 	}
 	
 	@Override
+	public void getMemberData(int num, HttpServletRequest request) {
+		GroupManagingDto dto = dao.getMemberData(num);
+		request.setAttribute("dto", dto);
+	}
+	
+	@Override
 	public void getKickedMemberList(int group_num, HttpServletRequest request) {
 		List<GroupManagingDto> list = dao.getKickedMemberList(group_num);
 		request.setAttribute("list", list);

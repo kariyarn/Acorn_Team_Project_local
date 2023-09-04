@@ -18,16 +18,16 @@
 		<tbody>
 			<c:forEach var="tmp" items="${list }">
 				<tr>
-					<td>${tmp.group_num}</td>
+					<td>${tmp.group_name}</td>
 					<td>
-						<a href="${pageContext.request.contextPath}/cafe/detail?comu_num=${tmp.num}">${tmp.title }</a>
+						<a href="${pageContext.request.contextPath}/cafe/detail?comu_num=${tmp.num}&group_num=${tmp.group_num}">${tmp.title }</a>
 					</td>
 					<td>${tmp.regdate }</td>
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
-	<nav>
+	<nav class="d-flex justify-content-center">
 		<ul class="pagination">
 			<%--
 				startPageNum 이 1 이 아닌 경우에만 Prev 링크를 제공한다. 

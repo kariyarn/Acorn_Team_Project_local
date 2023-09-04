@@ -6,7 +6,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>/support_inquire</title>
+<title>나의 문의내역</title>
+<link rel="shortcut icon" type="image/x-icon" href="${path }/resources/images/main/favicon.jpg">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/reset.css" type="text/css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/support/support_inquire_MyInquire.css" />
@@ -54,56 +55,92 @@
 		<div class="body_area">
 			<div class="main_content">
 				<ul class="inquire_navi">
-					<li>
-						<a href="${pageContext.request.contextPath }/support/support_inquire">1:1 문의하기</a>
-					</li>
-					<li>
-						<a class="my_inquire" href="${pageContext.request.contextPath }/support/support_inquire_MyInquire">나의 문의내역</a>
-					</li>
+					<c:choose>
+						<c:when test="${isAdmin }">
+							<li>
+								<a class="cs_inquire" href="${pageContext.request.contextPath }/support/support_inquire_inquireStatus">문의 접수 내역</a>
+							</li>
+						</c:when>
+						<c:otherwise>
+							<li>
+								<a href="${pageContext.request.contextPath }/support/support_inquire">1:1 문의하기</a>
+							</li>
+							<li>
+								<a class="my_inquire" href="${pageContext.request.contextPath }/support/support_inquire_MyInquire">나의 문의내역</a>
+							</li>
+						</c:otherwise>
+					</c:choose>
 				</ul>
-				<h3>나의 문의내역</h3>
-				<table class="table">
-					<thead class="table-light">
+				<h3 class="title">나의 문의내역</h3>
+				<table class="table-data">
+					<thead>
 						<tr>
-							<th>등록 번호</th>
-							<th>문의 구분</th>
-							<th>문의 제목</th>
-							<th>문의 상태</th>
-							<th>등록일</th>
+							<th class="date">등록일</th>
+							<th class="title">문의 제목</th>
+							<th class="status">문의 상태</th>
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach var="tmp" items="${list}">
-							<tr>
-								<td>${tmp.cs_num}</td>
-								<td>
-									<c:choose>
-										<c:when test="${tmp.category == 1}">
-											회원
-										</c:when>
-										<c:when test="${tmp.category == 2}">
-											모임신청
-										</c:when>
-										<c:when test="${tmp.category == 3}">
-											모임개설
-										</c:when>
-										<c:when test="${tmp.category == 0}">
-											기타
-										</c:when>
-									</c:choose>
-								</td>
-								<td><a href="${pageContext.request.contextPath}/support/support_inquire_Myinquire_detail?cs_num=${tmp.cs_num}">${tmp.title }</a></td>
-								<td>답변대기</td>
-								<td>${tmp.regdate}</td>
-							</tr>
-						</c:forEach>
-						
+						<c:choose>
+							<c:when test="${empty list}">
+							 	<p>문의하신 내역이 없습니다.</p>
+							 </c:when>
+							 <c:otherwise>
+								<c:forEach var="tmp" items="${list}">
+									<tr class="inquire-list">
+										<td>
+											<table class="main-data">
+												<tbody>
+													<tr class="summary-data">
+														<td class="date">${tmp.regdate }</td>
+														<td class="title">
+															<a href="">${tmp.title }</a>
+														</td>
+														<td class="status">답변대기</td>
+													</tr>
+													<tr class="btn-area">
+														<td><button type="button" class="btn_more">답변보기</button></td>
+													</tr>
+													<tr class="detail-data">
+														<td class="detail-td">
+															<div class="inquiry-content">
+																<div class="description">
+																	<button data-num="${tmp.cs_num}" type="submit" class="delete-btn">삭제</button>
+																	${tmp.content }
+																</div>
+															</div>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+										</td>
+									</tr>
+								</c:forEach>
+							</c:otherwise>
+						</c:choose>
 					</tbody>
 				</table>
 			</div>
 		</div>
 	</div>
-	
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+		<script>
+				$(document).ready(function(){
+					$(".btn_more").click(function(e){
+						e.preventDefault();
+						$(this).closest(".main-data").find(".detail-td").toggle();
+					});
+					// 처음에는 숨겨두기
+					$(".detail-td").hide();
+				});
+				document.querySelectorAll(".delete-btn").forEach((item)=>{
+					item.addEventListener("click", (e)=>{
+						e.preventDefault();
+							const csNum=e.target.getAttribute("data-num");
+							location.href="${pageContext.request.contextPath}/support/support_inquire_delete?cs_num=" + csNum;
+					});
+				});
+		</script>
 	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 </body>
 </html>
