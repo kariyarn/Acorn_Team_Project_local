@@ -30,9 +30,7 @@
                     <c:choose>
             		<c:when test="${empty sessionScope.id }">
             		<li>
-            			<a href="${pageContext.request.contextPath}/users/loginform" class="mainNav" >로그인</a>
-            		</li>
-            		<li>
+            			<a href="${pageContext.request.contextPath}/users/loginform" class="mainNav" >로그인 </a>
             			<a href="${pageContext.request.contextPath}/users/signup_form" class="mainNav" >회원가입</a>
             		</li>       
             		</c:when>
@@ -54,7 +52,7 @@
     <header>
     <!-- pc -->
         <div class="inner-wrap">
-            <h1><a href="${pageContext.request.contextPath}/" class="logo"><img class="logo" src="${path }/resources/images/common/bookmate_logo_w_main.svg" alt="로고화이트"></a></h1>
+            <h1><a href="${pageContext.request.contextPath}/" class="logo"><img src="${path }/resources/images/common/bookmate_logo_w_main.svg" alt="로고화이트"></a></h1>
             <nav class="gnb">
                 <ul>
                     <li>
@@ -72,7 +70,9 @@
                     <c:choose>
             		<c:when test="${empty sessionScope.id }">
             		<li>
-            			<a href="${pageContext.request.contextPath}/users/loginform" class="mainNav" >로그인 </a>
+            			<a href="${pageContext.request.contextPath}/users/loginform" class="mainNav" >로그인</a>
+            		</li>
+            		<li>
             			<a href="${pageContext.request.contextPath}/users/signup_form" class="mainNav" >회원가입</a>
             		</li>       
             		</c:when>
@@ -87,7 +87,7 @@
             			<a href="${pageContext.request.contextPath}/users/logout" class="mainNav">로그아웃</a>
             		</li>
             		</c:otherwise>
-            		</c:choose>          
+            		</c:choose>           
                 </ul>	
 			 </nav>
 			 <div class="sns">
@@ -100,6 +100,4 @@
                 </div>
             </div>
         </div>
- 
-
     </header>
