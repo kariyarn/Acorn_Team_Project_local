@@ -17,14 +17,13 @@
   		title: "답변이 등록되었습니다.",
   		text: "",
   		icon: 'success',
-  		showCancelButton: true,
   		confirmButtonColor: 'rgb(13, 110, 253)',
   		cancelButtonColor: 'rgb(248, 162, 146)',
   		confirmButtonText: '확인',
   		cancelButtonText: '취소',
 		}).then((result) => {
       	if (result.isConfirmed) {
-      		location.href="${pageContext.request.contextPath}/support/support_inquireStatus";
+      		location.href="${pageContext.request.contextPath}/support/support_inquire_inquireStatus";
       	}else if(result.isDismissed){
       		location.href="${pageContext.request.contextPath}/support/support_inquire_answerform";
       	}

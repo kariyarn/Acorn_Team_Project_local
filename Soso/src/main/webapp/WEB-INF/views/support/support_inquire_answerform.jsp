@@ -86,6 +86,7 @@
 				<h3 class="main_title">문의 답변하기</h3>
 			
 				<form action="${pageContext.request.contextPath}/support/support_inquire_answer" class="area_form" method="post">
+					<input type="hidden" name="cs_num" value="${dto.cs_num }"/>
 					<div class="row-wrap">
 						<div class="input_name">
 							<h4 class="label">ID</h4>
