@@ -201,6 +201,29 @@
 	.main-data.detail-data {
    		display: table-row;
 	}
+	.inquire_question,.inquire_answer{
+		display: flex;
+	}
+	.inquire_q,.inquire_a{
+	    font-size: 3rem;
+	    font-weight: 100;
+	}
+	.inquire_q{
+		color: #c1c4c3;
+	}
+	.inquire_a{
+		color: rgb(166 223 170 / 89%);
+	}
+	#content,#answer{
+	    padding-bottom: 2%;
+	    line-height: 2rem;
+	    margin-left: 6%;
+	    width: 0%;
+	    min-width: 75%;
+	}
+	#answer{
+		padding-top: 2%;
+	}
 	.detail-td{
 		padding: 37px 50px;
     	box-sizing: border-box;

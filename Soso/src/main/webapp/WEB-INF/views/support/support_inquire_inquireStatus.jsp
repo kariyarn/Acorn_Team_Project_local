@@ -102,7 +102,21 @@
 														<div class="description">
 															<button data-num="${tmp.cs_num}" type="submit" class="delete-btn">삭제</button>
 															<a class="answer-btn" href="${pageContext.request.contextPath }/support/support_inquire_answerform?cs_num=${tmp.cs_num}">답변등록</a>
-															${tmp.content }
+															<div class="inquire_question">
+																<span class="inquire_q">Q</span>
+																<pre id="content">${tmp.content }</pre>
+															</div>
+															<c:choose>
+															<c:when test="${not empty tmp.answer }">
+															<div class="inquire_answer">
+																<span class="inquire_a">A</span>
+																<pre id="answer">${tmp.answer }</pre>
+															</div>
+															</c:when>
+															<c:otherwise>
+																
+															</c:otherwise>
+															</c:choose>
 														</div>
 													</div>
 												</td>
