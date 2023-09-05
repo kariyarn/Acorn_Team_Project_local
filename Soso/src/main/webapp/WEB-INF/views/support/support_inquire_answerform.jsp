@@ -123,7 +123,7 @@
 					<div class="row-wrap">
 						<div class="input_text">
 							<h4 class="label">답변 내용 *</h4>
-							<textarea name="answer" cols="30" rows="15" ></textarea>
+							<textarea name="answer" cols="30" rows="15" >${dto.answer}</textarea>
 						</div>
 					</div>
 					
