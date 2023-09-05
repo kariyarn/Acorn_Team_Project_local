@@ -84,6 +84,7 @@
 				</ul>
 				<h3 class="main_title">1:1 문의하기</h3>
 				<form action="${pageContext.request.contextPath}/support/support_inquire_insert" class="area_form" method="post">
+
 					<div class="row-wrap">
 						<div class="input_name">
 							<h4 class="label">ID</h4>
@@ -112,6 +113,12 @@
 						<div class="input_text">
 							<h4 class="label">내용 *</h4>
 							<textarea name="content" placeholder="북메이트를 이용하시면서 궁금한 점이나 어려운점, 모임 관련 내용이나 북메이트의 전반적인 문의를 입력 해 주세요."></textarea>
+						</div>
+					</div>
+					<div class="row-wrap" style="display: none">
+						<div class="input_text">
+							<h4 class="label">답변 내용 *</h4>
+							<textarea name="answer" placeholder="북메이트를 이용하시면서 궁금한 점이나 어려운점, 모임 관련 내용이나 북메이트의 전반적인 문의를 입력 해 주세요."></textarea>
 						</div>
 					</div>
 					<div class="row-wrap">

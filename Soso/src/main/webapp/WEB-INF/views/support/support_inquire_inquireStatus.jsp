@@ -11,7 +11,8 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/reset.css" type="text/css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/support/support_inquire_MyInquire.css" />
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/include/navbar.jsp">
@@ -83,8 +84,13 @@
 												<td class="title">
 													<a href="">${tmp.title }</a>
 												</td>
-												<td class="status">답변대기
-													
+												<td class="status">
+													 <c:if test="${empty tmp.answer}">
+													        답변대기
+													 </c:if>
+													 <c:if test="${not empty tmp.answer}">
+													        답변완료
+													 </c:if>
 												</td>
 											</tr>
 											<tr class="btn-area">
@@ -124,9 +130,25 @@
 				document.querySelectorAll(".delete-btn").forEach((item)=>{
 					item.addEventListener("click", (e)=>{
 						e.preventDefault();
-							const csNum=e.target.getAttribute("data-num");
-							location.href="${pageContext.request.contextPath}/support/support_inquire_delete?cs_num=" + csNum;
-					});
+						const isTrue = Swal.fire({
+					  		title: "문의를 삭제하시겠습니까?",
+					  		text: "",
+					  		icon: 'warning',
+					  		showCancelButton: true,
+					  		confirmButtonColor: 'rgb(13, 110, 253)',
+					  		cancelButtonColor: 'rgb(248, 162, 146)',
+					  		confirmButtonText: '확인',
+					  		cancelButtonText: '취소',
+							}).then((result) => {
+					      	if (result.isConfirmed) {
+					      		Swal.fire('삭제 되었습니다.','success');
+					      		const csNum=e.target.getAttribute("data-num");
+								location.href="${pageContext.request.contextPath}/support/support_inquire_delete?cs_num=" + csNum;
+					      	}else if(result.isDismissed){
+					      		location.href="${pageContext.request.contextPath}/support/support_inquire_inquireStatus";
+					      	}
+					    });
+					});	
 				});
 		</script>
 	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>

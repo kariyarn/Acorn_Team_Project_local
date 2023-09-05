@@ -55,6 +55,9 @@ $(document).ready(function() {
         var isbn = $(this).data("isbn");
         var groupNum = $(this).data("group-num");
         
+        //해당 row의 위치를 알아낸다.
+        var buttonToRemove = $(this);
+        
         $.ajax({
             type: "GET",
             url: "${pageContext.request.contextPath}/test/bookDelete",
@@ -64,6 +67,8 @@ $(document).ready(function() {
             },
             dataType: "text",
             success: function(data) {
+                //부모 tr을 삭제한다
+                buttonToRemove.closest('tr').remove();
                 alert("삭제되었습니다.");
             },
             error: function() {

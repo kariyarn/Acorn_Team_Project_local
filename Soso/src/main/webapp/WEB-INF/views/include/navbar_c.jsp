@@ -26,6 +26,25 @@
                     <li>
                         <a href="${pageContext.request.contextPath}/support/support_main" class="mainNav">고객센터</a>
                     </li>
+                    <c:choose>
+            		<c:when test="${empty sessionScope.id }">
+            		<li>
+            			<a href="${pageContext.request.contextPath}/users/loginform" class="mainNav" >로그인 </a>
+            			<a href="${pageContext.request.contextPath}/users/signup_form" class="mainNav" >회원가입</a>
+            		</li>       
+            		</c:when>
+            		<c:otherwise>
+            		<li>
+            			<a href="${pageContext.request.contextPath}/users/info" class="mainNav">마이 페이지</a>
+            		</li>
+            		<li>
+            			<a href="${pageContext.request.contextPath}/group/jjim_list" class="mainNav">북마크</a>
+            		</li>
+            		<li>
+            			<a href="${pageContext.request.contextPath}/users/logout" class="mainNav">로그아웃</a>
+            		</li>
+            		</c:otherwise>
+            		</c:choose>   
                 </ul>
         </nav>
     </div>
@@ -67,8 +86,17 @@
             			<a href="${pageContext.request.contextPath}/users/logout" class="mainNav">로그아웃</a>
             		</li>
             		</c:otherwise>
-            	</c:choose>           
+            		</c:choose>           
                 </ul>	
 			 </nav>
+			 <div class="sns">
+                <div class="iconWrap">
+                    <a href="#" class="btn">
+                        <span class="circle01"></span>
+                        <span class="circle02"></span>
+                        <span class="circle03"></span>
+                    </a>
+                </div>
+            </div>
         </div>
     </header>
