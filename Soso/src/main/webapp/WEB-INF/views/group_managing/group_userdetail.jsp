@@ -44,16 +44,24 @@
 					</div>
 					<div class="group_meet_contents">
 						<h2 style="line-height: 2.5; font-size: 30px;">모임정보</h2>
-						<p class="text" style="line-height: 2.5; font-size: 18px;">모임장 : ${dto.manager_id}</p>
-						<p class="text" style="line-height: 2.5; font-size: 18px;">모임 시간 : ${dto.meeting_time}</p>
-						<p class="text" style="line-height: 2.5; font-size: 18px;">모임 장소 : ${dto.meeting_loc}</p>
-						<p class="text" style="line-height: 2.5; font-size: 18px;">가입 인원 : ${dto.now_people} 명</p>
+						<li style="line-height: 2.5;">
+							<span style="font-size: 18px;">모임장 : ${dto.manager_id}</span>
+						</li>
+						<li style="line-height: 2.5;">
+							<span style="font-size: 18px;">모임 시간 : ${dto.meeting_time}</span>
+						</li>
+						<li style="line-height: 2.5;">
+							<span style="font-size: 18px;">모임 장소 : ${dto.meeting_loc}</span>
+						</li>
+						<li style="line-height: 2.5;">
+							<span style="font-size: 18px;">가입 인원 : ${dto.now_people} 명</span>
+						</li>
 					</div>
-					<div class="group_detail_contents">
+					<div class="group_meet_detail_contents">
 						<h2 style="line-height: 2.5; font-size: 30px;">모임규칙</h2>
 						<ul>
 							<li style="line-height: 2.5;">
-								1. <span style="font-size: 18px;"> 책은 모임전에 읽기</span>
+								1. <span style="font-size: 18px;"> 책은 모임 전에 읽기</span>
 							</li>
 							<li style="line-height: 2.5;">
 	 							2. <span style="font-size: 18px;"> 모임에 지각 하지 않기</span>
