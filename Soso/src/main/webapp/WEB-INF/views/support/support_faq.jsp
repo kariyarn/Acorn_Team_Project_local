@@ -72,7 +72,7 @@
 	<!-- 메인 메뉴바 끝 -->
 	<!-- 검색 창 시작 -->
 	<div class="search">
-		<form action="" class="search_form" method="get">
+		<form action="${pageContext.request.contextPath}/support/support_faq" class="search_form" method="get">
 			<input type="text" value="${keyword}"name="keyword" class="search_main" placeholder="예) 회원가입, 로그인, 결제 등" />
 			<input type="submit" class="search_cs"/>
 		</form>
