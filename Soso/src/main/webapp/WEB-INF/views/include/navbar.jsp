@@ -8,7 +8,6 @@
 	<link rel="shortcut icon" type="image/x-icon" href="${path }/resources/images/main/favicon.jpg">
     <link rel="stylesheet" href="${path }/resources/css/common.css" type="text/css">
     <link rel="stylesheet" href="${path }/resources/css/reset.css" type="text/css">
-    <script src="${path }/resources/js/jquery-1.12.0.min.js"></script>
     <script src="${path }/resources/js/jquery.easing.1.3.js"></script>
     <script src="${path }/resources/js/common.js"></script>
 <!-- mobile -->
@@ -52,7 +51,7 @@
     <header>
     <!-- pc -->
         <div class="inner-wrap">
-            <h1><a href="${pageContext.request.contextPath}/" class="logo"><img src="${path }/resources/images/common/bookmate_logo_w_main.svg" alt="로고화이트"></a></h1>
+            <h1><a href="${pageContext.request.contextPath}/" class="logo"  onclick="fn()"; return false;><img src="${path }/resources/images/common/bookmate_logo_w_main.svg" alt="로고화이트"></a></h1>
             <nav class="gnb">
                 <ul>
                     <li>

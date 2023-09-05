@@ -22,7 +22,8 @@ pre{white-space: pre-wrap;}
 .cafe_table .pagination{display:flex; justify-content: center;}
 .cafe_table .pagination li a{padding: 10px 20px;}
 .cafe_table .pagination li a:hover {color: rgb(226 148 148 / 92%); text-decoration: underline;}
-
+.review_delete{display: inline-block; float: right;}
+.review_delete:hover{text-decoration:underline;}
 
 
 

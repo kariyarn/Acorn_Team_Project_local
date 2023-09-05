@@ -51,7 +51,7 @@
     <header>
     <!-- pc -->
         <div class="inner-wrap">
-            <h1><a href="${pageContext.request.contextPath}/" class="logo"><img src="${path }/resources/images/common/bookmate_logo_w_main.svg" alt="로고화이트"></a></h1>
+            <h1><a href="${pageContext.request.contextPath}/" class="logo" onclick="fn()"; return false;><img src="${path }/resources/images/common/bookmate_logo_w_main.svg" alt="로고화이트"></a></h1>
             <nav class="gnb">
                 <ul>
                     <li>
