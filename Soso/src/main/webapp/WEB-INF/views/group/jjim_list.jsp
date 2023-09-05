@@ -28,7 +28,7 @@
 						<div id="jjim_item_two_header">
 							<div class="jjim_name" style="padding-top:15px; margin-bottom:5px;">소모임 소개 & 규칙</div>
 							<div>
-								<div class="jjim_name">소모임 모집 인원 현황</div> 
+								<div class="jjim_name">모집 현황</div> 
 								${tmp.now_people } / ${tmp.max_people }
 							</div>
 						</div>
@@ -89,6 +89,8 @@
    	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
      	<!-- jQuery 라이브러리를 로드 -->
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 	<script>
 	    $(".jjim_container").on("click", "#heart_icon", function(e) {
 	        var $heart = $(this);
@@ -118,9 +120,31 @@
 	            data: { "num": num },
 	            success: function(data){
 	                if (data.isSuccess == true) {
-	                    alert("찜 추가되었습니다.");
+	                	Swal.fire({
+	                  		title: `찜 추가되었습니다.`,
+	                  		text: "",
+	                  		icon: 'success',
+	                  		confirmButtonColor: 'rgb(161, 168, 196)',
+	                  		cancelButtonColor: 'rgb(248, 162, 146)',
+	                  		confirmButtonText: '확인',
+	                  		cancelButtonText: '취소',
+	               		}).then((result) => {
+	            	      	if (result.isConfirmed) {
+	            	      	}
+	            	    })
 	                } else {
-	                    alert("찜 취소하셨습니다.");
+	                	Swal.fire({
+	                  		title: `찜 취소되었습니다.`,
+	                  		text: "",
+	                  		icon: 'info',
+	                  		confirmButtonColor: 'rgb(161, 168, 196)',
+	                  		cancelButtonColor: 'rgb(248, 162, 146)',
+	                  		confirmButtonText: '확인',
+	                  		cancelButtonText: '취소',
+	               		}).then((result) => {
+	            	      	if (result.isConfirmed) {
+	            	      	}
+	            	    })
 	                }            
 	            }
 	        });
