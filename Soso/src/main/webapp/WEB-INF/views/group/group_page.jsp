@@ -78,14 +78,14 @@
 		<!-- 참석후기 -->
 		<div class="group_review" >
 			<div class="inner-wrap">
-				<h2 class="title black">참여 후기</h2>
+				<h2 class="title black">기대평</h2>
 				<div class="reviewList" style="width:80%;">
 				<!-- forEach를 사용해서 댓글 출력(나중에는 분기 써서 댓글이 없을 때는 다른 페이지 표시) -->
 					<c:choose>
 						<c:when test="${empty commentList}">
 							<div class="card">
 								<div class="card-body">
-									<p class="card-text">아직 후기가 없어요</p>
+									<p class="card-text">아직 기대평이 없어요</p>
 								</div>
 							</div>
 						</c:when>
@@ -121,7 +121,7 @@
 										<textarea name="content" id="content" style="resize : none;" readonly>${tmp.content}</textarea>
 									</div>
 									<c:if test="${sessionScope.id == tmp.writer || sessionScope.id == manager_id}">
-										<a href="${pageContext.request.contextPath}/group/review_delete?num=${tmp.review_num }&group_num=${tmp.group_num}">삭제</a>
+										<a class="review_delete" href="${pageContext.request.contextPath}/group/review_delete?num=${tmp.review_num }&group_num=${tmp.group_num}">삭제</a>
 									</c:if>
 								</div>
 							</c:forEach>
