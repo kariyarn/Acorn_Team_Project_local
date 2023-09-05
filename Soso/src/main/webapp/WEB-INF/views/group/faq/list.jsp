@@ -44,15 +44,19 @@
 										<div class="qna_question">
 											<span class="qna_q">Q</span>
 									    	<pre name="content" id="content" readonly>${tmp.q_content}</pre>
-								        	<c:if test="${sessionScope.id == tmp.q_writer || sessionScope.id == tmp.a_writer }">
+								        	<c:if test="${sessionScope.id == tmp.q_writer || sessionScope.id == tmp.a_writer || empty sessionScope.id}">
 									        	<a href="${pageContext.request.contextPath}/group/faq/updateform?num=${tmp.num}" id="update">수정</a>
 									        	<a href="${pageContext.request.contextPath}/group/faq/delete?num=${tmp.num}&group_num=${tmp.group_num}" id="delete">삭제</a>
 								        	</c:if>
 										</div>
 										<div class="qna_answer">
-											<span class="qna_a">A</span>
 											<c:if test="${not empty tmp.a_answer }">
+											<span class="qna_a">A</span>
 								        	<pre name="answer" id="answer" readonly>${tmp.a_answer }</pre>
+								        	</c:if>
+								        	<c:if test="${empty tmp.a_answer }">
+								        	<span class="qna_a" style="opacity:0">A</span>
+								        	<pre name="answer" id="answer" readonly>아직 등록된 답변이 없습니다.</pre>
 								        	</c:if>
 								        	<c:if test="${empty tmp.a_answer && dto.manager_id == sessionScope.id}">
 								        	<a href="${pageContext.request.contextPath}/group/answer/insertform?num=${tmp.num}" id="insertAnswer">답변 하기</a>
