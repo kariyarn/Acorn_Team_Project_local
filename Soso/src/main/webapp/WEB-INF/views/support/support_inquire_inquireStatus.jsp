@@ -85,14 +85,12 @@
 													<a href="">${tmp.title }</a>
 												</td>
 												<td class="status">
-													<c:choose>
-														<c:when test="${empty tmp.answer }">
-															답변대기
-														</c:when>
-														<c:otherwise>
-															답변완료
-														</c:otherwise>
-													</c:choose>
+													 <c:if test="${empty tmp.answer}">
+													        답변대기
+													 </c:if>
+													 <c:if test="${not empty tmp.answer}">
+													        답변완료
+													 </c:if>
 												</td>
 											</tr>
 											<tr class="btn-area">
