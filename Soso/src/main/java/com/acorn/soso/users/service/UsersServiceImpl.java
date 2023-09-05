@@ -269,7 +269,7 @@ public class UsersServiceImpl implements UsersService{
 		if(isValid) {
 			id = resultDto.getId();
 		}
-		
+		model.addAttribute("name", dto.getName());
 		model.addAttribute("isSuccess", isValid);
 		model.addAttribute("id", id);
 	}
