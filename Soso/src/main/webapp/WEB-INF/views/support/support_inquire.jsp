@@ -84,6 +84,7 @@
 				</ul>
 				<h3 class="main_title">1:1 문의하기</h3>
 				<form action="${pageContext.request.contextPath}/support/support_inquire_insert" class="area_form" method="post">
+
 					<div class="row-wrap">
 						<div class="input_name">
 							<h4 class="label">ID</h4>
