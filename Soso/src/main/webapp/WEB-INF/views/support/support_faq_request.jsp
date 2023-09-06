@@ -95,7 +95,9 @@
 									<c:when test="${tmp.category == 0}">기타</c:when>
 								</c:choose>
 							</div>
-							<h5 class="detail">${tmp.question }</h5>
+							<h5 class="detail">
+								<a class="faq_question" href="">${tmp.question}</a>
+							</h5>
 						</div>
 						<div class="detail_content" style="display: block;">
 							<span style="line-height: 24px;">
@@ -162,7 +164,7 @@
 			});
 			$(document).ready(function(){
 				
-				$(".btn_more").click(function(e){
+				$(".faq_question").click(function(e){
 					e.preventDefault();
 					$(this).closest(".dropbox").find(".detail_content").toggle();
 				});

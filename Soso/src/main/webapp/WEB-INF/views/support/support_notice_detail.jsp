@@ -7,52 +7,7 @@
 <meta charset="UTF-8">
 <title>공지사항</title>
 <link rel="shortcut icon" type="image/x-icon" href="${path }/resources/images/main/favicon.jpg">
-<style>
-	.detail_notice{
-		margin-top: 14px;
-		border-top: 2px solid black;
-	}
-	.notice_head{
-		line-height: 18px;
-		background-color: #f7f7f7;
-	}
-	.notice_head .info{
-		float: right;
-		margin-right: 40px;
-		font-size: 14px;
-	}
-	.notice_content {
-	    margin: 0 0 20px;
-	    padding: 46px 50px 54px;
-	    border-top: 1px solid #d3d3d3;
-	    border-bottom: 1px solid #d3d3d3;
-	    line-height: 19px;
-	    overflow: hidden;
-	}
-	/* 목록 버튼 css */
-	.btn_list{
-	    width: 130px;
-	    height: 48px;
-	    display: flex;
-	    justify-content: center;
-	    border-radius: 0;
-	    border: 1px solid #d8d8d8;
-	    background-color: #f7f7f7;
-	    text-align: center;
-	    line-height: 48px;
-	    font-size: 14px;
-	    color: #333;
-	}
-	.btn_list:hover{
-		color: rgb(157 128 63);
-		font-weight: 600;
-	}
-	.admin_menu{
-		width: 100%;
-		display: flex;
-		justify-content: center;
-	}
-</style>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/support/support_notice_detail.css" />
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/support/support_inquire.css" />
