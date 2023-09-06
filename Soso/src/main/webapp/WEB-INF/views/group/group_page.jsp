@@ -139,11 +139,13 @@
 		<div class="inner-wrap">
 			<div id="faq">
 				<h2 class="title black">문의하기</h2>
-			</div>
-			<div style="width : 100%;">
-			<div id="Parse_Area"gt;lt;></div>
-		</div>		
+			</div>		
 		</div>
+
+			<div id="Parse_Area"gt;lt;>
+			<!-- 문의하기 목록 -->
+			</div>
+
 		<!-- 플로팅 하단 고정 -->
 		<div class="banner-inner-wrap">
 			<div class="group_banner">
