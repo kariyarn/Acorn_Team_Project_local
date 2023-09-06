@@ -114,7 +114,7 @@
 					<!-- 내용 -->
 					<div class="row-wrap">
 						<div class="input_text">
-							<h4 class="label">내용 </h4>
+							<h4 class="label">내용 * </h4>
 							<textarea name="content" placeholder="북메이트를 이용하시면서 궁금한 점이나 어려운점, 모임 관련 내용이나 북메이트의 전반적인 문의를 입력 해 주세요."></textarea>
 						</div>
 					</div>

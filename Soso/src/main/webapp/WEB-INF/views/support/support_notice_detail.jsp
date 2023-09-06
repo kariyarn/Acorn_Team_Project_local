@@ -90,7 +90,7 @@
 			      		const noticeNum=e.target.getAttribute("data-num");
 			      		location.href="${pageContext.request.contextPath}/support/support_notice_delete?notice_num="+noticeNum;
 			      	}else if(result.isDismissed){
-			      		location.href="${pageContext.request.contextPath}/support/support_notice";
+			      		location.href="${pageContext.request.contextPath}/support/support_detail?notice_num="+noticeNum;
 			      	}
 			    });
 			});	
