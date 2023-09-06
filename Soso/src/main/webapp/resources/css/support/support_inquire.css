@@ -163,35 +163,6 @@ h4.label{
 	width: 880px;
 }
 
-.input_file .file_box{
-	width: 1050px;
-	display: inline-block;
-}
-.input_file .btn_upload {
-    float: left;
-    width: 160px;
-    height: 48px;
-    line-height: 46px;
-    border-radius: 0;
-	border-color: #d8d8d8;
-	border: 1px solid #d8d8d8;
-    background-color: #f7f7f7;
-    color: #333333;
-    font-size: 14px;
-    vertical-align: middle;
-    letter-spacing: normal;
-    text-align: center;
-    cursor: pointer;
-
-}
-.input_file .file_wrap {
-    margin-top: 10px;
-    margin-left: 294px;
-    font-size: 12px;
-}
-.input_file .file_wrap .tip_file{
-	color: gray;
-}
 .area_form .row-wrap:last-of-type {
    border: none;
    border-bottom: 2px solid #333;

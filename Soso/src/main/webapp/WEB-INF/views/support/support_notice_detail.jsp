@@ -10,7 +10,6 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/support/support_notice_detail.css" />
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/support/support_inquire.css" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 </head>
@@ -40,19 +39,20 @@
 			<a class="nav-link" href="${pageContext.request.contextPath }/support/support_inquire">문의하기</a>
 		</li>
 	</ul>
+	<!-- 메인컨텐츠 -->
 		<div class="body_area">
 			<div class="main_content">
-				<h3 style="font-size:20px">공지사항</h3>
+				<h3 class="detail_title">공지사항</h3>
 				<article class="detail_notice">
 					<input type="hidden" name="notice_num" value="${dto.notice_num }"/>
 					<div class="notice_head">
-						<h6 class="title" style="display:inline-block">${dto.title }</h6>
+						<h6 class="title">${dto.title }</h6>
 						<span class="info">
 							<span>작성일 : ${dto.regdate }</span>
 						</span>
 					</div>
 					<div class="notice_content">
-						<textarea cols="30" rows="25">${dto.content }</textarea>
+						<textarea cols="30" rows="25" readonly>${dto.content }</textarea>
 					</div>
 					<p class="info_message">
 						이 사이트는 reCAPTCHA에 의해 보호되며 Google 개인 정보 취급 방침 및 서비스 약관이 적용됩니다.
