@@ -65,6 +65,7 @@
 		margin-right: 40px;
 		font-size: 19px;
 		line-height: 4rem;
+		font-size: 14px;
 	}
 	.notice_content {
 	    margin: 0 0 20px;
@@ -89,6 +90,8 @@
 	    font-size: 20px;
 	    color: #333;
 	    margin-top:18px;
+	    font-size: 14px;
+	    color: #333;
 	}
 	.btn_list:hover{
 		color: rgb(157 128 63);
