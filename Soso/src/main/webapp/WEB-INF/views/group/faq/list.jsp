@@ -8,8 +8,11 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/groupfaq.css" />
 </head>
 <body>
-	<div class="cafe_table">
+	<div class="inner-wrap">
 		<a id="faqInsert">문의하기</a>
+	</div>
+	<div class="inner-wrap">
+		<div class="cafe_table">
 			<c:choose>
 				<c:when test="${empty list }">
 					<div id="emptyBox" name="emptyBox">문의사항이 없습니다.</div>
@@ -20,6 +23,13 @@
 				        <tbody>
 				            <c:forEach var="tmp" items="${list}">
 				                <tr>
+				                <colgroup>
+				                	<col style="width:20%">
+				                	<col style="width:35%">
+				                	<col style="width:20%">
+				                	<col style="width:20%">
+				                	<col style="width:5%">
+				                </colgroup>
 				                	<td class="q-answer">
 				                		<c:if test="${not empty tmp.a_answer }">
 								        	<div class="answer_end">답변 완료</div>
@@ -93,6 +103,8 @@
 				</c:otherwise>
 			</c:choose>
 		</div>
+	</div>
+
 	    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 		<script>
 			
