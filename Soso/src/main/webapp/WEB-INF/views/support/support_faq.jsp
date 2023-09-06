@@ -117,7 +117,7 @@
 								</c:choose>
 							</div>
 							<h5 class="detail">
-								<a class="faq_question" href="${pageContext.request.contextPath}/support/support_faq?faq_num=${tmp.faq_num}" id="faq-question-${tmp.faq_num}">
+								<a class="faq_question" href="">
 				                    ${tmp.question}
 				                </a>
 							</h5>
@@ -175,7 +175,7 @@
 		<script>
 			$(document).ready(function(){
 			
-				$(".btn_more").click(function(e){
+				$(".faq_question").click(function(e){
 					e.preventDefault();
 					$(this).closest(".dropbox").find(".detail_content").toggle();
 				});

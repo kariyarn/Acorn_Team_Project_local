@@ -1,0 +1,47 @@
+@charset "UTF-8";
+
+
+	.detail_notice{
+		margin-top: 14px;
+		border-top: 2px solid black;
+	}
+	.notice_head{
+		line-height: 18px;
+		background-color: #f7f7f7;
+	}
+	.notice_head .info{
+		float: right;
+		margin-right: 40px;
+		font-size: 14px;
+	}
+	.notice_content {
+	    margin: 0 0 20px;
+	    padding: 46px 50px 54px;
+	    border-top: 1px solid #d3d3d3;
+	    border-bottom: 1px solid #d3d3d3;
+	    line-height: 19px;
+	    overflow: hidden;
+	}
+	/* 목록 버튼 css */
+	.btn_list{
+	    width: 130px;
+	    height: 48px;
+	    display: flex;
+	    justify-content: center;
+	    border-radius: 0;
+	    border: 1px solid #d8d8d8;
+	    background-color: #f7f7f7;
+	    text-align: center;
+	    line-height: 48px;
+	    font-size: 14px;
+	    color: #333;
+	}
+	.btn_list:hover{
+		color: rgb(157 128 63);
+		font-weight: 600;
+	}
+	.admin_menu{
+		width: 100%;
+		display: flex;
+		justify-content: center;
+	}
