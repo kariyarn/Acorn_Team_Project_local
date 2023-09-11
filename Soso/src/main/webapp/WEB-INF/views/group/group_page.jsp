@@ -121,7 +121,7 @@
 										<textarea name="content" id="content" style="resize : none;" readonly>${tmp.content}</textarea>
 									</div>
 									<c:if test="${sessionScope.id == tmp.writer || sessionScope.id == manager_id}">
-										<a class="review_delete" href="${pageContext.request.contextPath}/group/review_delete?num=${tmp.review_num }&group_num=${tmp.group_num}">삭제</a>
+										<a class="review_delete" href="${pageContext.request.contextPath}/group/review_delete?num=${tmp.review_num }&group_num=${tmp.group_num}" onclick="return confirm('삭제하시겠습니까?')">삭제</a>
 									</c:if>
 								</div>
 							</c:forEach>
@@ -129,7 +129,7 @@
 					</c:choose>
 					<c:forEach var="item" items="${list}">
 						<c:if test="${item.user_id eq sessionScope.id}">
-							<a href="${pageContext.request.contextPath}/group/comment/comment_insert_form?num=${dto.num}" id="reviewInsert">후기 작성하기</a>
+							<a href="${pageContext.request.contextPath}/group/comment/comment_insert_form?num=${dto.num}" id="reviewInsert">기대평 작성하기</a>
 							<div id="commentArea"></div>
 						</c:if>
 					</c:forEach>
