@@ -17,6 +17,7 @@ public interface UsersService {
 	public boolean isSamePwd(UsersDto dto); //동일한 비밀번호인지 체크
 	public void loginprocess(UsersDto dto, HttpSession session);
 	public void getInfo(HttpSession session, Model model);
+	public UsersDto getInfo2(String email);
 	public void updateUserPwd(HttpSession session, UsersDto dto, Model model);
 	public Map<String, Object> saveProfileImage(HttpServletRequest request, MultipartFile mFile);
 	public void updateUser(UsersDto dto, HttpSession session);

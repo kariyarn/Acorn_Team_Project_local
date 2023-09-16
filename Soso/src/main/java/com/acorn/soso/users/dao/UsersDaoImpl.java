@@ -38,6 +38,10 @@ public class UsersDaoImpl implements UsersDao{
 		// 여기서 최종적으로 리턴되는 값은 users.getData() 메소드를 호출한 뒤에 반환되는 resultType 데이터이다.
 		return session.selectOne("users.getData", id);
 	}
+	@Override
+	public UsersDto getData2(String email) {
+		return session.selectOne("users.getData2", email);
+	}
 	
 	@Override
 	public void updatePwd(UsersDto dto) {

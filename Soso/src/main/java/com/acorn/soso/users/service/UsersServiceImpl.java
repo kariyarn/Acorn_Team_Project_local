@@ -89,6 +89,14 @@ public class UsersServiceImpl implements UsersService{
 		//view 페이지에서 필요한 정보를 서비스 페이지에서 dto로 담아준다.
 		model.addAttribute("dto", dto);
 	}
+	
+	@Override
+	public UsersDto getInfo2(String email) {
+		//로그인 된 아이디를 읽어온다.
+		UsersDto dto = dao.getData2(email);
+		//view 페이지에서 필요한 정보를 서비스 페이지에서 dto로 담아준다.
+		return dto;
+	}
 
 	@Override
 	public void updateUserPwd(HttpSession session, UsersDto dto, Model model) {

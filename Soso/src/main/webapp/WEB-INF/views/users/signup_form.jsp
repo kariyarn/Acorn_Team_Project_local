@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -68,11 +69,23 @@
 					}
 				}
 			</script>
-			<div class="mb-4">
-				<label class="control-label mb-2" for="email">이메일</label> <input
-					class="form-control" type="text" name="email" id="email" autocomplete='off'/>
-				<div class="invalid-feedback">이메일 형식에 맞게 입력하세요.</div>
-			</div>
+			
+			<c:choose>
+				<c:when test="${not empty email }">
+					<div class="mb-4">
+						<label class="control-label mb-2" for="email">이메일</label> <input
+							class="form-control is-valid" type="text" name="email" id="email" autocomplete='on' value="${email }" readonly/>
+						<div class="invalid-feedback">이메일 형식에 맞게 입력하세요.</div>
+					</div>
+				</c:when>
+				<c:otherwise>
+					<div class="mb-4">
+						<label class="control-label mb-2" for="email">이메일</label> <input
+							class="form-control" type="text" name="email" id="email" autocomplete='off'/>
+						<div class="invalid-feedback">이메일 형식에 맞게 입력하세요.</div>
+					</div>
+				</c:otherwise>
+			</c:choose>
 			<div>
 				<fieldset class="fieldarea f2">
 					<div class="d-flex justify-content-between align-items-center mb-2">
@@ -342,6 +355,14 @@ QR코드 등록 정보:삭제 시점으로부터6개월 보관
 			}
 			
 			checkFormState();
+		});
+		
+		$(document).ready(function() {
+		    const emailInput = $("#email");
+		    
+		    if (emailInput.prop("readonly")) {
+		        isEmailValid = true;
+		    }
 		});
 
 		$(document).ready(function() {
