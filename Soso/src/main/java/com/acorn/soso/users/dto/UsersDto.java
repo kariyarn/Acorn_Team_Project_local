@@ -13,12 +13,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Alias("usersDto")
 public class UsersDto {
-	//카카오에서 받아올 정보
+	//네이버에서 받아올 정보
 	private String name;
-	private String id;
 	private String email;
 	
 	//사용자가 직접 지정 or 서버상에서 설정
+	private String id;
 	private String pwd;
 	private String profile;
 	private String regdate;
@@ -32,4 +32,6 @@ public class UsersDto {
 	//소셜 로그인 관련 0이면 홈페이지 가입, 1이면 소셜 가입, 2면 통합 로그인(홈페이지+소셜)
 	private Integer social;
 
+	//소셜 로그인 여부 0:북메이트, 1:통합회원, 2:네이버
+	private int social;
 }
