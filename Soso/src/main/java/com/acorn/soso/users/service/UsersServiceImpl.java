@@ -33,12 +33,12 @@ public class UsersServiceImpl implements UsersService{
 	@Override
 	public void addUser(UsersDto dto) {
 		
-		//만약 소셜로그인(social=1)이면 dto.getPwd==null이다.
+		//만약 소셜로그인(social=2)이면 dto.getPwd==null이다.
 		if(dto.getPwd() == null) {
 			dto.setPwd("");
-			dto.setSocial(1);
+			dto.setSocial(2);
 			dao.insert(dto);
-		}else {
+		}else {//일반회원가입
 			//비밀번호를 암호화해줄 객체를 생성
 			BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 			//암호화된 비밀번호 얻어내서
