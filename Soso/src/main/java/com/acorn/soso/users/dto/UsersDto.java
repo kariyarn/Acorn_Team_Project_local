@@ -28,5 +28,8 @@ public class UsersDto {
 	private Integer SVC_USE_PCY_AGMT_YN;
 	private Integer PS_INFO_PROC_AGMT_YN;
 	private Integer MKT_INFO_RECV_AGMT_YN;
+	
+	//소셜 로그인 관련 0이면 홈페이지 가입, 1이면 소셜 가입, 2면 통합 로그인(홈페이지+소셜)
+	private Integer social;
 
 }
