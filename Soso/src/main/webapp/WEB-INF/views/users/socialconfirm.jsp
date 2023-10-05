@@ -22,7 +22,7 @@
     	<div style="padding-bottom:30%">
 			<script>
 				Swal.fire({
-		      		title: "${id } 회원님 통합 로그인 하시겠습니까?",
+		      		title: "${id } 회원님 <br> 통합 로그인 하시겠습니까?",
 		      		text: "",
 		      		icon: 'success',
 		      		confirmButtonColor: 'rgb(13, 110, 253)',
